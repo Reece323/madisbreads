@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -258,7 +258,7 @@ document.getElementById('navToggle').addEventListener('click',()=>document.getEl
 const toggle=document.getElementById('themeToggle'),icon=document.getElementById('toggleIcon');
 function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);icon.textContent=t==='dark'?'🌙':'☀️'}
 toggle.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');setTheme(c==='dark'?'light':'dark')});
-(function(){const s=localStorage.getItem('theme')||'light';setTheme(s)})();
+(function(){const s=localStorage.getItem('theme')||'dark';setTheme(s)})();
 </script>
 </body>
 </html>
