@@ -2,500 +2,620 @@
 <html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Madi's Breads</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Outfit:wght@200;300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Allura&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ===== CSS VARIABLES - LIGHT THEME ===== */
 :root,[data-theme="light"]{
-  --bg:#F8F7F2;--bg2:#EFEDE5;--bg3:#E6E3D8;
-  --surface:#FFFFFF;--surface2:#F5F4EE;--surface-hover:#FAFAF6;
-  --olive:#5B6B4A;--olive-deep:#3D4A2E;--olive-dark:#2C3820;--olive-light:#7D8E6A;--olive-pale:#A3B48E;--olive-wash:#D4DEC8;--olive-ghost:#EBF0E4;
-  --text:#1C1C1A;--text2:#3A3A36;--text3:#6B6B63;--text4:#9A9A90;--text5:#C0C0B6;
-  --border:rgba(0,0,0,0.06);--border2:rgba(0,0,0,0.1);
-  --warm:#D4A96A;--warm-bg:rgba(212,169,106,0.08);
-  --card-shadow:0 1px 3px rgba(0,0,0,0.03),0 4px 16px rgba(0,0,0,0.04);
-  --card-shadow-hover:0 8px 32px rgba(0,0,0,0.08),0 2px 8px rgba(0,0,0,0.04);
-  --nav-bg:rgba(248,247,242,0.82);
-  --modal-bg:rgba(28,28,26,0.35);
-  --toggle-bg:var(--bg3);--toggle-dot:var(--olive);
-  --badge-bg:rgba(255,255,255,0.88);--badge-text:var(--olive-deep);
-  --img-overlay:linear-gradient(to top,rgba(0,0,0,0.04),transparent);
+  --bg:#F8F7F2;--bg2:#EFEDE5;--bg3:#E6E3D8;--sf:#FFFFFF;--sf2:#F5F4EE;
+  --ol:#5B6B4A;--old:#3D4A2E;--oll:#7D8E6A;--olp:#A3B48E;--olw:#D4DEC8;--olg:#EBF0E4;
+  --tx:#1C1C1A;--tx2:#3A3A36;--tx3:#6B6B63;--tx4:#9A9A90;--tx5:#C0C0B6;
+  --bd:rgba(0,0,0,0.06);--bd2:rgba(0,0,0,0.1);--danger:#C45B5B;--danger-bg:rgba(196,91,91,0.08);
+  --cs:0 1px 3px rgba(0,0,0,0.03),0 4px 16px rgba(0,0,0,0.04);--csh:0 8px 32px rgba(0,0,0,0.08);
+  --nbg:rgba(248,247,242,0.82);--mbg:rgba(28,28,26,0.35);
+  --tbg:var(--bg3);--td:var(--ol);--bbg:rgba(255,255,255,0.88);--btx:var(--old);
 }
 [data-theme="dark"]{
-  --bg:#141613;--bg2:#1A1D18;--bg3:#22261F;
-  --surface:#1E211B;--surface2:#252923;--surface-hover:#2A2E26;
-  --olive:#8FA67E;--olive-deep:#A3B48E;--olive-dark:#B8C9AA;--olive-light:#6B8858;--olive-pale:#4A6038;--olive-wash:#2A3524;--olive-ghost:#1E2618;
-  --text:#E8E8E2;--text2:#C8C8BE;--text3:#9A9A90;--text4:#6B6B63;--text5:#3A3A36;
-  --border:rgba(255,255,255,0.06);--border2:rgba(255,255,255,0.1);
-  --warm:#D4A96A;--warm-bg:rgba(212,169,106,0.1);
-  --card-shadow:0 1px 3px rgba(0,0,0,0.15),0 4px 16px rgba(0,0,0,0.2);
-  --card-shadow-hover:0 8px 32px rgba(0,0,0,0.3),0 2px 8px rgba(0,0,0,0.15);
-  --nav-bg:rgba(20,22,19,0.85);
-  --modal-bg:rgba(0,0,0,0.6);
-  --toggle-bg:var(--olive-wash);--toggle-dot:var(--olive);
-  --badge-bg:rgba(30,33,27,0.88);--badge-text:var(--olive);
-  --img-overlay:linear-gradient(to top,rgba(0,0,0,0.15),transparent);
+  --bg:#141613;--bg2:#1A1D18;--bg3:#22261F;--sf:#1E211B;--sf2:#252923;
+  --ol:#8FA67E;--old:#A3B48E;--oll:#6B8858;--olp:#4A6038;--olw:#2A3524;--olg:#1E2618;
+  --tx:#E8E8E2;--tx2:#C8C8Be;--tx3:#9A9A90;--tx4:#6B6B63;--tx5:#3A3A36;
+  --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);--danger:#D47A7A;--danger-bg:rgba(212,122,122,0.1);
+  --cs:0 1px 3px rgba(0,0,0,0.15),0 4px 16px rgba(0,0,0,0.2);--csh:0 8px 32px rgba(0,0,0,0.3);
+  --nbg:rgba(20,22,19,0.85);--mbg:rgba(0,0,0,0.6);
+  --tbg:var(--olw);--td:var(--ol);--bbg:rgba(30,33,27,0.88);--btx:var(--ol);
 }
-/* ===== RESET & BASE ===== */
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);line-height:1.65;overflow-x:hidden;transition:background .4s,color .4s}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--olive-pale);border-radius:3px}
-img{max-width:100%;display:block}
+html{-webkit-font-smoothing:antialiased}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden;transition:background .4s,color .4s;min-height:100dvh}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--olp);border-radius:3px}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+input,textarea,select{font-family:inherit;font-size:inherit}
 a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer}
+.wrap{max-width:1100px;margin:0 auto;padding:0 1rem}
+@media(min-width:768px){.wrap{padding:0 1.5rem}}
 
-/* ===== UTILITY ===== */
-.container{max-width:1200px;margin:0 auto;padding:0 1.25rem}
-@media(min-width:768px){.container{padding:0 2rem}}
-@media(min-width:1024px){.container{padding:0 2.5rem}}
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:500;background:var(--nbg);backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid var(--bd);padding:0.6rem 0}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:inline-flex;align-items:baseline;gap:5px}
+.nav-bold{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:700;color:var(--tx)}
+.nav-cursive{font-family:'Allura',cursive;font-size:1.45rem;color:var(--ol)}
+.nav-right{display:flex;align-items:center;gap:0.6rem}
+.theme-tog{width:38px;height:20px;background:var(--tbg);border-radius:100px;border:1px solid var(--bd2);cursor:pointer;display:flex;align-items:center;padding:0 2px;transition:background .3s;flex-shrink:0}
+.theme-tog .dot{width:14px;height:14px;background:var(--td);border-radius:50%;transition:transform .3s;display:flex;align-items:center;justify-content:center;font-size:0.45rem}
+[data-theme="light"] .dot{transform:translateX(0)}[data-theme="dark"] .dot{transform:translateX(17px)}
+.nav-btn{display:inline-flex;align-items:center;gap:0.3rem;padding:0.35rem 0.9rem;font-size:0.75rem;font-weight:500;border-radius:100px;transition:all .25s}
+.nav-btn svg{width:13px;height:13px}
+.btn-add{background:var(--old);color:#fff}
+[data-theme="dark"] .btn-add{background:var(--oll)}
+.btn-add:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-auth{background:transparent;color:var(--tx3);border:1.5px solid var(--bd2)}
+.btn-auth:hover{border-color:var(--olp);background:var(--olg);color:var(--old)}
+[data-theme="dark"] .btn-auth:hover{color:var(--ol)}
+.user-pill{display:inline-flex;align-items:center;gap:0.4rem;padding:0.25rem 0.7rem 0.25rem 0.25rem;background:var(--sf2);border:1px solid var(--bd);border-radius:100px;font-size:0.72rem;color:var(--tx3);cursor:pointer;transition:all .25s}
+.user-pill:hover{background:var(--olg);border-color:var(--olp)}
+.user-pill img{width:22px;height:22px;border-radius:50%;object-fit:cover}
+.user-pill .avatar-letter{width:22px;height:22px;border-radius:50%;background:var(--old);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.6rem;font-weight:600}
+[data-theme="dark"] .user-pill .avatar-letter{background:var(--oll)}
 
-/* ===== NAV ===== */
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:0.9rem 0;transition:all .35s}
-.nav.scrolled{background:var(--nav-bg);backdrop-filter:blur(18px) saturate(1.3);border-bottom:1px solid var(--border);padding:0.6rem 0}
-.nav .container{display:flex;align-items:center;justify-content:space-between}
-.nav-brand{font-family:'Libre Caslon Display',serif;font-size:1.25rem;color:var(--text);transition:color .3s}
-.nav-right{display:flex;align-items:center;gap:1.5rem}
-.nav-links{display:flex;align-items:center;gap:1.8rem;list-style:none}
-.nav-links a{font-size:0.82rem;font-weight:400;color:var(--text3);letter-spacing:0.02em;transition:color .25s;position:relative}
-.nav-links a:hover{color:var(--text)}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--olive);border-radius:1px;transition:width .25s}
-.nav-links a:hover::after{width:100%}
-.nav-creami{padding:0.45rem 1.1rem;background:var(--olive-deep);color:#fff;font-size:0.78rem;font-weight:500;border-radius:100px;border:none;transition:all .25s;display:inline-flex;align-items:center;gap:0.4rem}
-[data-theme="dark"] .nav-creami{background:var(--olive-light);color:#fff}
-.nav-creami:hover{transform:translateY(-1px);filter:brightness(1.1)}
+/* AUTH MODAL */
+.auth-bg{position:fixed;inset:0;background:var(--mbg);backdrop-filter:blur(8px);z-index:1200;display:none;align-items:center;justify-content:center;padding:1rem}
+.auth-bg.open{display:flex}
+.auth-box{background:var(--sf);border-radius:18px;max-width:380px;width:100%;padding:2rem 1.5rem;border:1px solid var(--bd);box-shadow:0 24px 80px rgba(0,0,0,0.2);text-align:center}
+@media(min-width:768px){.auth-box{padding:2.5rem 2rem}}
+.auth-box h2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;margin-bottom:0.3rem}
+.auth-box .sub{font-size:0.82rem;color:var(--tx3);font-weight:300;margin-bottom:1.5rem}
+.auth-box .mx{position:absolute;top:12px;right:12px}
+.goog-btn{display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;padding:0.65rem;background:var(--sf2);border:1.5px solid var(--bd2);border-radius:10px;font-size:0.85rem;font-weight:500;color:var(--tx);cursor:pointer;transition:all .25s;margin-bottom:1rem}
+.goog-btn:hover{border-color:var(--olp);background:var(--olg)}
+.goog-btn svg{width:18px;height:18px}
+.auth-divider{display:flex;align-items:center;gap:0.8rem;margin-bottom:1rem}
+.auth-divider span{font-size:0.72rem;color:var(--tx4)}
+.auth-divider::before,.auth-divider::after{content:'';flex:1;height:1px;background:var(--bd2)}
+.auth-fg{margin-bottom:0.8rem;text-align:left}
+.auth-fg label{display:block;font-size:0.65rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--tx4);margin-bottom:0.2rem}
+.auth-fg input{width:100%;padding:0.55rem 0.8rem;font-size:0.85rem;background:var(--bg);border:1.5px solid var(--bd2);border-radius:10px;color:var(--tx);outline:none;transition:border-color .25s}
+.auth-fg input:focus{border-color:var(--ol)}
+.auth-submit{width:100%;padding:0.6rem;background:var(--old);color:#fff;font-size:0.85rem;font-weight:500;border-radius:10px;transition:all .25s;margin-top:0.5rem}
+[data-theme="dark"] .auth-submit{background:var(--oll)}
+.auth-submit:hover{filter:brightness(1.1)}
+.auth-toggle{font-size:0.78rem;color:var(--tx4);margin-top:1rem}
+.auth-toggle a{color:var(--ol);cursor:pointer;font-weight:500}
+.auth-toggle a:hover{text-decoration:underline}
+.auth-error{font-size:0.75rem;color:var(--danger);margin-top:0.5rem;min-height:1.2em}
 
-/* Theme toggle */
-.theme-toggle{width:44px;height:24px;background:var(--toggle-bg);border-radius:100px;border:1px solid var(--border2);position:relative;cursor:pointer;transition:background .3s;flex-shrink:0;display:flex;align-items:center;padding:0 3px}
-.theme-toggle .toggle-dot{width:18px;height:18px;background:var(--toggle-dot);border-radius:50%;transition:transform .3s,background .3s;display:flex;align-items:center;justify-content:center}
-[data-theme="light"] .theme-toggle .toggle-dot{transform:translateX(0)}
-[data-theme="dark"] .theme-toggle .toggle-dot{transform:translateX(19px)}
-.toggle-icon{font-size:0.55rem;line-height:1}
+/* FILTERS */
+.filters{padding:4.2rem 0 0.5rem}
+.search-row{display:flex;gap:0.5rem;margin-bottom:0.6rem}
+.search-wrap{position:relative;flex:1}
+.search-wrap svg{position:absolute;left:0.75rem;top:50%;transform:translateY(-50%);width:14px;height:14px;stroke:var(--tx4);stroke-width:2;fill:none;pointer-events:none}
+.search-box{width:100%;padding:0.5rem 0.8rem 0.5rem 2.2rem;font-size:0.82rem;background:var(--sf);border:1.5px solid var(--bd2);border-radius:100px;color:var(--tx);outline:none;transition:border-color .25s}
+.search-box:focus{border-color:var(--ol)}
+.filter-scroll{display:flex;gap:0.3rem;overflow-x:auto;padding-bottom:0.5rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.filter-scroll::-webkit-scrollbar{display:none}
+.chip{font-size:0.7rem;font-weight:400;padding:0.3rem 0.85rem;border:1.5px solid var(--bd2);background:transparent;color:var(--tx3);border-radius:100px;transition:all .25s;white-space:nowrap;flex-shrink:0}
+.chip:hover{border-color:var(--olp);background:var(--olg);color:var(--old)}
+[data-theme="dark"] .chip:hover{color:var(--ol)}
+.chip.on{background:var(--old);border-color:var(--old);color:#fff}
+[data-theme="dark"] .chip.on{background:var(--oll);border-color:var(--oll)}
 
-/* Mobile nav */
-.nav-toggle{display:none;background:none;border:none;padding:4px;flex-direction:column;gap:4px}
-.nav-toggle span{display:block;width:18px;height:1.5px;background:var(--text);border-radius:1px;transition:.3s}
-@media(max-width:768px){
-  .nav-links{display:none}
-  .nav-creami{display:none}
-  .nav-toggle{display:flex}
-  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--nav-bg);backdrop-filter:blur(20px);padding:1.2rem 1.25rem;border-bottom:1px solid var(--border);gap:0.8rem}
-  .nav-links.open .nav-creami-mobile{display:inline-flex;padding:0.5rem 1.2rem;background:var(--olive-deep);color:#fff;font-size:0.8rem;font-weight:500;border-radius:100px;width:fit-content}
-}
+/* GRID */
+.grid{display:grid;grid-template-columns:1fr;gap:0.9rem;padding-bottom:2rem}
+@media(min-width:480px){.grid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:768px){.grid{grid-template-columns:repeat(3,1fr);gap:1rem}}
+.card{background:var(--sf);border-radius:14px;overflow:hidden;border:1px solid var(--bd);cursor:pointer;transition:all .3s;opacity:0;animation:cardIn .35s ease-out forwards}
+.card:hover{transform:translateY(-4px);box-shadow:var(--csh)}
+.card-img{height:170px;background:var(--sf2);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+@media(min-width:768px){.card-img{height:190px}}
+.card-img img{width:100%;height:100%;object-fit:cover}
+.card-img .ph{font-size:2.5rem;opacity:0.35}
+.card-tags{position:absolute;top:7px;left:7px;display:flex;gap:3px;flex-wrap:wrap;max-width:calc(100% - 14px)}
+.card-tag{padding:1px 7px;background:var(--bbg);backdrop-filter:blur(6px);border-radius:100px;font-size:0.58rem;font-weight:500;color:var(--btx)}
+.card-body{padding:0.8rem 0.9rem 0.9rem}
+.card-cat{font-size:0.58rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--ol);margin-bottom:0.15rem}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:700;color:var(--tx);margin-bottom:0.2rem;line-height:1.2}
+.card-desc{font-size:0.75rem;color:var(--tx3);font-weight:300;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-meta{display:flex;gap:0.6rem;margin-top:0.5rem;padding-top:0.5rem;border-top:1px solid var(--bd)}
+.card-mi{font-size:0.65rem;color:var(--tx4);display:flex;align-items:center;gap:0.2rem}
+.empty{text-align:center;padding:3rem 1rem;color:var(--tx4)}
+.empty-ico{font-size:2.5rem;margin-bottom:0.6rem;opacity:0.3}
+.empty h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:600;color:var(--tx3);margin-bottom:0.2rem}
+.empty p{font-size:0.82rem;font-weight:300}
 
-/* ===== HERO ===== */
-.hero{padding:7.5rem 0 4rem;position:relative;overflow:hidden}
-@media(min-width:768px){.hero{padding:9rem 0 5rem}}
-.hero-orbs{position:absolute;inset:0;pointer-events:none;z-index:0}
-.hero-orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5}
-.hero-orb:nth-child(1){width:350px;height:350px;background:var(--olive-wash);top:-80px;right:-60px;animation:orbit 25s linear infinite}
-.hero-orb:nth-child(2){width:250px;height:250px;background:var(--olive-ghost);bottom:-40px;left:-40px;animation:orbit 30s linear infinite reverse}
-.hero-orb:nth-child(3){width:180px;height:180px;background:rgba(212,169,106,0.08);top:40%;left:40%;animation:orbit 20s linear infinite 5s}
-.hero-content{position:relative;z-index:1;text-align:center;max-width:640px;margin:0 auto}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.7rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--olive);margin-bottom:1.2rem;opacity:0;animation:rise .7s ease-out .15s forwards}
-.hero-eyebrow .dot{width:5px;height:5px;background:var(--olive);border-radius:50%}
-.hero h1{font-family:'Libre Caslon Display',serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:400;line-height:1.1;letter-spacing:-0.02em;color:var(--text);margin-bottom:1rem;opacity:0;animation:rise .7s ease-out .25s forwards}
-.hero h1 em{font-family:'Newsreader',serif;font-style:italic;font-weight:300;color:var(--olive)}
-.hero-sub{font-size:clamp(0.95rem,2vw,1.08rem);color:var(--text3);font-weight:300;line-height:1.7;max-width:480px;margin:0 auto 2rem;opacity:0;animation:rise .7s ease-out .4s forwards}
-.hero-btns{display:flex;justify-content:center;gap:0.8rem;flex-wrap:wrap;opacity:0;animation:rise .7s ease-out .55s forwards}
-.btn{display:inline-flex;align-items:center;gap:0.45rem;font-family:'Outfit',sans-serif;font-size:0.85rem;font-weight:500;padding:0.75rem 1.7rem;border-radius:100px;border:none;transition:all .25s;letter-spacing:0.01em}
-.btn-fill{background:var(--olive-deep);color:#fff}
-[data-theme="dark"] .btn-fill{background:var(--olive-light);color:#fff}
-.btn-fill:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(91,107,74,0.2)}
-.btn-fill svg{width:15px;height:15px;transition:transform .25s}
-.btn-fill:hover svg{transform:translateX(2px)}
-.btn-ghost{background:transparent;color:var(--text2);border:1.5px solid var(--border2)}
-.btn-ghost:hover{border-color:var(--olive-pale);background:var(--olive-ghost);color:var(--olive-deep)}
-[data-theme="dark"] .btn-ghost:hover{color:var(--olive)}
+/* VIEW MODAL */
+.modal-bg{position:fixed;inset:0;background:var(--mbg);backdrop-filter:blur(8px);z-index:1000;display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--sf);max-width:620px;width:100%;border-radius:18px;border:1px solid var(--bd);margin:2rem auto;box-shadow:0 24px 80px rgba(0,0,0,0.2);position:relative}
+.modal-hero{height:200px;overflow:hidden;border-radius:18px 18px 0 0;background:var(--sf2);display:flex;align-items:center;justify-content:center}
+@media(min-width:768px){.modal-hero{height:260px}}
+.modal-hero img{width:100%;height:100%;object-fit:cover}
+.modal-hero .ph{font-size:3.5rem;opacity:0.25}
+.mx{position:absolute;top:10px;right:10px;width:30px;height:30px;border-radius:50%;background:var(--bbg);backdrop-filter:blur(8px);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;z-index:2;cursor:pointer;transition:all .25s}
+.mx:hover{transform:scale(1.08)}
+.mx svg{width:12px;height:12px;stroke:var(--tx);stroke-width:2;fill:none}
+.modal-acts{position:absolute;top:10px;left:10px;display:flex;gap:5px;z-index:2}
+.ma{width:30px;height:30px;border-radius:50%;background:var(--bbg);backdrop-filter:blur(8px);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s}
+.ma:hover{transform:scale(1.08)}
+.ma svg{width:12px;height:12px;stroke:var(--tx);stroke-width:2;fill:none}
+.ma.del svg{stroke:var(--danger)}
+.mb{padding:1.2rem 1.2rem 1.8rem}
+@media(min-width:768px){.mb{padding:1.3rem 1.8rem 2.2rem}}
+.mb .card-cat{margin-bottom:0.1rem}
+.mb h2{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--tx);margin-bottom:0.25rem;line-height:1.2}
+.mb .card-meta{margin-bottom:0.8rem;border:none;padding:0}
+.mb .intro{font-size:0.88rem;color:var(--tx3);font-weight:300;line-height:1.7;margin-bottom:0.2rem}
+.mtags{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:0.8rem}
+.mtag{padding:2px 8px;border-radius:100px;font-size:0.62rem;font-weight:500;background:var(--olg);color:var(--old)}
+[data-theme="dark"] .mtag{background:var(--olw);color:var(--ol)}
+.msh{font-size:0.58rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--ol);margin-top:1rem;margin-bottom:0.35rem}
+.mb ul{list-style:none;margin-bottom:0.2rem}
+.mb ul li{font-size:0.85rem;color:var(--tx2);font-weight:300;padding:0.15rem 0 0.15rem 0.9rem;position:relative;line-height:1.5}
+.mb ul li::before{content:'';position:absolute;left:0;top:0.55rem;width:4px;height:4px;background:var(--olp);border-radius:50%}
+.mb ol{list-style:none;counter-reset:s;margin-bottom:0.2rem}
+.mb ol li{font-size:0.85rem;color:var(--tx2);font-weight:300;padding:0.25rem 0 0.25rem 1.5rem;position:relative;line-height:1.5;counter-increment:s}
+.mb ol li::before{content:counter(s);position:absolute;left:0;top:0.25rem;width:17px;height:17px;background:var(--olg);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.58rem;font-weight:600;color:var(--old)}
+[data-theme="dark"] .mb ol li::before{background:var(--olw);color:var(--ol)}
+.mtip{background:var(--olg);padding:0.7rem 0.9rem;border-radius:10px;margin-top:1rem;display:flex;gap:0.4rem}
+[data-theme="dark"] .mtip{background:var(--olw)}
+.mtip p{font-size:0.8rem;color:var(--old);font-weight:400;line-height:1.5;font-style:italic}
+[data-theme="dark"] .mtip p{color:var(--ol)}
+.mb .by{font-size:0.68rem;color:var(--tx4);margin-top:1rem;font-style:italic}
 
-/* ===== STATS ===== */
-.stats-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface2);padding:1.8rem 0;transition:background .4s}
-.stats-row{display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap}
-@media(min-width:768px){.stats-row{gap:4rem}}
-.stat-item{text-align:center}
-.stat-num{font-family:'Libre Caslon Display',serif;font-size:1.6rem;color:var(--olive-deep);line-height:1.2}
-[data-theme="dark"] .stat-num{color:var(--olive)}
-.stat-lbl{font-size:0.68rem;color:var(--text4);letter-spacing:0.1em;text-transform:uppercase;margin-top:0.15rem}
-
-/* ===== SECTION HEADERS ===== */
-.sec-head{text-align:center;max-width:560px;margin:0 auto;padding:4rem 1rem 2rem}
-@media(min-width:768px){.sec-head{padding:5rem 1rem 2.5rem}}
-.sec-tag{font-size:0.68rem;font-weight:500;letter-spacing:0.16em;text-transform:uppercase;color:var(--olive);margin-bottom:0.6rem}
-.sec-h{font-family:'Libre Caslon Display',serif;font-size:clamp(1.6rem,3.5vw,2.3rem);color:var(--text);line-height:1.15;letter-spacing:-0.015em}
-.sec-h em{font-family:'Newsreader',serif;font-style:italic;font-weight:300;color:var(--olive)}
-.sec-p{font-size:0.92rem;color:var(--text3);font-weight:300;margin-top:0.8rem;line-height:1.7}
-
-/* ===== PILLS ===== */
-.pill-row{display:flex;justify-content:center;flex-wrap:wrap;gap:0.4rem;padding:0 1rem 2rem}
-@media(min-width:768px){.pill-row{gap:0.5rem;padding:0 1rem 2.5rem}}
-.pill{font-size:0.78rem;font-weight:400;padding:0.45rem 1.15rem;border:1.5px solid var(--border2);background:transparent;color:var(--text3);border-radius:100px;transition:all .25s}
-.pill:hover{border-color:var(--olive-pale);background:var(--olive-ghost);color:var(--olive-deep)}
-[data-theme="dark"] .pill:hover{color:var(--olive)}
-.pill.active{background:var(--olive-deep);border-color:var(--olive-deep);color:#fff}
-[data-theme="dark"] .pill.active{background:var(--olive-light);border-color:var(--olive-light)}
-
-/* ===== RECIPE GRID ===== */
-.rgrid{display:grid;grid-template-columns:1fr;gap:1.1rem;padding-bottom:4rem}
-@media(min-width:540px){.rgrid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:900px){.rgrid{grid-template-columns:repeat(3,1fr);gap:1.25rem}}
-@media(min-width:1100px){.rgrid{grid-template-columns:repeat(3,1fr);gap:1.4rem}}
-
-.rc{background:var(--surface);border-radius:16px;overflow:hidden;border:1px solid var(--border);cursor:pointer;position:relative;transition:all .35s cubic-bezier(.4,0,.2,1);opacity:0;animation:cardUp .45s ease-out forwards}
-.rc:hover{transform:translateY(-5px);box-shadow:var(--card-shadow-hover);border-color:var(--olive-wash)}
-[data-theme="dark"] .rc:hover{border-color:var(--olive-pale)}
-.rc-img{height:180px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-@media(min-width:768px){.rc-img{height:200px}}
-.rc-img::after{content:'';position:absolute;inset:0;background:var(--img-overlay);pointer-events:none}
-.rc-emoji{font-size:3rem;position:relative;z-index:1;transition:transform .4s cubic-bezier(.4,0,.2,1)}
-.rc:hover .rc-emoji{transform:scale(1.12) rotate(-4deg)}
-.rc-badge{position:absolute;top:10px;left:10px;z-index:2;padding:3px 10px;background:var(--badge-bg);backdrop-filter:blur(8px);border-radius:100px;font-size:0.65rem;font-weight:500;color:var(--badge-text);letter-spacing:0.02em}
-.rc-body{padding:1.1rem 1.25rem 1.25rem}
-.rc-cat{font-size:0.63rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--olive);margin-bottom:0.3rem}
-.rc-title{font-family:'Libre Caslon Display',serif;font-size:1.08rem;color:var(--text);margin-bottom:0.35rem;line-height:1.25;letter-spacing:-0.01em}
-.rc-desc{font-size:0.82rem;color:var(--text3);font-weight:300;line-height:1.55;margin-bottom:0.85rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.rc-meta{display:flex;gap:0.8rem;padding-top:0.8rem;border-top:1px solid var(--border)}
-.rc-mi{display:flex;align-items:center;gap:0.3rem;font-size:0.72rem;color:var(--text4)}
-.rc-mi svg{width:12px;height:12px;stroke:var(--olive-pale);stroke-width:1.8;fill:none}
-[data-theme="dark"] .rc-mi svg{stroke:var(--olive-light)}
-.rc-arrow{position:absolute;bottom:1.25rem;right:1.25rem;width:28px;height:28px;border-radius:50%;background:var(--olive-ghost);display:flex;align-items:center;justify-content:center;opacity:0;transition:all .25s}
-.rc:hover .rc-arrow{opacity:1}
-.rc-arrow svg{width:12px;height:12px;stroke:var(--olive-deep);stroke-width:2;fill:none}
-[data-theme="dark"] .rc-arrow{background:var(--olive-wash)}
-[data-theme="dark"] .rc-arrow svg{stroke:var(--olive)}
-
-/* ===== FEATURED ===== */
-.feat{padding:0 0 4rem}
-.feat-card{display:grid;grid-template-columns:1fr;background:var(--surface);border-radius:20px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--card-shadow)}
-@media(min-width:768px){.feat-card{grid-template-columns:1.1fr 1fr}}
-.feat-img{min-height:260px;display:flex;align-items:center;justify-content:center;position:relative}
-@media(min-width:768px){.feat-img{min-height:380px}}
-.feat-img-inner{text-align:center;z-index:1}
-.feat-img-inner .big-e{font-size:4rem;display:block;margin-bottom:0.4rem}
-.feat-img-inner p{font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--olive-deep);opacity:.5}
-[data-theme="dark"] .feat-img-inner p{color:var(--olive)}
-.feat-body{padding:2rem 1.5rem}
-@media(min-width:768px){.feat-body{padding:2.5rem}}
-.feat-body{display:flex;flex-direction:column;justify-content:center}
-.feat-eye{font-size:0.65rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--warm);margin-bottom:0.5rem}
-.feat-title{font-family:'Libre Caslon Display',serif;font-size:clamp(1.4rem,3vw,1.75rem);color:var(--text);margin-bottom:0.6rem;line-height:1.2}
-.feat-desc{font-size:0.92rem;color:var(--text3);font-weight:300;line-height:1.7;margin-bottom:1.5rem}
-
-/* ===== CREAMI BANNER ===== */
-.creami-cta{padding:0 0 4rem}
-.creami-box{background:linear-gradient(135deg,var(--olive-dark),#1A1D18);border-radius:20px;padding:2.5rem 1.5rem;display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;position:relative;overflow:hidden}
-@media(min-width:768px){.creami-box{flex-direction:row;text-align:left;padding:3rem 3.5rem;gap:3rem}}
-.creami-box::before{content:'';position:absolute;top:-40%;right:-10%;width:300px;height:300px;background:radial-gradient(circle,rgba(163,180,142,0.1),transparent 70%);border-radius:50%}
-.creami-txt{position:relative;z-index:1;flex:1}
-.creami-pill{display:inline-flex;align-items:center;gap:0.35rem;padding:0.3rem 0.8rem;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.1);border-radius:100px;font-size:0.65rem;font-weight:500;color:rgba(255,255,255,0.6);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem}
-.creami-pill .cdot{width:5px;height:5px;background:#8FA67E;border-radius:50%;animation:pulse 2s ease-in-out infinite}
-.creami-h{font-family:'Libre Caslon Display',serif;font-size:clamp(1.3rem,3vw,1.65rem);color:#fff;margin-bottom:0.4rem;line-height:1.2}
-.creami-h em{font-family:'Newsreader',serif;font-style:italic;font-weight:300;color:var(--olive-pale)}
-.creami-p{font-size:0.88rem;color:rgba(255,255,255,0.45);font-weight:300;line-height:1.65;margin-bottom:1.2rem}
-.creami-btn{display:inline-flex;align-items:center;gap:0.4rem;padding:0.6rem 1.4rem;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);color:#fff;font-size:0.82rem;font-weight:500;border-radius:100px;transition:all .25s}
-.creami-btn:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.28);transform:translateY(-1px)}
-.creami-emojis{position:relative;z-index:1;display:flex;gap:0.8rem;font-size:2.5rem}
-.creami-emojis span{display:block;animation:float 3s ease-in-out infinite}
-.creami-emojis span:nth-child(2){animation-delay:.5s}
-.creami-emojis span:nth-child(3){animation-delay:1s}
-
-/* ===== ABOUT ===== */
-.about-sec{padding:4rem 0;background:var(--surface2);border-top:1px solid var(--border);transition:background .4s}
-@media(min-width:768px){.about-sec{padding:5rem 0}}
-.about-inner{max-width:800px;margin:0 auto;text-align:center}
-.about-quote{font-family:'Newsreader',serif;font-size:clamp(1.15rem,2.5vw,1.45rem);font-weight:300;font-style:italic;color:var(--text2);line-height:1.85;margin-bottom:2.5rem}
-.about-quote strong{font-family:'Libre Caslon Display',serif;font-style:normal;font-weight:400;color:var(--olive-deep)}
-[data-theme="dark"] .about-quote strong{color:var(--olive)}
-.pillars{display:grid;grid-template-columns:1fr;gap:1rem}
-@media(min-width:640px){.pillars{grid-template-columns:repeat(3,1fr)}}
-.pillar{background:var(--surface);padding:1.5rem;border-radius:14px;border:1px solid var(--border);text-align:center;transition:all .3s}
-.pillar:hover{transform:translateY(-3px);box-shadow:var(--card-shadow-hover)}
-.pillar-ico{font-size:1.5rem;margin-bottom:0.6rem}
-.pillar-h{font-family:'Libre Caslon Display',serif;font-size:0.95rem;color:var(--text);margin-bottom:0.3rem}
-.pillar-p{font-size:0.82rem;color:var(--text3);font-weight:300;line-height:1.55}
-
-/* ===== NEWSLETTER ===== */
-.nl-sec{padding:4rem 0;text-align:center}
-.nl-form{display:flex;gap:0;max-width:400px;margin:1.5rem auto 0}
-.nl-in{flex:1;padding:0.7rem 1.1rem;font-family:'Outfit',sans-serif;font-size:0.85rem;border:1.5px solid var(--border2);border-right:none;border-radius:100px 0 0 100px;background:var(--surface);color:var(--text);outline:none;transition:border-color .25s}
-.nl-in::placeholder{color:var(--text4)}
-.nl-in:focus{border-color:var(--olive)}
-.nl-btn{padding:0.7rem 1.5rem;font-family:'Outfit',sans-serif;font-size:0.82rem;font-weight:500;background:var(--olive-deep);color:#fff;border:1.5px solid var(--olive-deep);border-radius:0 100px 100px 0;transition:all .25s}
-[data-theme="dark"] .nl-btn{background:var(--olive-light);border-color:var(--olive-light)}
-.nl-btn:hover{filter:brightness(1.1)}
-@media(max-width:480px){
-  .nl-form{flex-direction:column;gap:0.4rem}
-  .nl-in{border-right:1.5px solid var(--border2);border-radius:100px}
-  .nl-btn{border-radius:100px}
-}
-
-/* ===== FOOTER ===== */
-.footer{background:var(--bg2);border-top:1px solid var(--border);padding:3rem 0 1.5rem;transition:background .4s}
-.footer-grid{display:grid;grid-template-columns:1fr;gap:2rem}
-@media(min-width:640px){.footer-grid{grid-template-columns:2fr 1fr 1fr 1fr}}
-.footer-brand h3{font-family:'Libre Caslon Display',serif;font-size:1.15rem;color:var(--text);margin-bottom:0.5rem}
-.footer-brand p{font-size:0.82rem;color:var(--text4);font-weight:300;line-height:1.6}
-.fcol h4{font-size:0.62rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--text4);margin-bottom:0.7rem}
-.fcol ul{list-style:none}.fcol li{margin-bottom:0.35rem}
-.fcol a{font-size:0.82rem;color:var(--text3);font-weight:300;transition:color .25s}
-.fcol a:hover{color:var(--text)}
-.footer-bottom{margin-top:2rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;flex-direction:column;align-items:center;gap:0.5rem;font-size:0.75rem;color:var(--text4)}
-@media(min-width:640px){.footer-bottom{flex-direction:row;justify-content:space-between}}
-.footer-bottom a{color:var(--text4);margin-left:1rem;transition:color .25s}
-.footer-bottom a:hover{color:var(--text)}
-
-/* ===== MODAL ===== */
-.modal-overlay{position:fixed;inset:0;background:var(--modal-bg);backdrop-filter:blur(8px);z-index:1000;display:none;align-items:center;justify-content:center;padding:1rem;opacity:0;transition:opacity .3s}
-.modal-overlay.open{display:flex;opacity:1}
-.modal{background:var(--surface);max-width:640px;width:100%;max-height:88vh;overflow-y:auto;border-radius:20px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.2);border:1px solid var(--border)}
-.modal::-webkit-scrollbar{width:3px}.modal::-webkit-scrollbar-thumb{background:var(--olive-pale);border-radius:2px}
-.modal-x{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:var(--badge-bg);backdrop-filter:blur(8px);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;z-index:2;cursor:pointer;transition:all .25s}
-.modal-x:hover{transform:scale(1.08)}
-.modal-x svg{width:13px;height:13px;stroke:var(--text);stroke-width:2;fill:none}
-.modal-top{height:160px;display:flex;align-items:center;justify-content:center}
-@media(min-width:768px){.modal-top{height:180px}}
-.modal-inner{padding:1.5rem 1.5rem 2rem}
-@media(min-width:768px){.modal-inner{padding:1.5rem 2rem 2.5rem}}
-.modal-inner h2{font-family:'Libre Caslon Display',serif;font-size:1.45rem;color:var(--text);margin-bottom:0.4rem;line-height:1.2}
-.modal-inner .rc-meta{margin-bottom:1rem;border:none;padding:0}
-.modal-inner .recipe-intro{font-size:0.92rem;color:var(--text3);font-weight:300;line-height:1.7;margin-bottom:0.5rem}
-.ms-head{font-size:0.62rem;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--olive);margin-top:1.2rem;margin-bottom:0.5rem}
-.modal-inner ul{list-style:none;margin-bottom:0.5rem}
-.modal-inner ul li{font-size:0.9rem;color:var(--text2);font-weight:300;padding:0.25rem 0 0.25rem 1rem;position:relative;line-height:1.55}
-.modal-inner ul li::before{content:'';position:absolute;left:0;top:0.65rem;width:4px;height:4px;background:var(--olive-pale);border-radius:50%}
-.modal-inner ol{list-style:none;counter-reset:s;margin-bottom:0.5rem}
-.modal-inner ol li{font-size:0.9rem;color:var(--text2);font-weight:300;padding:0.35rem 0 0.35rem 1.8rem;position:relative;line-height:1.6;counter-increment:s}
-.modal-inner ol li::before{content:counter(s);position:absolute;left:0;top:0.35rem;width:20px;height:20px;background:var(--olive-ghost);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.65rem;font-weight:600;color:var(--olive-deep)}
-[data-theme="dark"] .modal-inner ol li::before{background:var(--olive-wash);color:var(--olive)}
-.modal-tip{background:var(--olive-ghost);padding:0.9rem 1rem;border-radius:12px;margin-top:1.2rem;display:flex;gap:0.5rem;align-items:flex-start}
-[data-theme="dark"] .modal-tip{background:var(--olive-wash)}
-.modal-tip p{font-size:0.85rem;color:var(--olive-deep);font-weight:400;line-height:1.55;font-style:italic}
-[data-theme="dark"] .modal-tip p{color:var(--olive)}
-
-/* ===== ANIMATIONS ===== */
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-@keyframes cardUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@keyframes orbit{0%{transform:translate(0,0) rotate(0deg)}25%{transform:translate(10px,-10px) rotate(90deg)}50%{transform:translate(0,-5px) rotate(180deg)}75%{transform:translate(-10px,5px) rotate(270deg)}100%{transform:translate(0,0) rotate(360deg)}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+/* FORM MODAL */
+.form-bg{position:fixed;inset:0;background:var(--mbg);backdrop-filter:blur(8px);z-index:1100;display:none;align-items:flex-start;justify-content:center;padding:0.5rem;overflow-y:auto}
+.form-bg.open{display:flex}
+.form-modal{background:var(--sf);max-width:560px;width:100%;border-radius:18px;border:1px solid var(--bd);margin:1rem auto 2rem;box-shadow:0 24px 80px rgba(0,0,0,0.2)}
+.fh{padding:1rem 1.2rem 0;display:flex;align-items:center;justify-content:space-between}
+.fh h2{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:700}
+.fb{padding:0.8rem 1.2rem 1.3rem}
+@media(min-width:768px){.fb{padding:1rem 1.8rem 1.8rem}.fh{padding:1.3rem 1.8rem 0}}
+.fg{margin-bottom:0.8rem}
+.fg label{display:block;font-size:0.62rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--tx4);margin-bottom:0.2rem}
+.fg input,.fg textarea,.fg select{width:100%;padding:0.5rem 0.7rem;font-size:0.82rem;background:var(--bg);border:1.5px solid var(--bd2);border-radius:10px;color:var(--tx);outline:none;transition:border-color .25s}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--ol)}
+.fg textarea{resize:vertical;min-height:60px}
+.fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%239A9A90' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:2rem}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+@media(max-width:480px){.fg-row{grid-template-columns:1fr}}
+.photo-up{width:100%;height:140px;border:2px dashed var(--bd2);border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.3rem;cursor:pointer;transition:all .25s;background:var(--bg);position:relative;overflow:hidden}
+.photo-up:hover{border-color:var(--ol);background:var(--olg)}
+[data-theme="dark"] .photo-up:hover{background:var(--olw)}
+.photo-up svg{width:22px;height:22px;stroke:var(--tx4);stroke-width:1.5;fill:none}
+.photo-up span{font-size:0.75rem;color:var(--tx4);font-weight:300}
+.photo-up input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.photo-up img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:10px}
+.photo-up .rp{position:absolute;top:5px;right:5px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,0.5);color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.65rem;cursor:pointer;z-index:2}
+.ing-list{display:flex;flex-direction:column;gap:0.35rem;margin-bottom:0.4rem}
+.ing-row{display:flex;gap:0.35rem;align-items:center}
+.ing-row input:first-child{flex:0.7}.ing-row input:nth-child(2){flex:2}
+.ing-row input{padding:0.4rem 0.5rem;font-size:0.8rem;background:var(--bg);border:1.5px solid var(--bd2);border-radius:8px;color:var(--tx);outline:none}
+.ing-row input:focus{border-color:var(--ol)}
+.ri{width:24px;height:24px;border-radius:50%;background:var(--danger-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;cursor:pointer;transition:all .25s}
+.ri:hover{background:var(--danger)}.ri svg{width:10px;height:10px;stroke:var(--danger);stroke-width:2;fill:none}.ri:hover svg{stroke:#fff}
+.add-r{display:inline-flex;align-items:center;gap:0.25rem;font-size:0.72rem;color:var(--ol);font-weight:500;padding:0.2rem 0;cursor:pointer}
+.add-r:hover{color:var(--old)}
+.step-list{display:flex;flex-direction:column;gap:0.35rem;margin-bottom:0.4rem}
+.step-row{display:flex;gap:0.35rem;align-items:flex-start}
+.sn{width:20px;height:20px;border-radius:50%;background:var(--olg);display:flex;align-items:center;justify-content:center;font-size:0.58rem;font-weight:600;color:var(--old);flex-shrink:0;margin-top:0.3rem}
+[data-theme="dark"] .sn{background:var(--olw);color:var(--ol)}
+.step-row textarea{flex:1;padding:0.35rem 0.5rem;font-size:0.8rem;background:var(--bg);border:1.5px solid var(--bd2);border-radius:8px;color:var(--tx);outline:none;min-height:36px;resize:vertical}
+.step-row textarea:focus{border-color:var(--ol)}
+.step-row .ri{margin-top:0.25rem}
+.tags-input{display:flex;flex-wrap:wrap;gap:0.25rem;padding:0.35rem 0.5rem;background:var(--bg);border:1.5px solid var(--bd2);border-radius:10px;min-height:34px;align-items:center;transition:border-color .25s;cursor:text}
+.tags-input:focus-within{border-color:var(--ol)}
+.tags-input .tg{display:inline-flex;align-items:center;gap:0.2rem;padding:1px 7px;background:var(--olg);border-radius:100px;font-size:0.65rem;font-weight:500;color:var(--old)}
+[data-theme="dark"] .tags-input .tg{background:var(--olw);color:var(--ol)}
+.tags-input .tg .tx{cursor:pointer;font-size:0.75rem;line-height:1;opacity:0.6}.tags-input .tg .tx:hover{opacity:1}
+.tags-input input{border:none;background:none;outline:none;font-size:0.78rem;color:var(--tx);flex:1;min-width:70px;padding:1px 0}
+.tags-input input::placeholder{color:var(--tx4)}
+.tag-sug{display:flex;flex-wrap:wrap;gap:0.2rem;margin-top:0.25rem}
+.ts-btn{font-size:0.6rem;padding:1px 7px;border-radius:100px;border:1px solid var(--bd2);color:var(--tx4);cursor:pointer;transition:all .2s}
+.ts-btn:hover{background:var(--olg);border-color:var(--olp);color:var(--old)}
+[data-theme="dark"] .ts-btn:hover{color:var(--ol)}
+.form-btns{display:flex;gap:0.4rem;justify-content:flex-end;margin-top:1rem}
+.btn-save{padding:0.5rem 1.3rem;background:var(--old);color:#fff;font-size:0.8rem;font-weight:500;border-radius:100px;transition:all .25s}
+[data-theme="dark"] .btn-save{background:var(--oll)}
+.btn-save:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-cancel{padding:0.5rem 1rem;background:transparent;color:var(--tx3);font-size:0.8rem;border:1.5px solid var(--bd2);border-radius:100px;transition:all .25s}
+.btn-cancel:hover{background:var(--bg2)}
+.del-confirm{position:fixed;inset:0;background:var(--mbg);backdrop-filter:blur(6px);z-index:1300;display:none;align-items:center;justify-content:center;padding:1rem}
+.del-confirm.open{display:flex}
+.del-box{background:var(--sf);border-radius:16px;padding:1.8rem;max-width:320px;width:100%;text-align:center;border:1px solid var(--bd)}
+.del-box h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;margin-bottom:0.3rem}
+.del-box p{font-size:0.82rem;color:var(--tx3);font-weight:300;margin-bottom:1rem}
+.del-btns{display:flex;gap:0.4rem;justify-content:center}
+.btn-del{padding:0.45rem 1.1rem;background:var(--danger);color:#fff;font-size:0.8rem;font-weight:500;border-radius:100px;transition:all .25s}
+.btn-del:hover{filter:brightness(1.1)}
+.foot{padding:1.2rem 0;text-align:center;border-top:1px solid var(--bd)}.foot p{font-size:0.68rem;color:var(--tx5);font-weight:300}
+.loading-overlay{position:fixed;inset:0;background:var(--bg);z-index:2000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:0.8rem;transition:opacity .4s}
+.loading-overlay.hide{opacity:0;pointer-events:none}
+.loading-overlay .spinner{width:28px;height:28px;border:2.5px solid var(--bd2);border-top-color:var(--ol);border-radius:50%;animation:spin .7s linear infinite}
+.loading-overlay p{font-size:0.85rem;color:var(--tx3)}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 <body>
+<div class="loading-overlay" id="loader"><div class="spinner"></div><p>Loading...</p></div>
 
 <!-- NAV -->
-<nav class="nav" id="navbar"><div class="container">
-  <a href="#top" class="nav-brand">Madi's Breads</a>
+<nav class="nav"><div class="wrap">
+  <a href="#" class="nav-brand"><span class="nav-bold">Madi's</span><span class="nav-cursive">Breads</span></a>
   <div class="nav-right">
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#recipes">Recipes</a></li>
-      <li><a href="#featured">Featured</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="ninja-creami.html" class="nav-creami">Ninja Creami</a></li>
-      <li class="nav-creami-mobile" style="display:none"><a href="ninja-creami.html" style="color:#fff">Ninja Creami</a></li>
-    </ul>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><div class="toggle-dot"><span class="toggle-icon" id="toggleIcon">☀️</span></div></button>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    <button class="theme-tog" id="themeTog"><div class="dot"><span id="togIco">☀️</span></div></button>
+    <div id="authArea"></div>
   </div>
 </div></nav>
 
-<!-- RECIPES -->
-<section id="recipes" style="padding-top:5rem">
-  <div class="sec-head" id="top"><p class="sec-tag">The Collection</p><h2 class="sec-h">All <em>Recipes</em></h2><p class="sec-p">From protein-packed power loaves to grandma's cherished traditions — find your next bake.</p></div>
-  <div class="container">
-    <div class="pill-row" id="catTabs">
-      <button class="pill active" data-cat="all">All</button>
-      <button class="pill" data-cat="classic">Classic</button>
-      <button class="pill" data-cat="grandma">Grandma's</button>
-      <button class="pill" data-cat="protein">Protein</button>
-      <button class="pill" data-cat="healthy">Healthy</button>
-      <button class="pill" data-cat="sweet">Sweet</button>
-    </div>
-    <div class="rgrid" id="grid"></div>
-  </div>
-</section>
+<!-- FILTERS -->
+<section class="filters"><div class="wrap">
+  <div class="search-row"><div class="search-wrap"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg><input type="text" class="search-box" id="searchBox" placeholder="Search recipes..."></div></div>
+  <div class="filter-scroll" id="filterRow"></div>
+</div></section>
 
-<!-- FEATURED -->
-<section id="featured">
-  <div class="sec-head"><p class="sec-tag">Editor's Pick</p><h2 class="sec-h">This Week's <em>Favorite</em></h2></div>
-  <div class="container feat"><div class="feat-card">
-    <div class="feat-img" style="background:linear-gradient(135deg,var(--olive-wash),var(--bg3))"><div class="feat-img-inner"><span class="big-e">🌾</span><p>Featured Recipe</p></div></div>
-    <div class="feat-body">
-      <p class="feat-eye">★ Madi's Favorite</p>
-      <h3 class="feat-title">Grandma's Honey Oat Bread</h3>
-      <p class="feat-desc">This golden, slightly sweet loaf was a Sunday morning staple for decades. Made with rolled oats, raw honey, and a touch of butter — it fills the kitchen with the most comforting aroma imaginable.</p>
-      <button class="btn btn-fill" onclick="openByName('Honey Oat Bread')">View Recipe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
-    </div>
-  </div></div>
-</section>
+<!-- GRID -->
+<main class="wrap"><div class="grid" id="grid"></div><div class="empty" id="emptyState" style="display:none"><div class="empty-ico">🍞</div><h3 id="emptyH">No recipes yet</h3><p id="emptyP">Sign in to add recipes</p></div></main>
 
-<!-- CREAMI BANNER -->
-<div class="container creami-cta"><div class="creami-box">
-  <div class="creami-txt">
-    <div class="creami-pill"><span class="cdot"></span> Coming Soon</div>
-    <h3 class="creami-h">Ninja Creami <em>Recipes</em></h3>
-    <p class="creami-p">Protein-packed, healthy frozen treats that actually taste amazing. Ice cream, sorbets, and more — guilt-free and gym-approved.</p>
-    <a href="ninja-creami.html" class="creami-btn">Explore Page <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+<footer class="foot"><div class="wrap"><p>Madi's Breads</p></div></footer>
+
+<!-- VIEW -->
+<div class="modal-bg" id="viewBg"><div class="modal" id="viewModal">
+  <button class="mx" id="viewX"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <div class="modal-acts" id="viewActs" style="display:none">
+    <button class="ma" id="editBtn" title="Edit"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
+    <button class="ma del" id="delBtn" title="Delete"><svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
   </div>
-  <div class="creami-emojis"><span>🍦</span><span>🍨</span><span>🥤</span></div>
+  <div class="modal-hero" id="viewHero"></div>
+  <div class="mb" id="viewBody"></div>
 </div></div>
 
-<!-- ABOUT -->
-<section class="about-sec" id="about"><div class="container"><div class="about-inner">
-  <p class="sec-tag">Our Story</p>
-  <h2 class="sec-h" style="margin-bottom:1.2rem">Baked with <em>Heart</em></h2>
-  <p class="about-quote">Bread making is more than a recipe — it's a <strong>ritual</strong>. The slow rhythm of kneading, the patience of a long rise, the warmth of a golden loaf fresh from the oven. Every recipe here has been shaped by hands that care.</p>
-  <div class="pillars">
-    <div class="pillar"><div class="pillar-ico">🌿</div><h4 class="pillar-h">Wholesome</h4><p class="pillar-p">Whole grains, natural sweeteners, and ingredients you feel good about.</p></div>
-    <div class="pillar"><div class="pillar-ico">🏡</div><h4 class="pillar-h">Homemade</h4><p class="pillar-p">Every recipe designed for a home kitchen — no fancy equipment needed.</p></div>
-    <div class="pillar"><div class="pillar-ico">📖</div><h4 class="pillar-h">Heirloom</h4><p class="pillar-p">Recipes worth passing down, with stories and memories baked right in.</p></div>
+<!-- FORM -->
+<div class="form-bg" id="formBg"><div class="form-modal">
+  <div class="fh"><h2 id="formTitle">Add Recipe</h2><button class="mx" id="formX"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>
+  <div class="fb">
+    <div class="fg"><label>Photo</label><div class="photo-up" id="photoUp"><svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Tap to upload a photo</span><input type="file" accept="image/*" id="photoInput"></div></div>
+    <div class="fg"><label>Recipe Name</label><input type="text" id="fName" placeholder="e.g. Nana's Banana Bread"></div>
+    <div class="fg"><label>Description</label><textarea id="fDesc" placeholder="A quick summary..." rows="2"></textarea></div>
+    <div class="fg-row">
+      <div class="fg"><label>Category</label><select id="fCat"><option>Bread</option><option>Baking</option><option>Cooking</option><option>Dessert</option><option>Breakfast</option><option>Snack</option><option>Drink</option><option>Side</option><option>Soup</option></select></div>
+      <div class="fg"><label>Total Time</label><input type="text" id="fTime" placeholder="e.g. 2 hrs"></div>
+    </div>
+    <div class="fg-row">
+      <div class="fg"><label>Servings</label><input type="text" id="fServ" placeholder="e.g. 1 loaf"></div>
+      <div class="fg"><label>Difficulty</label><select id="fDiff"><option>Easy</option><option>Medium</option><option>Hard</option></select></div>
+    </div>
+    <div class="fg"><label>Tags</label><div class="tags-input" id="tagsWrap"><input type="text" id="tagIn" placeholder="Type tag + Enter..."></div><div class="tag-sug" id="tagSug"></div></div>
+    <div class="fg"><label>Ingredients</label><div class="ing-list" id="ingList"></div><button class="add-r" id="addIng" type="button"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Add ingredient</button></div>
+    <div class="fg"><label>Instructions</label><div class="step-list" id="stepList"></div><button class="add-r" id="addStep" type="button"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Add step</button></div>
+    <div class="fg"><label>Tip (optional)</label><textarea id="fTip" placeholder="Any helpful tips..." rows="2"></textarea></div>
+    <div class="form-btns"><button class="btn-cancel" id="cancelForm">Cancel</button><button class="btn-save" id="saveForm">Save Recipe</button></div>
   </div>
-</div></div></section>
-
-<!-- NEWSLETTER -->
-<section class="nl-sec" id="newsletter"><div class="container"><div style="max-width:440px;margin:0 auto">
-  <p class="sec-tag">Stay Connected</p>
-  <h2 class="sec-h">Fresh from <em>the Oven</em></h2>
-  <p class="sec-p">New recipes, baking tips, and a little warmth — straight to your inbox.</p>
-  <div class="nl-form"><input type="email" class="nl-in" placeholder="Your email..."><button class="nl-btn">Subscribe</button></div>
-</div></div></section>
-
-<!-- FOOTER -->
-<footer class="footer"><div class="container">
-  <div class="footer-grid">
-    <div class="footer-brand"><h3>Madi's Breads</h3><p>A collection of bread recipes — from nourishing protein loaves to grandmother's traditions.</p></div>
-    <div class="fcol"><h4>Categories</h4><ul><li><a href="#" onclick="filterCat('classic')">Classic</a></li><li><a href="#" onclick="filterCat('grandma')">Grandma's</a></li><li><a href="#" onclick="filterCat('protein')">Protein</a></li><li><a href="#" onclick="filterCat('healthy')">Healthy</a></li><li><a href="#" onclick="filterCat('sweet')">Sweet</a></li></ul></div>
-    <div class="fcol"><h4>Explore</h4><ul><li><a href="#recipes">Recipes</a></li><li><a href="#featured">Featured</a></li><li><a href="#about">About</a></li><li><a href="ninja-creami.html">Creami</a></li></ul></div>
-    <div class="fcol"><h4>Resources</h4><ul><li><a href="#">Flour Guide</a></li><li><a href="#">Kneading 101</a></li><li><a href="#">Yeast Types</a></li><li><a href="#">Storage Tips</a></li></ul></div>
-  </div>
-  <div class="footer-bottom"><span>&copy; 2026 Madi's Breads</span><div><a href="#">Privacy</a><a href="#">Terms</a></div></div>
-</div></footer>
-
-<!-- MODAL -->
-<div class="modal-overlay" id="mOverlay"><div class="modal" id="modal">
-  <button class="modal-x" id="mClose"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-  <div class="modal-top" id="mTop"></div>
-  <div class="modal-inner" id="mBody"></div>
 </div></div>
+
+<!-- AUTH -->
+<div class="auth-bg" id="authBg"><div class="auth-box" style="position:relative">
+  <button class="mx" id="authX"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <h2 id="authTitle">Sign In</h2>
+  <p class="sub">For Madi, family &amp; friends</p>
+  <button class="goog-btn" id="googBtn">
+    <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+    Continue with Google
+  </button>
+  <div class="auth-divider"><span>or</span></div>
+  <div class="auth-fg"><label>Email</label><input type="email" id="authEmail" placeholder="you@email.com"></div>
+  <div class="auth-fg"><label>Password</label><input type="password" id="authPass" placeholder="Password"></div>
+  <button class="auth-submit" id="authSubmit">Sign In</button>
+  <p class="auth-error" id="authErr"></p>
+  <p class="auth-toggle"><span id="authToggleText">Don't have an account?</span> <a id="authToggleLink">Sign Up</a></p>
+</div></div>
+
+<!-- DELETE CONFIRM -->
+<div class="del-confirm" id="delConfirm"><div class="del-box"><h3>Delete this recipe?</h3><p>This can't be undone.</p><div class="del-btns"><button class="btn-cancel" id="delNo">Cancel</button><button class="btn-del" id="delYes">Delete</button></div></div></div>
+
+<!-- FIREBASE -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
 <script>
-// ===== RECIPES DATA (25 recipes) =====
-const R=[
-{t:"Rustic Sourdough Boule",c:"classic",cl:"Classic",b:"Starter Recipe",d:"A crusty, tangy sourdough with open crumb and beautiful ear. Just four ingredients and patience.",time:"24 hrs",diff:"Medium",srv:"1 loaf",col:"#A3B48E",
- ing:["350g bread flour","50g whole wheat flour","280g water","80g active sourdough starter","8g sea salt"],
- steps:["Mix flour and water, rest 30 min (autolyse).","Add starter and salt, fold until incorporated.","Stretch and fold every 30 min for 2 hours (4 sets total).","Bulk ferment 4–6 hours at room temp until nearly doubled and jiggly.","Pre-shape into a round, rest 20 min. Final shape into a tight boule.","Place seam-side up in a well-floured banneton.","Cold proof in fridge 12–18 hours (overnight is perfect).","Preheat Dutch oven at 500°F for 45 min. Score dough decisively.","Bake covered 20 min at 500°F, then uncovered 20 min at 450°F.","Cool on a wire rack at least 1 hour before slicing."],tip:"A warmer kitchen = faster rise. In winter, place dough near a warm (not hot) oven or inside your oven with just the light on."},
-{t:"Honey Oat Bread",c:"grandma",cl:"Grandma's",b:"Family Heirloom",d:"Soft, golden loaf sweetened with honey and studded with oats — just like grandma made Sunday mornings.",time:"3 hrs",diff:"Easy",srv:"1 loaf",col:"#D4CAB8",
- ing:["3 cups bread flour","1 cup rolled oats (plus more for top)","1¼ cups warm milk (105–110°F)","3 tbsp raw honey","2 tbsp butter, softened","2¼ tsp active dry yeast","1½ tsp salt"],
- steps:["Dissolve yeast in warm milk with a pinch of honey. Let bloom 10 min until foamy.","In a large bowl, mix flour, oats, and salt.","Add yeast mixture, remaining honey, and softened butter.","Knead by hand 8–10 min until smooth, elastic, and slightly tacky.","Place in a lightly greased bowl, cover, rise 1–1.5 hrs until doubled.","Punch down gently. Shape into a log and place in a greased 9×5 loaf pan.","Cover and rise 30–40 min until dough crowns 1 inch above the pan.","Brush top with milk and sprinkle generously with rolled oats.","Bake at 350°F for 30–35 min until deep golden and hollow-sounding when tapped.","Cool in pan 10 min, then transfer to wire rack. Resist cutting for 20 min!"],tip:"Freezes beautifully — wrap tightly in plastic then foil. Thaw at room temp or toast from frozen. Good for up to 3 months."},
-{t:"High-Protein Seed Bread",c:"protein",cl:"Protein",b:"32g Protein",d:"Dense, nutty loaf packed with seeds, oats, and protein powder that fuels your whole day.",time:"2.5 hrs",diff:"Easy",srv:"1 loaf",col:"#B8B8A4",
- ing:["2 cups whole wheat flour","1 scoop (30g) vanilla or unflavored protein powder","½ cup rolled oats","¼ cup raw sunflower seeds","¼ cup raw pumpkin seeds","2 tbsp ground flaxseed","2 tbsp chia seeds","1¼ cups warm water","2 tbsp extra virgin olive oil","1 tbsp honey or maple syrup","2¼ tsp active dry yeast","1 tsp fine sea salt"],
- steps:["Bloom yeast in warm water with honey — wait 10 min until bubbly.","In a large bowl, whisk together flour, protein powder, oats, all seeds, flax, chia, and salt.","Add the yeast mixture and olive oil. Stir to form a shaggy dough.","Knead 6–8 min on a lightly floured surface. Dough will be slightly sticky — that's expected and fine.","Cover and rise 1 hour until puffy (may not fully double — that's normal with this much seed weight).","Shape into a loaf and place in a parchment-lined loaf pan. Sprinkle extra seeds on top.","Cover and rise 30 min.","Bake at 375°F for 35–40 min until firm and sounds hollow.","Cool completely on a wire rack before slicing — at least 1 hour, ideally longer."],tip:"This bread slices best the next day after the crumb has fully set. Store wrapped at room temp for 3 days or freeze sliced for quick toast."},
-{t:"Herbed Focaccia",c:"classic",cl:"Classic",b:"No Knead",d:"Pillowy, olive oil-drenched flatbread topped with rosemary, flaky salt, and garden herbs.",time:"4 hrs",diff:"Easy",srv:"8 pieces",col:"#8FA67E",
- ing:["4 cups (500g) all-purpose flour","2 cups warm water","2¼ tsp instant yeast","2 tsp fine salt","4 tbsp extra virgin olive oil, divided (plus more for drizzling)","Fresh rosemary sprigs","Flaky sea salt (like Maldon)","Optional: halved cherry tomatoes, olives, thinly sliced garlic"],
- steps:["In a large bowl, whisk flour, yeast, and salt.","Add warm water and 2 tbsp olive oil. Stir with a wooden spoon until shaggy — no dry flour remaining.","Cover tightly and rise at room temp 1.5–2 hrs until doubled and bubbly.","Pour remaining 2 tbsp olive oil into a half-sheet pan (18×13). Spread to coat bottom generously.","Turn dough onto the oiled pan. With oiled hands, gently stretch toward the edges. Don't force it.","If dough resists, let it rest 10 min covered, then stretch again. Repeat until it mostly fills the pan.","Dimple the entire surface deeply with oiled fingertips — really press down. This creates the signature texture.","Press rosemary, tomatoes, olives, or garlic into the dimples. Drizzle liberally with more olive oil.","Let rise uncovered 30 min. Sprinkle with flaky salt.","Bake at 425°F for 22–28 min until deeply golden on top and crispy underneath.","Let cool 5 min in pan, then transfer to a cutting board. Slice and serve warm."],tip:"The secret is an almost obscene amount of olive oil. The pan should look like a puddle — that's what creates the irresistible crispy, fried bottom edge."},
-{t:"Nana's Cinnamon Raisin Loaf",c:"grandma",cl:"Grandma's",b:"Family Recipe",d:"Swirled with cinnamon sugar and plump raisins — mornings that feel like a warm hug.",time:"3.5 hrs",diff:"Easy",srv:"1 loaf",col:"#C8B8A0",
- ing:["3½ cups all-purpose flour","⅓ cup granulated sugar","1 cup warm milk","¼ cup melted butter","1 large egg, beaten","2¼ tsp active dry yeast","1 tsp salt","¾ cup raisins (soaked in warm water 20 min, drained)","3 tbsp brown sugar","1 tbsp ground cinnamon","1 tbsp softened butter (for filling)"],
- steps:["Dissolve yeast in warm milk with a pinch of sugar. Bloom 10 min.","Mix flour, sugar, and salt in a large bowl.","Add yeast mixture, melted butter, and beaten egg. Stir, then knead 8 min until smooth and elastic.","Fold in drained raisins during the last minute of kneading.","Cover and rise 1.5 hrs until doubled.","On a floured surface, roll dough into a 9×15 inch rectangle.","Spread softened butter over entire surface. Mix brown sugar and cinnamon; sprinkle evenly.","Starting from a short end, roll up tightly into a log. Pinch seam to seal.","Place seam-side down in a greased 9×5 loaf pan.","Cover and rise 40 min until dough crowns above the pan.","Bake at 350°F for 30–35 min until deep golden.","Optional: drizzle with a simple glaze (powdered sugar + milk) while warm."],tip:"Soaking the raisins in warm water (or tea!) for 20 min plumps them up so they don't steal moisture from the dough. Pat them dry before folding in."},
-{t:"Greek Yogurt Protein Rolls",c:"protein",cl:"Protein",b:"45 Min Total",d:"Soft, fluffy two-ingredient rolls with a serious protein punch from Greek yogurt — done in under an hour.",time:"45 min",diff:"Easy",srv:"6 rolls",col:"#C8D5B9",
- ing:["1½ cups self-rising flour","1 cup full-fat plain Greek yogurt","1 tbsp honey (optional)","Pinch of salt","1 egg, beaten (for egg wash)","Everything bagel seasoning, sesame seeds, or flaky salt (for topping)"],
- steps:["Preheat oven to 375°F. Line a baking sheet with parchment paper.","In a bowl, combine self-rising flour and Greek yogurt. Stir until a shaggy dough forms.","Add honey and salt. Turn out onto a lightly floured surface.","Knead gently 2–3 min until dough is smooth and no longer super sticky.","Divide dough into 6 equal pieces. Roll each into a ball.","Place on prepared baking sheet 2 inches apart.","Brush tops with beaten egg. Sprinkle with desired toppings.","Bake 18–22 min until golden brown and cooked through.","Serve warm with butter, alongside soup, or split for sandwiches."],tip:"These are best eaten same day. For meal prep, bake, cool completely, freeze in a zip-lock bag, and reheat at 300°F for 10 min."},
-{t:"Whole Wheat Flaxseed Bread",c:"healthy",cl:"Healthy",b:"Heart Healthy",d:"Hearty, nutty loaf made with 100% whole wheat flour and ground flaxseed — wholesome daily bread.",time:"3 hrs",diff:"Easy",srv:"1 loaf",col:"#A8A890",
- ing:["3 cups whole wheat flour","¼ cup ground golden flaxseed","1¼ cups warm water","2 tbsp extra virgin olive oil","2 tbsp pure maple syrup","2¼ tsp active dry yeast","1½ tsp salt"],
- steps:["Bloom yeast in warm water with maple syrup for 10 min until frothy.","In a large bowl, whisk together whole wheat flour, ground flaxseed, and salt.","Add yeast mixture and olive oil. Stir to combine.","Knead 10 min — whole wheat takes longer to develop gluten. Dough should be smooth but slightly tacky.","Cover and rise 1.5 hrs. It may not double dramatically — 1.5× growth is normal for 100% whole wheat.","Shape into a loaf and place in an oiled 9×5 loaf pan.","Cover and rise 30–40 min.","Bake at 375°F for 35 min until firm and sounds hollow when tapped.","Cool in pan 10 min, then turn out and cool completely on rack."],tip:"Whole wheat dough benefits from a longer rest. If you have time, let it rise in the fridge overnight for better flavor and easier digestion."},
-{t:"Old-Fashioned Buttermilk Biscuits",c:"grandma",cl:"Grandma's",b:"30 Minutes",d:"Flaky, tall, impossibly tender — the kind of biscuits that make the whole table go quiet.",time:"30 min",diff:"Easy",srv:"8 biscuits",col:"#DDD4C4",
- ing:["2 cups all-purpose flour","1 tbsp baking powder","¼ tsp baking soda","1 tsp salt","1 tsp sugar","6 tbsp very cold unsalted butter, cut into small cubes","¾ cup cold buttermilk"],
- steps:["Preheat oven to 450°F. Line a baking sheet with parchment.","Whisk flour, baking powder, baking soda, salt, and sugar in a large bowl.","Add cold butter cubes. Using a pastry cutter or your fingers, work butter into flour until you have pea-sized and some flat, dime-sized pieces. Don't over-mix.","Make a well in the center. Pour in cold buttermilk. Stir gently with a fork until just combined — dough should be shaggy, not smooth.","Turn out onto a floured surface. Pat into a 1-inch thick rectangle.","Fold dough in thirds like a letter. Rotate 90°. Pat flat again. Repeat this fold 2 more times (3 total).","Pat to ¾ inch thick. Cut with a sharp 2.5-inch biscuit cutter — press straight down, don't twist.","Place biscuits on the pan touching each other (this helps them rise tall). Re-roll scraps once for the last biscuit.","Chill 10 min in fridge or freezer.","Bake at 450°F for 12–15 min until tall, golden, and gorgeous."],tip:"The secret to flaky biscuits: keep everything COLD. Freeze butter 10 min before cutting, chill buttermilk, and work fast with minimal handling."},
-{t:"Cottage Cheese Protein Bread",c:"protein",cl:"Protein",b:"High Protein",d:"Moist, tender, packed with protein from cottage cheese and eggs — gym-friendly bread that actually tastes great.",time:"1.5 hrs",diff:"Easy",srv:"1 loaf",col:"#B8C9AA",
- ing:["2 cups whole wheat flour","1 cup full-fat cottage cheese","3 large eggs","2 tbsp olive oil","2 tbsp honey","1½ tsp baking powder","½ tsp baking soda","½ tsp salt"],
- steps:["Preheat oven to 350°F. Grease and line a 9×5 loaf pan with parchment.","Blend cottage cheese and eggs in a blender or food processor until completely smooth.","Add honey and olive oil, blend briefly.","In a separate bowl, whisk flour, baking powder, baking soda, and salt.","Pour wet ingredients into dry. Fold gently until just combined — don't overmix.","Pour batter into prepared loaf pan. Smooth the top.","Bake 45–50 min until a toothpick inserted in the center comes out clean.","Cool in pan 15 min, then transfer to a wire rack."],tip:"This bread is denser than yeasted bread but makes incredible toast. Try it with mashed avocado, everything seasoning, and a fried egg."},
-{t:"Sprouted Grain Bread",c:"healthy",cl:"Healthy",b:"Nutrient Dense",d:"Deeply nourishing sprouted wheat bread — easier to digest and packed with bioavailable nutrients.",time:"3 hrs",diff:"Medium",srv:"1 loaf",col:"#8FA67E",
- ing:["3 cups sprouted wheat flour","1¼ cups warm water","2 tbsp avocado oil","2 tbsp raw honey","2¼ tsp active dry yeast","1½ tsp fine sea salt","2 tbsp raw sesame seeds (optional, for top)"],
- steps:["Dissolve yeast in warm water with honey. Let bloom 10 min.","Add sprouted flour, avocado oil, and salt. Mix into a soft dough.","Knead gently 5–6 min. Sprouted flour has less gluten, so handle it more delicately than regular bread dough.","Cover and rise 1–1.5 hrs until puffy (may not fully double).","Gently shape into a loaf. Place in a parchment-lined loaf pan.","Brush top with water and sprinkle sesame seeds.","Cover and rise 30 min.","Bake at 350°F for 35–40 min until golden and firm.","Cool completely before slicing — this bread is fragile when warm."],tip:"Sprouted flour absorbs less water than regular flour, so the dough will feel wetter than you expect. Resist the urge to add more flour — trust the process."},
-{t:"Banana Walnut Bread",c:"sweet",cl:"Sweet",b:"Comfort Classic",d:"Deeply moist, warmly spiced, and loaded with toasted walnuts — the ultimate comfort loaf.",time:"1.5 hrs",diff:"Easy",srv:"1 loaf",col:"#D4CAB8",
- ing:["3 very ripe bananas (spotted/black is best)","⅓ cup melted butter","¾ cup sugar","1 large egg, beaten","1 tsp pure vanilla extract","1½ cups all-purpose flour","1 tsp baking soda","Pinch of salt","½ cup chopped walnuts (toasted if possible)"],
- steps:["Preheat oven to 350°F. Grease a 9×5 loaf pan.","Mash bananas in a large bowl until smooth with a few small lumps.","Stir in melted butter until combined.","Mix in sugar, beaten egg, and vanilla.","Sprinkle flour, baking soda, and salt over the wet mixture. Fold gently until just combined — lumps are fine.","Fold in walnuts.","Pour into prepared pan. Optionally place a few walnut halves on top.","Bake 55–65 min until deeply golden and a toothpick comes out with just a few moist crumbs.","Cool in pan 10 min, then transfer to a rack. Best served slightly warm."],tip:"The riper the bananas, the better. Nearly black bananas give the deepest sweetness and moisture. You can also freeze overripe bananas for later — just thaw before using."},
-{t:"Braided Cardamom Bread",c:"sweet",cl:"Sweet",b:"Scandinavian",d:"Fragrant, tender braided loaf perfumed with cardamom — stunning on the table, even better with coffee.",time:"4 hrs",diff:"Medium",srv:"1 braid",col:"#C8D5B9",
- ing:["3½ cups all-purpose flour","½ cup sugar","¾ cup warm milk","¼ cup butter, melted","2 large eggs (1 for dough, 1 for egg wash)","2¼ tsp active dry yeast","1 tsp ground cardamom (freshly ground is best)","½ tsp salt","Pearl sugar or turbinado sugar for topping"],
- steps:["Dissolve yeast in warm milk with 1 tsp sugar. Bloom 10 min.","Mix flour, remaining sugar, cardamom, and salt.","Add yeast mixture, melted butter, and 1 beaten egg. Stir, then knead 8–10 min until smooth and elastic.","Cover and rise 1.5 hours until doubled.","Punch down. Divide dough into 3 equal pieces.","Roll each piece into a 16-inch rope.","Braid the three ropes together. Pinch and tuck both ends under.","Place on a parchment-lined baking sheet.","Cover and rise 40 min until puffy.","Beat remaining egg; brush generously over braid. Sprinkle with pearl sugar.","Bake at 350°F for 25–30 min until deep golden.","Cool on rack. Slice to serve."],tip:"For the most vibrant cardamom flavor, buy whole green cardamom pods and grind the seeds fresh in a mortar. Pre-ground works but is much milder."},
-{t:"No-Knead Dutch Oven Bread",c:"classic",cl:"Classic",b:"Effortless",d:"Crispy crust, chewy crumb — this stunning artisan loaf requires almost zero effort and looks bakery-professional.",time:"14 hrs",diff:"Easy",srv:"1 loaf",col:"#D4DEC8",
- ing:["3 cups all-purpose flour","1½ cups warm water","¼ tsp instant yeast","1¼ tsp salt","Cornmeal or semolina for dusting"],
- steps:["In a large bowl, whisk flour, yeast, and salt.","Add warm water. Stir with a wooden spoon until a shaggy, sticky dough forms. No kneading needed.","Cover tightly with plastic wrap. Let rest at room temperature 12–18 hours (overnight).","Dough will be bubbly and doubled. Generously flour a work surface.","Turn dough out, fold edges toward center a few times to form a rough ball.","Place seam-side down on a piece of parchment. Dust with flour. Cover with a towel and rest 30 min.","While dough rests, preheat oven to 450°F with a Dutch oven inside (lid on) for at least 30 min.","Carefully lower parchment + dough into the hot Dutch oven. Score top with a sharp knife.","Cover with lid. Bake 30 min covered, then 15 min uncovered until deeply golden.","Cool on a wire rack 30+ min."],tip:"The overnight rest develops incredible flavor. Start it before bed and bake the next morning for fresh bread by lunch."},
-{t:"Whole Wheat Sandwich Bread",c:"healthy",cl:"Healthy",b:"Daily Bread",d:"A soft, sliceable 100% whole wheat loaf perfect for sandwiches, toast, and everything in between.",time:"3 hrs",diff:"Easy",srv:"1 loaf",col:"#A3B48E",
- ing:["3 cups white whole wheat flour","1 cup warm water","¼ cup warm milk","2 tbsp honey","2 tbsp butter, softened","2¼ tsp active dry yeast","1½ tsp salt","1 tbsp vital wheat gluten (optional, for softer texture)"],
- steps:["Dissolve yeast in warm water with honey. Let bloom 10 min.","Combine flour, salt, and vital wheat gluten (if using) in a large bowl.","Add yeast mixture, warm milk, and softened butter.","Knead 10–12 min until smooth and elastic. Dough should pass the windowpane test.","Cover and rise 1.5 hrs until doubled.","Punch down. Roll into a rectangle, then roll into a tight log.","Place seam-side down in a greased 9×5 loaf pan.","Cover and rise 40 min until 1 inch above the pan edge.","Bake at 375°F for 30–35 min until internal temp reaches 190°F.","Cool completely before slicing for the cleanest cuts."],tip:"Adding 1 tbsp vital wheat gluten makes whole wheat bread softer and gives it more structure — it's a game changer for sandwich bread."},
-{t:"Peanut Butter Protein Bread",c:"protein",cl:"Protein",b:"24g Protein",d:"A rich, satisfying loaf with peanut butter and protein powder — perfect for high-protein toast and sandwiches.",time:"1.5 hrs",diff:"Easy",srv:"1 loaf",col:"#D0C0A8",
- ing:["1¾ cups whole wheat flour","1 scoop chocolate or vanilla protein powder","½ cup natural peanut butter","2 large eggs","1 cup unsweetened almond milk","¼ cup honey","1½ tsp baking powder","½ tsp baking soda","½ tsp salt","¼ cup mini chocolate chips (optional)"],
- steps:["Preheat oven to 350°F. Grease and line a 9×5 loaf pan.","In a large bowl, whisk flour, protein powder, baking powder, baking soda, and salt.","In a separate bowl, mix peanut butter, eggs, almond milk, and honey until smooth.","Pour wet into dry. Fold gently until just combined.","Fold in chocolate chips if using.","Pour into prepared pan.","Bake 45–50 min until a toothpick comes out clean.","Cool 15 min in pan, then transfer to rack."],tip:"Use natural peanut butter (just peanuts and salt) for the best texture. Stir well before measuring so the oil is incorporated."},
-{t:"Rosemary Olive Oil Bread",c:"classic",cl:"Classic",b:"Aromatic",d:"A fragrant, crusty round loaf infused with fresh rosemary and fruity olive oil — perfect alongside pasta or soup.",time:"3 hrs",diff:"Easy",srv:"1 loaf",col:"#8FA67E",
- ing:["3 cups bread flour","1 cup warm water","3 tbsp extra virgin olive oil","2 tbsp fresh rosemary, finely chopped","2¼ tsp active dry yeast","1 tbsp honey","1½ tsp salt","Flaky sea salt for topping"],
- steps:["Dissolve yeast in warm water with honey. Let bloom 10 min.","Mix flour, chopped rosemary, and salt.","Add yeast mixture and olive oil. Stir, then knead 8 min until smooth.","Cover and rise 1.5 hrs until doubled.","Shape into a round boule. Place on a parchment-lined baking sheet.","Cover and rise 30 min. Slash top with a sharp knife in a cross pattern.","Drizzle with olive oil and sprinkle with flaky salt and extra rosemary.","Bake at 400°F for 25–30 min until golden and crusty.","Cool on a rack 15 min before tearing into it."],tip:"Use the best olive oil you have — you can really taste it in this bread. The rosemary should be fresh, not dried, for the most aromatic results."},
-{t:"Grandma's Dinner Rolls",c:"grandma",cl:"Grandma's",b:"Sunday Dinner",d:"Soft, pillowy pull-apart rolls with a golden butter top — the ones everyone reaches for first at the table.",time:"3 hrs",diff:"Easy",srv:"12 rolls",col:"#E8E0D0",
- ing:["3½ cups all-purpose flour","1 cup warm milk","¼ cup sugar","¼ cup butter, softened","1 large egg","2¼ tsp active dry yeast","1 tsp salt","2 tbsp melted butter (for brushing)"],
- steps:["Dissolve yeast in warm milk with a pinch of sugar. Bloom 10 min.","Mix flour, sugar, and salt. Add yeast mixture, softened butter, and egg.","Knead 8 min until soft, smooth, and slightly tacky.","Cover and rise 1.5 hrs until doubled.","Punch down. Divide into 12 equal pieces (weigh for consistency).","Roll each piece into a tight ball by pulling the dough under itself.","Arrange in a greased 9×13 baking dish, evenly spaced.","Cover and rise 30–40 min until rolls are puffy and touching.","Bake at 375°F for 18–22 min until golden on top.","Brush immediately with melted butter. Serve warm."],tip:"For the softest rolls, use bread flour or add 1 tbsp vital wheat gluten. The butter brush at the end is non-negotiable — it makes them gleam."},
-{t:"Oat Flour Protein Flatbread",c:"protein",cl:"Protein",b:"No Yeast",d:"Quick, high-protein flatbread made with oat flour and egg whites — ready in 15 minutes flat.",time:"15 min",diff:"Easy",srv:"2 flatbreads",col:"#C8D5B9",
- ing:["1 cup oat flour (blend oats in a blender)","3 egg whites","¼ cup water","½ tsp baking powder","¼ tsp salt","¼ tsp garlic powder","Cooking spray or oil for pan"],
- steps:["Whisk together oat flour, baking powder, salt, and garlic powder.","Add egg whites and water. Stir until a smooth, pourable batter forms.","Heat a non-stick skillet over medium heat. Spray lightly with oil.","Pour half the batter into the pan. Tilt to spread into a thin circle.","Cook 2–3 min until edges set and bottom is golden.","Flip carefully. Cook 1–2 min more.","Repeat with remaining batter.","Serve as a wrap, pizza base, or alongside hummus and veggies."],tip:"For extra protein, add a scoop of unflavored protein powder to the batter. Adjust water to keep the consistency pourable."},
-{t:"Multigrain Harvest Bread",c:"healthy",cl:"Healthy",b:"Fiber Rich",d:"A rustic loaf packed with whole grains, oats, sunflower seeds, and a touch of molasses for depth.",time:"3.5 hrs",diff:"Medium",srv:"1 loaf",col:"#A8A890",
- ing:["2 cups bread flour","1 cup whole wheat flour","½ cup rolled oats","¼ cup sunflower seeds","2 tbsp millet or flax","1¼ cups warm water","2 tbsp molasses","2 tbsp olive oil","2¼ tsp active dry yeast","1½ tsp salt"],
- steps:["Bloom yeast in warm water with molasses for 10 min.","Combine flours, oats, sunflower seeds, millet, and salt.","Add yeast mixture and olive oil. Stir, then knead 8–10 min.","Cover and rise 1.5 hrs.","Shape into a round or oblong loaf. Place on a parchment-lined sheet or in an oiled loaf pan.","Brush with water, sprinkle with extra oats and seeds.","Rise 30–40 min.","Slash top. Bake at 375°F for 35–40 min.","Cool completely on a rack."],tip:"Molasses adds minerals (iron, calcium) and a deep, almost caramel flavor. Don't substitute with honey here — the character is totally different."},
-{t:"Lemon Poppy Seed Bread",c:"sweet",cl:"Sweet",b:"Bright & Tangy",d:"A tender, citrus-bright quick bread studded with poppy seeds and finished with a tart lemon glaze.",time:"1.5 hrs",diff:"Easy",srv:"1 loaf",col:"#E0D8C0",
- ing:["1½ cups all-purpose flour","¾ cup sugar","2 large eggs","½ cup plain yogurt","⅓ cup vegetable or avocado oil","2 tbsp poppy seeds","Zest of 2 lemons","3 tbsp fresh lemon juice (divided)","1 tsp baking powder","¼ tsp baking soda","¼ tsp salt","½ cup powdered sugar (for glaze)"],
- steps:["Preheat oven to 350°F. Grease and line a 9×5 loaf pan.","Whisk flour, baking powder, baking soda, salt, and poppy seeds.","In another bowl, whisk eggs, sugar, yogurt, oil, lemon zest, and 2 tbsp lemon juice.","Fold wet into dry until just combined.","Pour into prepared pan.","Bake 50–55 min until golden and a toothpick comes out clean.","While warm, make glaze: whisk powdered sugar with remaining 1 tbsp lemon juice until smooth.","Drizzle glaze over the warm loaf. Let cool in pan 15 min, then transfer to rack."],tip:"Zest the lemons BEFORE juicing them — it's much easier. Use a microplane for the finest, most flavorful zest."},
-{t:"Grandma's Cornbread",c:"grandma",cl:"Grandma's",b:"Southern Style",d:"Golden, slightly sweet, with a crispy cast-iron crust — the kind of cornbread that settles arguments about what real cornbread should be.",time:"35 min",diff:"Easy",srv:"8 wedges",col:"#D4CAB8",
- ing:["1 cup fine yellow cornmeal","1 cup all-purpose flour","⅓ cup sugar (reduce or omit for savory)","1 cup buttermilk","⅓ cup melted butter","1 large egg","1 tsp baking powder","½ tsp baking soda","½ tsp salt","2 tbsp butter (for the skillet)"],
- steps:["Preheat oven to 425°F. Place a 10-inch cast iron skillet in the oven to heat.","Whisk cornmeal, flour, sugar, baking powder, baking soda, and salt.","In another bowl, whisk buttermilk, melted butter, and egg.","Combine wet and dry — stir gently until just combined.","Carefully remove hot skillet. Add 2 tbsp butter — it should sizzle and melt immediately. Swirl to coat.","Pour batter into the hot, buttered skillet. It should sizzle around the edges.","Bake 20–25 min until golden on top and a toothpick comes out clean.","Let cool 5 min in skillet, then slice into wedges.","Serve with butter, honey, or alongside chili and soup."],tip:"The hot skillet is the secret — it creates that crispy, almost fried bottom crust. Don't skip preheating the skillet."},
-{t:"Almond Flour Protein Muffins",c:"protein",cl:"Protein",b:"Grab & Go",d:"Fluffy, grain-free muffins packed with protein and healthy fats — perfect for busy mornings.",time:"30 min",diff:"Easy",srv:"8 muffins",col:"#D0C8B8",
- ing:["2 cups almond flour","1 scoop vanilla protein powder","3 large eggs","¼ cup honey or maple syrup","¼ cup almond milk","2 tbsp melted coconut oil","1 tsp baking powder","½ tsp vanilla extract","Pinch of salt","Optional: blueberries, chocolate chips, or sliced almonds"],
- steps:["Preheat oven to 350°F. Line a muffin tin with 8 liners.","Whisk almond flour, protein powder, baking powder, and salt.","In another bowl, whisk eggs, honey, almond milk, coconut oil, and vanilla.","Fold wet into dry until smooth.","Fold in optional mix-ins.","Divide batter evenly among 8 muffin cups.","Bake 18–22 min until golden and a toothpick comes out clean.","Cool 5 min in pan, then transfer to rack."],tip:"Almond flour muffins set more as they cool — they may seem soft in the center right out of the oven, but they firm up nicely."},
-{t:"Ancient Grain Bread",c:"healthy",cl:"Healthy",b:"Superfood",d:"A hearty loaf made with spelt, einkorn, and amaranth — ancient grains for modern nutrition.",time:"3.5 hrs",diff:"Medium",srv:"1 loaf",col:"#A3B48E",
- ing:["1½ cups spelt flour","1 cup einkorn flour (or more spelt)","½ cup bread flour","2 tbsp amaranth or quinoa","1¼ cups warm water","2 tbsp olive oil","2 tbsp honey","2¼ tsp active dry yeast","1½ tsp salt"],
- steps:["Bloom yeast in warm water with honey for 10 min.","Combine all flours, amaranth, and salt.","Add yeast mixture and olive oil. Mix into a dough.","Knead gently 6–8 min. Ancient grain doughs are more fragile — handle with care.","Cover and rise 1.5 hrs until puffy.","Shape into a loaf. Place in an oiled pan.","Rise 30 min. Slash top.","Bake at 375°F for 35 min until firm.","Cool completely before slicing."],tip:"Spelt and einkorn have weaker gluten than modern wheat, so this bread will be denser. That's a feature, not a bug — it's deeply flavorful and satisfying."},
-{t:"Chocolate Chip Pumpkin Bread",c:"sweet",cl:"Sweet",b:"Fall Favorite",d:"Moist pumpkin bread with warm spices and melty chocolate chips — the taste of autumn in every slice.",time:"1.5 hrs",diff:"Easy",srv:"1 loaf",col:"#D4A96A",
- ing:["1½ cups all-purpose flour","1 cup pumpkin puree (not pie filling)","¾ cup brown sugar","⅓ cup vegetable oil","2 large eggs","1 tsp cinnamon","½ tsp nutmeg","¼ tsp ground cloves","1 tsp baking soda","½ tsp salt","½ cup chocolate chips"],
- steps:["Preheat oven to 350°F. Grease and line a 9×5 loaf pan.","Whisk flour, baking soda, salt, cinnamon, nutmeg, and cloves.","In another bowl, whisk pumpkin, brown sugar, oil, and eggs until smooth.","Fold dry into wet until just combined.","Fold in chocolate chips, reserving a few for the top.","Pour into prepared pan. Scatter remaining chips on top.","Bake 55–60 min until a toothpick comes out clean.","Cool in pan 15 min, then transfer to rack."],tip:"Make sure you're using plain pumpkin puree, not pumpkin pie filling (which has added sugar and spices). Check the can label."},
-{t:"Pull-Apart Garlic Bread",c:"classic",cl:"Classic",b:"Crowd Pleaser",d:"Soft, buttery rolls drenched in garlic herb butter, baked until golden and irresistibly pull-apart tender.",time:"3 hrs",diff:"Easy",srv:"12 pieces",col:"#C8D0B8",
- ing:["3 cups all-purpose flour","1 cup warm milk","2 tbsp sugar","2 tbsp butter, softened","1 large egg","2¼ tsp active dry yeast","1 tsp salt","For garlic butter: 4 tbsp melted butter, 4 cloves garlic (minced), 2 tbsp fresh parsley (chopped), ¼ tsp salt"],
- steps:["Dissolve yeast in warm milk with sugar. Bloom 10 min.","Mix flour and salt. Add yeast mixture, butter, and egg. Knead 8 min until smooth.","Cover and rise 1.5 hrs until doubled.","Make garlic butter: combine melted butter, minced garlic, parsley, and salt.","Punch down dough. Divide into 12 pieces. Roll into balls.","Dip each ball into garlic butter, coating well.","Arrange in a greased 9×13 pan or 10-inch cast iron skillet.","Pour remaining garlic butter over the top.","Cover and rise 30 min.","Bake at 375°F for 22–25 min until golden.","Brush with any remaining butter from the pan. Serve warm and pull apart."],tip:"For extra garlic punch, roast a whole head of garlic and add the squeezed cloves to the butter mixture along with the raw garlic."}
+// ========================================
+// FIREBASE CONFIG — PASTE YOUR VALUES HERE
+// ========================================
+const firebaseConfig = {
+  apiKey: "AIzaSyCxibqeoXky2RoLvDNX18RBmAPpmoQHJpo",
+  authDomain: "madisbreads.firebaseapp.com",
+  projectId: "madisbreads",
+  storageBucket: "madisbreads.firebasestorage.app",
+  messagingSenderId: "160052738178",
+  appId: "1:160052738178:web:d80007ead9b63a68e85c9b",
+  measurementId: "G-N4XSBHBK39"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+const recipesRef = db.collection('recipes');
+
+// ===== DEFAULT TAGS & CATS =====
+const DTAGS=["Protein","Meme's Recipe","Mawmaw's Recipe","Family Recipe","Quick & Easy","Healthy","Comfort Food","Holiday","Meal Prep","Gluten Free","Dairy Free","Vegetarian","Vegan","Kid Friendly","Date Night","Sunday Dinner","High Protein","Low Carb","Sourdough"];
+const DCATS=["All","Bread","Baking","Cooking","Dessert","Breakfast","Snack","Drink","Side","Soup"];
+
+// ===== 42 BREAD RECIPES =====
+const SEED_RECIPES=[
+{name:"Rustic Sourdough Boule",desc:"Crusty, tangy sourdough with open crumb. Just four ingredients and patience.",cat:"Bread",time:"24 hrs",srv:"1 loaf",diff:"Medium",tags:["Sourdough"],ing:[{amt:"350g",item:"bread flour"},{amt:"50g",item:"whole wheat flour"},{amt:"280g",item:"water"},{amt:"80g",item:"sourdough starter"},{amt:"8g",item:"sea salt"}],steps:["Mix flour and water, rest 30 min.","Add starter and salt, fold to combine.","Stretch and fold every 30 min for 2 hours.","Bulk ferment 4-6 hrs until doubled.","Shape into boule, place in floured banneton.","Cold proof in fridge 12-18 hrs.","Preheat Dutch oven at 500°F. Score and bake covered 20 min, uncovered 20 min at 450°F."],tip:"Warmer kitchen = faster rise. In winter, use the oven with just the light on."},
+{name:"Honey Oat Bread",desc:"Soft, golden loaf sweetened with honey and oats — a Sunday morning classic.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Family Recipe","Mawmaw's Recipe"],ing:[{amt:"3 cups",item:"bread flour"},{amt:"1 cup",item:"rolled oats"},{amt:"1¼ cups",item:"warm milk"},{amt:"3 tbsp",item:"honey"},{amt:"2 tbsp",item:"butter, softened"},{amt:"2¼ tsp",item:"active dry yeast"},{amt:"1½ tsp",item:"salt"}],steps:["Dissolve yeast in warm milk with honey. Bloom 10 min.","Mix flour, oats, salt. Add yeast mixture, honey, butter.","Knead 8-10 min until smooth.","Rise 1-1.5 hrs until doubled.","Shape, place in greased 9×5 pan.","Rise 30-40 min. Brush with milk, sprinkle oats.","Bake at 350°F for 30-35 min."],tip:"Freezes beautifully — wrap tight, lasts 3 months."},
+{name:"High-Protein Seed Bread",desc:"Dense, nutty loaf packed with seeds, oats, and protein powder.",cat:"Bread",time:"2.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Protein","High Protein","Healthy","Meal Prep"],ing:[{amt:"2 cups",item:"whole wheat flour"},{amt:"1 scoop",item:"vanilla protein powder"},{amt:"½ cup",item:"rolled oats"},{amt:"¼ cup",item:"sunflower seeds"},{amt:"¼ cup",item:"pumpkin seeds"},{amt:"2 tbsp",item:"flaxseed meal"},{amt:"2 tbsp",item:"chia seeds"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"olive oil"},{amt:"1 tbsp",item:"honey"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"}],steps:["Bloom yeast in warm water with honey, 10 min.","Mix all dry ingredients.","Add yeast mixture and olive oil.","Knead 6-8 min.","Rise 1 hour.","Shape, place in pan. Rise 30 min.","Bake at 375°F for 35-40 min."],tip:"Slices best the next day."},
+{name:"Herbed Focaccia",desc:"Pillowy, olive oil-drenched flatbread with rosemary and flaky salt.",cat:"Bread",time:"4 hrs",srv:"8 pieces",diff:"Easy",tags:["Quick & Easy","Comfort Food"],ing:[{amt:"4 cups",item:"all-purpose flour"},{amt:"2 cups",item:"warm water"},{amt:"2¼ tsp",item:"instant yeast"},{amt:"2 tsp",item:"salt"},{amt:"4 tbsp",item:"olive oil"},{amt:"",item:"fresh rosemary"},{amt:"",item:"flaky sea salt"}],steps:["Whisk flour, yeast, salt. Add water and 2 tbsp oil.","Rise 1.5-2 hrs until doubled.","Oil a sheet pan generously.","Stretch dough onto pan. Rest and stretch again.","Dimple with oiled fingers. Add rosemary and salt.","Rise 30 min.","Bake at 425°F for 22-28 min."],tip:"Don't be shy with olive oil — it makes the crispy bottom."},
+{name:"Nana's Cinnamon Raisin Loaf",desc:"Swirled with cinnamon sugar and plump raisins — mornings like a warm hug.",cat:"Bread",time:"3.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Family Recipe","Mawmaw's Recipe","Comfort Food"],ing:[{amt:"3½ cups",item:"all-purpose flour"},{amt:"⅓ cup",item:"sugar"},{amt:"1 cup",item:"warm milk"},{amt:"¼ cup",item:"melted butter"},{amt:"1",item:"egg"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"¾ cup",item:"raisins"},{amt:"3 tbsp",item:"brown sugar"},{amt:"1 tbsp",item:"cinnamon"}],steps:["Dissolve yeast in warm milk. Bloom 10 min.","Mix flour, sugar, salt. Add yeast, butter, egg.","Knead 8 min. Fold in raisins.","Rise 1.5 hrs.","Roll into rectangle. Spread butter, cinnamon sugar.","Roll into log, seam down in greased pan.","Rise 40 min. Bake at 350°F for 30-35 min."],tip:"Soak raisins in warm water 20 min first."},
+{name:"Greek Yogurt Protein Rolls",desc:"Two-ingredient rolls with protein from Greek yogurt — under an hour.",cat:"Bread",time:"45 min",srv:"6 rolls",diff:"Easy",tags:["Protein","Quick & Easy","High Protein"],ing:[{amt:"1½ cups",item:"self-rising flour"},{amt:"1 cup",item:"Greek yogurt"},{amt:"1 tbsp",item:"honey"},{amt:"",item:"pinch of salt"},{amt:"1",item:"egg for wash"},{amt:"",item:"everything seasoning"}],steps:["Mix flour and yogurt until shaggy.","Knead 2-3 min until smooth.","Divide into 6 rolls.","Brush with egg, add toppings.","Bake at 375°F for 18-22 min."],tip:"Best same day. Freeze and reheat at 300°F for 10 min."},
+{name:"Whole Wheat Flaxseed Bread",desc:"Hearty, nutty 100% whole wheat loaf with flaxseed.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Healthy"],ing:[{amt:"3 cups",item:"whole wheat flour"},{amt:"¼ cup",item:"ground flaxseed"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"olive oil"},{amt:"2 tbsp",item:"maple syrup"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"}],steps:["Bloom yeast in warm water with maple syrup.","Combine flour, flaxseed, salt.","Add yeast mixture and oil.","Knead 10 min.","Rise 1.5 hrs.","Shape, rise 30-40 min.","Bake at 375°F for 35 min."],tip:"Whole wheat won't double as dramatically — 1.5x is normal."},
+{name:"Buttermilk Biscuits",desc:"Flaky, tall, impossibly tender — make the table go quiet.",cat:"Bread",time:"30 min",srv:"8 biscuits",diff:"Easy",tags:["Mawmaw's Recipe","Family Recipe","Quick & Easy","Comfort Food"],ing:[{amt:"2 cups",item:"all-purpose flour"},{amt:"1 tbsp",item:"baking powder"},{amt:"¼ tsp",item:"baking soda"},{amt:"1 tsp",item:"salt"},{amt:"1 tsp",item:"sugar"},{amt:"6 tbsp",item:"cold butter, cubed"},{amt:"¾ cup",item:"cold buttermilk"}],steps:["Whisk dry ingredients.","Cut in cold butter until pea-sized.","Add buttermilk. Stir gently.","Pat, fold in thirds. Repeat twice.","Cut straight down with sharp cutter.","Place touching each other. Chill 10 min.","Bake at 450°F for 12-15 min."],tip:"Cold everything. Freeze butter, chill buttermilk, work fast."},
+{name:"Cottage Cheese Protein Bread",desc:"Moist, packed with protein from cottage cheese and eggs.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Protein","High Protein","Healthy"],ing:[{amt:"2 cups",item:"whole wheat flour"},{amt:"1 cup",item:"cottage cheese"},{amt:"3",item:"eggs"},{amt:"2 tbsp",item:"olive oil"},{amt:"2 tbsp",item:"honey"},{amt:"1½ tsp",item:"baking powder"},{amt:"½ tsp",item:"baking soda"},{amt:"½ tsp",item:"salt"}],steps:["Blend cottage cheese and eggs.","Add honey and oil.","Whisk dry ingredients separately.","Fold wet into dry.","Pour into greased loaf pan.","Bake at 350°F for 45-50 min."],tip:"Makes incredible toast with avocado."},
+{name:"Sprouted Grain Bread",desc:"Deeply nourishing sprouted wheat — easier to digest.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Medium",tags:["Healthy"],ing:[{amt:"3 cups",item:"sprouted wheat flour"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"avocado oil"},{amt:"2 tbsp",item:"raw honey"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"},{amt:"2 tbsp",item:"sesame seeds"}],steps:["Dissolve yeast in warm water with honey.","Add flour, oil, salt. Mix.","Knead gently 5-6 min.","Rise 1-1.5 hrs.","Shape, place in pan. Top with seeds.","Rise 30 min.","Bake at 350°F for 35-40 min."],tip:"Sprouted flour absorbs less water — don't add extra flour."},
+{name:"No-Knead Dutch Oven Bread",desc:"Crispy crust, chewy crumb — almost zero effort, bakery results.",cat:"Bread",time:"14 hrs",srv:"1 loaf",diff:"Easy",tags:["Quick & Easy"],ing:[{amt:"3 cups",item:"all-purpose flour"},{amt:"1½ cups",item:"warm water"},{amt:"¼ tsp",item:"instant yeast"},{amt:"1¼ tsp",item:"salt"},{amt:"",item:"cornmeal for dusting"}],steps:["Whisk flour, yeast, salt.","Add water. Stir until shaggy. No kneading.","Cover tightly. Rest 12-18 hrs at room temp.","Flour surface. Turn out dough, fold into a ball.","Rest on parchment 30 min.","Preheat Dutch oven at 450°F for 30 min.","Score top. Bake covered 30 min, uncovered 15 min."],tip:"Start before bed, bake the next morning."},
+{name:"Rosemary Olive Oil Bread",desc:"Fragrant, crusty round loaf infused with rosemary and olive oil.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Comfort Food"],ing:[{amt:"3 cups",item:"bread flour"},{amt:"1 cup",item:"warm water"},{amt:"3 tbsp",item:"olive oil"},{amt:"2 tbsp",item:"fresh rosemary, chopped"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tbsp",item:"honey"},{amt:"1½ tsp",item:"salt"},{amt:"",item:"flaky sea salt"}],steps:["Dissolve yeast in water with honey.","Mix flour, rosemary, salt.","Add yeast mixture and oil. Knead 8 min.","Rise 1.5 hrs.","Shape into round. Place on parchment sheet.","Rise 30 min. Slash top.","Drizzle oil, sprinkle salt. Bake at 400°F for 25-30 min."],tip:"Use the best olive oil you have — you taste it."},
+{name:"Grandma's Dinner Rolls",desc:"Soft, pillowy pull-apart rolls with golden butter top.",cat:"Bread",time:"3 hrs",srv:"12 rolls",diff:"Easy",tags:["Family Recipe","Sunday Dinner","Comfort Food"],ing:[{amt:"3½ cups",item:"all-purpose flour"},{amt:"1 cup",item:"warm milk"},{amt:"¼ cup",item:"sugar"},{amt:"¼ cup",item:"butter, softened"},{amt:"1",item:"egg"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"2 tbsp",item:"melted butter for brushing"}],steps:["Dissolve yeast in warm milk with sugar.","Mix flour, sugar, salt. Add yeast, butter, egg.","Knead 8 min until smooth.","Rise 1.5 hrs.","Divide into 12 balls.","Arrange in greased 9×13 pan.","Rise 30-40 min. Bake at 375°F for 18-22 min.","Brush with melted butter immediately."],tip:"The butter brush at the end is non-negotiable."},
+{name:"Peanut Butter Protein Bread",desc:"Rich, satisfying loaf with PB and protein powder.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Protein","High Protein"],ing:[{amt:"1¾ cups",item:"whole wheat flour"},{amt:"1 scoop",item:"chocolate protein powder"},{amt:"½ cup",item:"peanut butter"},{amt:"2",item:"eggs"},{amt:"1 cup",item:"almond milk"},{amt:"¼ cup",item:"honey"},{amt:"1½ tsp",item:"baking powder"},{amt:"½ tsp",item:"baking soda"},{amt:"½ tsp",item:"salt"}],steps:["Whisk flour, protein powder, baking powder, soda, salt.","Mix PB, eggs, almond milk, honey until smooth.","Fold wet into dry.","Pour into greased loaf pan.","Bake at 350°F for 45-50 min."],tip:"Use natural peanut butter — stir well first."},
+{name:"Oat Flour Protein Flatbread",desc:"Quick high-protein flatbread with oat flour — 15 minutes.",cat:"Bread",time:"15 min",srv:"2 flatbreads",diff:"Easy",tags:["Protein","Quick & Easy","High Protein"],ing:[{amt:"1 cup",item:"oat flour"},{amt:"3",item:"egg whites"},{amt:"¼ cup",item:"water"},{amt:"½ tsp",item:"baking powder"},{amt:"¼ tsp",item:"salt"},{amt:"¼ tsp",item:"garlic powder"}],steps:["Whisk all dry ingredients.","Add egg whites and water. Stir smooth.","Heat non-stick skillet over medium.","Pour half batter, spread thin.","Cook 2-3 min per side.","Repeat with remaining batter."],tip:"Add unflavored protein powder for extra protein."},
+{name:"Multigrain Harvest Bread",desc:"Rustic loaf packed with whole grains, oats, and molasses.",cat:"Bread",time:"3.5 hrs",srv:"1 loaf",diff:"Medium",tags:["Healthy"],ing:[{amt:"2 cups",item:"bread flour"},{amt:"1 cup",item:"whole wheat flour"},{amt:"½ cup",item:"rolled oats"},{amt:"¼ cup",item:"sunflower seeds"},{amt:"2 tbsp",item:"millet"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"molasses"},{amt:"2 tbsp",item:"olive oil"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"}],steps:["Bloom yeast with molasses, 10 min.","Combine flours, oats, seeds, millet, salt.","Add yeast mixture and oil. Knead 8-10 min.","Rise 1.5 hrs.","Shape. Top with oats and seeds.","Rise 30-40 min.","Bake at 375°F for 35-40 min."],tip:"Molasses adds minerals and deep flavor — don't sub honey."},
+{name:"Pull-Apart Garlic Bread",desc:"Buttery rolls drenched in garlic herb butter, golden and tender.",cat:"Bread",time:"3 hrs",srv:"12 pieces",diff:"Easy",tags:["Comfort Food","Sunday Dinner"],ing:[{amt:"3 cups",item:"all-purpose flour"},{amt:"1 cup",item:"warm milk"},{amt:"2 tbsp",item:"sugar"},{amt:"2 tbsp",item:"butter, softened"},{amt:"1",item:"egg"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"4 tbsp",item:"melted butter"},{amt:"4 cloves",item:"garlic, minced"},{amt:"2 tbsp",item:"fresh parsley"}],steps:["Dissolve yeast in warm milk with sugar.","Mix flour and salt. Add yeast, butter, egg. Knead 8 min.","Rise 1.5 hrs.","Make garlic butter: melt butter, add garlic, parsley, salt.","Divide into 12 balls. Dip each in garlic butter.","Arrange in greased pan. Pour remaining butter over.","Rise 30 min. Bake at 375°F for 22-25 min."],tip:"Roast a head of garlic and add to the butter for extra punch."},
+{name:"Whole Wheat Sandwich Bread",desc:"Soft, sliceable 100% whole wheat — perfect for sandwiches.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Healthy","Meal Prep"],ing:[{amt:"3 cups",item:"white whole wheat flour"},{amt:"1 cup",item:"warm water"},{amt:"¼ cup",item:"warm milk"},{amt:"2 tbsp",item:"honey"},{amt:"2 tbsp",item:"butter, softened"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"},{amt:"1 tbsp",item:"vital wheat gluten"}],steps:["Dissolve yeast in warm water with honey.","Combine flour, salt, wheat gluten.","Add yeast, milk, butter. Knead 10-12 min.","Rise 1.5 hrs.","Shape into log, place in greased pan.","Rise 40 min. Bake at 375°F for 30-35 min."],tip:"Vital wheat gluten makes whole wheat bread softer — game changer."},
+{name:"Banana Walnut Bread",desc:"Deeply moist, warmly spiced, loaded with walnuts.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Comfort Food","Family Recipe"],ing:[{amt:"3",item:"very ripe bananas"},{amt:"⅓ cup",item:"melted butter"},{amt:"¾ cup",item:"sugar"},{amt:"1",item:"egg"},{amt:"1 tsp",item:"vanilla"},{amt:"1½ cups",item:"flour"},{amt:"1 tsp",item:"baking soda"},{amt:"",item:"pinch of salt"},{amt:"½ cup",item:"chopped walnuts"}],steps:["Mash bananas. Stir in butter.","Mix in sugar, egg, vanilla.","Fold in flour, baking soda, salt.","Fold in walnuts.","Pour into greased 9×5 pan.","Bake at 350°F for 55-65 min."],tip:"Nearly black bananas = deepest sweetness."},
+{name:"Braided Cardamom Bread",desc:"Fragrant Scandinavian braid perfumed with cardamom.",cat:"Bread",time:"4 hrs",srv:"1 braid",diff:"Medium",tags:["Holiday"],ing:[{amt:"3½ cups",item:"flour"},{amt:"½ cup",item:"sugar"},{amt:"¾ cup",item:"warm milk"},{amt:"¼ cup",item:"melted butter"},{amt:"2",item:"eggs"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"ground cardamom"},{amt:"½ tsp",item:"salt"},{amt:"",item:"pearl sugar"}],steps:["Dissolve yeast in warm milk with sugar.","Mix flour, sugar, cardamom, salt.","Add yeast, butter, 1 egg. Knead 8-10 min.","Rise 1.5 hrs.","Divide into 3 ropes. Braid.","Rise 40 min. Egg wash, pearl sugar.","Bake at 350°F for 25-30 min."],tip:"Grind whole cardamom pods fresh for best flavor."},
+{name:"Cornbread",desc:"Golden, slightly sweet with crispy cast-iron crust.",cat:"Bread",time:"35 min",srv:"8 wedges",diff:"Easy",tags:["Mawmaw's Recipe","Comfort Food","Quick & Easy"],ing:[{amt:"1 cup",item:"cornmeal"},{amt:"1 cup",item:"flour"},{amt:"⅓ cup",item:"sugar"},{amt:"1 cup",item:"buttermilk"},{amt:"⅓ cup",item:"melted butter"},{amt:"1",item:"egg"},{amt:"1 tsp",item:"baking powder"},{amt:"½ tsp",item:"baking soda"},{amt:"½ tsp",item:"salt"},{amt:"2 tbsp",item:"butter for skillet"}],steps:["Preheat oven to 425°F with cast iron skillet inside.","Whisk dry ingredients. Whisk wet separately.","Combine — stir gently.","Remove hot skillet. Add 2 tbsp butter — let sizzle.","Pour batter in. It should sizzle.","Bake 20-25 min until golden."],tip:"The hot skillet creates that crispy fried bottom crust."},
+{name:"Almond Flour Protein Muffins",desc:"Fluffy, grain-free muffins packed with protein and healthy fats.",cat:"Bread",time:"30 min",srv:"8 muffins",diff:"Easy",tags:["Protein","High Protein","Gluten Free"],ing:[{amt:"2 cups",item:"almond flour"},{amt:"1 scoop",item:"vanilla protein powder"},{amt:"3",item:"eggs"},{amt:"¼ cup",item:"honey"},{amt:"¼ cup",item:"almond milk"},{amt:"2 tbsp",item:"melted coconut oil"},{amt:"1 tsp",item:"baking powder"},{amt:"½ tsp",item:"vanilla"},{amt:"",item:"pinch of salt"}],steps:["Whisk almond flour, protein powder, baking powder, salt.","Whisk eggs, honey, milk, oil, vanilla separately.","Fold wet into dry.","Divide among 8 muffin cups.","Bake at 350°F for 18-22 min."],tip:"Almond flour muffins firm up as they cool — don't worry if soft."},
+{name:"Ancient Grain Bread",desc:"Hearty loaf with spelt, einkorn, and amaranth.",cat:"Bread",time:"3.5 hrs",srv:"1 loaf",diff:"Medium",tags:["Healthy"],ing:[{amt:"1½ cups",item:"spelt flour"},{amt:"1 cup",item:"einkorn flour"},{amt:"½ cup",item:"bread flour"},{amt:"2 tbsp",item:"amaranth"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"olive oil"},{amt:"2 tbsp",item:"honey"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"}],steps:["Bloom yeast with honey, 10 min.","Combine flours, amaranth, salt.","Add yeast and oil. Knead gently 6-8 min.","Rise 1.5 hrs.","Shape, place in pan.","Rise 30 min. Bake at 375°F for 35 min."],tip:"Ancient grains have weaker gluten — denser loaf is expected."},
+{name:"Chocolate Chip Pumpkin Bread",desc:"Moist pumpkin bread with warm spices and melty chocolate.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Holiday","Comfort Food"],ing:[{amt:"1½ cups",item:"flour"},{amt:"1 cup",item:"pumpkin puree"},{amt:"¾ cup",item:"brown sugar"},{amt:"⅓ cup",item:"oil"},{amt:"2",item:"eggs"},{amt:"1 tsp",item:"cinnamon"},{amt:"½ tsp",item:"nutmeg"},{amt:"¼ tsp",item:"cloves"},{amt:"1 tsp",item:"baking soda"},{amt:"½ tsp",item:"salt"},{amt:"½ cup",item:"chocolate chips"}],steps:["Whisk flour, baking soda, salt, spices.","Whisk pumpkin, sugar, oil, eggs separately.","Fold dry into wet.","Fold in chocolate chips.","Pour into greased pan.","Bake at 350°F for 55-60 min."],tip:"Use plain pumpkin puree, not pie filling."},
+{name:"Lemon Poppy Seed Bread",desc:"Tender, citrus-bright quick bread with tart lemon glaze.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:[],ing:[{amt:"1½ cups",item:"flour"},{amt:"¾ cup",item:"sugar"},{amt:"2",item:"eggs"},{amt:"½ cup",item:"yogurt"},{amt:"⅓ cup",item:"oil"},{amt:"2 tbsp",item:"poppy seeds"},{amt:"",item:"zest of 2 lemons"},{amt:"3 tbsp",item:"lemon juice"},{amt:"1 tsp",item:"baking powder"},{amt:"¼ tsp",item:"baking soda"},{amt:"½ cup",item:"powdered sugar for glaze"}],steps:["Whisk flour, baking powder, soda, salt, poppy seeds.","Whisk eggs, sugar, yogurt, oil, zest, 2 tbsp lemon juice.","Fold wet into dry.","Pour into greased pan.","Bake at 350°F for 50-55 min.","Glaze: whisk powdered sugar + 1 tbsp lemon juice. Drizzle."],tip:"Zest lemons before juicing — much easier."},
+{name:"Beer Bread",desc:"Incredibly easy bread with just 6 ingredients and a can of beer.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Quick & Easy"],ing:[{amt:"3 cups",item:"self-rising flour"},{amt:"3 tbsp",item:"sugar"},{amt:"1 tsp",item:"salt"},{amt:"12 oz",item:"beer (any kind)"},{amt:"3 tbsp",item:"melted butter"}],steps:["Mix flour, sugar, and salt.","Pour in beer. Stir until just combined — lumpy is fine.","Pour into greased loaf pan.","Drizzle melted butter over top.","Bake at 375°F for 55-60 min until golden."],tip:"Light beers make a milder bread, dark beers add more flavor."},
+{name:"Jalapeño Cheddar Bread",desc:"Savory, cheesy loaf with a spicy kick from fresh jalapeños.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Comfort Food"],ing:[{amt:"3 cups",item:"bread flour"},{amt:"1 cup",item:"warm water"},{amt:"1 cup",item:"shredded sharp cheddar"},{amt:"2",item:"jalapeños, diced"},{amt:"2 tbsp",item:"butter, softened"},{amt:"1 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"}],steps:["Dissolve yeast in warm water with sugar.","Mix flour and salt. Add yeast mixture and butter.","Knead 8 min. Fold in cheese and jalapeños.","Rise 1.5 hrs.","Shape, place in greased pan.","Rise 30 min. Bake at 375°F for 30-35 min."],tip:"Remove seeds from jalapeños for less heat, keep for more."},
+{name:"Irish Soda Bread",desc:"Quick, rustic bread with a tender crumb — no yeast needed.",cat:"Bread",time:"1 hr",srv:"1 round",diff:"Easy",tags:["Quick & Easy","Holiday"],ing:[{amt:"4 cups",item:"all-purpose flour"},{amt:"1½ cups",item:"buttermilk"},{amt:"1 tsp",item:"baking soda"},{amt:"1 tsp",item:"salt"},{amt:"2 tbsp",item:"butter, cold"}],steps:["Whisk flour, baking soda, and salt.","Cut in cold butter.","Add buttermilk. Stir until just combined.","Shape into a round on floured surface.","Score a deep X on top.","Bake at 425°F for 35-40 min."],tip:"Don't overwork the dough — rough and shaggy is perfect."},
+{name:"Pretzel Bites",desc:"Soft, chewy pretzel bites with a salty crust — perfect snack.",cat:"Bread",time:"2 hrs",srv:"40 bites",diff:"Medium",tags:["Kid Friendly","Snack"],ing:[{amt:"2¾ cups",item:"all-purpose flour"},{amt:"1 cup",item:"warm water"},{amt:"2 tbsp",item:"butter, melted"},{amt:"1 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"10 cups",item:"water for boiling"},{amt:"⅔ cup",item:"baking soda for boiling"},{amt:"",item:"coarse salt"},{amt:"",item:"cheese sauce for dipping"}],steps:["Dissolve yeast in warm water with sugar.","Add flour, salt, butter. Knead 5 min.","Rise 1 hr.","Roll dough into ropes, cut into 1-inch pieces.","Boil water with baking soda. Drop bites in for 30 sec.","Place on greased sheet. Sprinkle with coarse salt.","Bake at 425°F for 12-15 min."],tip:"The baking soda bath is what gives pretzels their signature color and flavor."},
+{name:"Zucchini Bread",desc:"Moist, lightly spiced, perfect way to use garden zucchini.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Healthy","Comfort Food"],ing:[{amt:"1½ cups",item:"flour"},{amt:"1½ cups",item:"grated zucchini"},{amt:"¾ cup",item:"sugar"},{amt:"⅓ cup",item:"oil"},{amt:"2",item:"eggs"},{amt:"1 tsp",item:"cinnamon"},{amt:"1 tsp",item:"baking soda"},{amt:"½ tsp",item:"baking powder"},{amt:"½ tsp",item:"salt"},{amt:"½ cup",item:"chopped walnuts"}],steps:["Whisk flour, baking soda, baking powder, cinnamon, salt.","Whisk eggs, sugar, and oil.","Fold in zucchini.","Combine wet and dry. Fold in walnuts.","Pour into greased pan.","Bake at 350°F for 50-60 min."],tip:"Squeeze excess moisture from the zucchini with a towel."},
+{name:"English Muffins",desc:"Nooks and crannies for days — homemade beats store-bought every time.",cat:"Bread",time:"3 hrs",srv:"8 muffins",diff:"Medium",tags:["Breakfast","Meal Prep"],ing:[{amt:"2 cups",item:"all-purpose flour"},{amt:"¾ cup",item:"warm milk"},{amt:"2 tbsp",item:"butter, softened"},{amt:"1 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"¾ tsp",item:"salt"},{amt:"",item:"cornmeal for dusting"}],steps:["Dissolve yeast in warm milk with sugar.","Add flour, salt, butter. Mix into soft dough.","Knead 5 min.","Rise 1.5 hrs.","Roll to ½ inch thick. Cut 3-inch rounds.","Dust both sides with cornmeal. Rise 30 min.","Cook on skillet over medium-low 6-7 min per side.","Split with a fork, not a knife — that's how you get nooks."],tip:"Low and slow on the skillet. Too hot and outside burns before inside cooks."},
+{name:"Naan Bread",desc:"Soft, bubbly flatbread — perfect alongside curry or hummus.",cat:"Bread",time:"2.5 hrs",srv:"8 naan",diff:"Easy",tags:["Quick & Easy","Date Night"],ing:[{amt:"3 cups",item:"all-purpose flour"},{amt:"¾ cup",item:"warm water"},{amt:"¼ cup",item:"yogurt"},{amt:"2 tbsp",item:"oil"},{amt:"1 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"",item:"garlic butter for brushing"}],steps:["Dissolve yeast in warm water with sugar.","Mix flour and salt. Add yeast mixture, yogurt, oil.","Knead 8 min.","Rise 1.5 hrs.","Divide into 8 balls. Roll each into oval shape.","Cook in very hot skillet 1-2 min per side until bubbly and charred spots appear.","Brush with garlic butter immediately."],tip:"Get the skillet ripping hot — you want those char marks."},
+{name:"Challah",desc:"Beautiful braided egg bread — slightly sweet, impossibly soft.",cat:"Bread",time:"4 hrs",srv:"1 braid",diff:"Medium",tags:["Holiday","Sunday Dinner"],ing:[{amt:"4 cups",item:"all-purpose flour"},{amt:"½ cup",item:"warm water"},{amt:"3",item:"eggs + 1 for wash"},{amt:"¼ cup",item:"honey"},{amt:"¼ cup",item:"oil"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"},{amt:"",item:"sesame or poppy seeds"}],steps:["Dissolve yeast in warm water with 1 tsp honey.","Mix flour and salt. Add yeast, eggs, remaining honey, oil.","Knead 10 min until smooth and elastic.","Rise 1.5 hrs.","Divide into 3 or 6 strands. Braid.","Rise 40 min. Egg wash, sprinkle seeds.","Bake at 350°F for 30-35 min."],tip:"For a 6-strand braid, always move the outer right strand to center, then outer left to center."},
+{name:"Ciabatta",desc:"Light, airy Italian bread with huge holes and crispy crust.",cat:"Bread",time:"20 hrs",srv:"2 loaves",diff:"Medium",tags:["Sourdough"],ing:[{amt:"3½ cups",item:"bread flour"},{amt:"1½ cups",item:"water, room temp"},{amt:"¼ tsp",item:"instant yeast"},{amt:"1½ tsp",item:"salt"},{amt:"1 tbsp",item:"olive oil"}],steps:["Mix flour, yeast, and salt. Add water and oil.","Stir into very wet, sticky dough. Don't knead.","Cover. Rest 12-18 hrs.","Turn onto heavily floured surface. It will be very sticky.","Divide in half. Gently stretch each into a rectangle.","Transfer to floured parchment. Rise 1 hr.","Bake at 450°F with steam (ice cubes in a pan) for 22-25 min."],tip:"This dough is WET — that's what makes ciabatta airy. Use lots of flour on your hands."},
+{name:"Protein Banana Bread",desc:"All the banana bread flavor with 20g protein per slice.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Protein","High Protein","Healthy"],ing:[{amt:"3",item:"ripe bananas"},{amt:"2 scoops",item:"vanilla protein powder"},{amt:"1 cup",item:"oat flour"},{amt:"2",item:"eggs"},{amt:"¼ cup",item:"Greek yogurt"},{amt:"2 tbsp",item:"honey"},{amt:"1 tsp",item:"baking soda"},{amt:"1 tsp",item:"cinnamon"},{amt:"",item:"pinch of salt"}],steps:["Mash bananas.","Mix in eggs, yogurt, honey.","Stir in protein powder, oat flour, baking soda, cinnamon, salt.","Pour into greased loaf pan.","Bake at 350°F for 45-50 min."],tip:"Let cool completely — protein bread crumbles if cut warm."},
+{name:"Cheddar Bay Biscuits",desc:"Red Lobster-style garlic cheddar biscuits at home.",cat:"Bread",time:"25 min",srv:"10 biscuits",diff:"Easy",tags:["Quick & Easy","Comfort Food","Date Night"],ing:[{amt:"2 cups",item:"all-purpose flour"},{amt:"1 cup",item:"shredded cheddar"},{amt:"⅔ cup",item:"cold milk"},{amt:"⅓ cup",item:"cold butter, grated"},{amt:"1 tbsp",item:"baking powder"},{amt:"½ tsp",item:"garlic powder"},{amt:"½ tsp",item:"salt"},{amt:"",item:"Garlic butter: 3 tbsp melted butter, 1 tsp garlic powder, 1 tbsp parsley"}],steps:["Whisk flour, baking powder, garlic powder, salt.","Add grated cold butter. Toss to coat.","Stir in cheese, then milk until just combined.","Drop 10 mounds onto parchment-lined sheet.","Bake at 450°F for 12-14 min.","Mix garlic butter. Brush on immediately out of oven."],tip:"Grating frozen butter on a box grater is the easiest method."},
+{name:"Sourdough Discard Crackers",desc:"Thin, crispy crackers from sourdough discard — zero waste baking.",cat:"Bread",time:"45 min",srv:"~30 crackers",diff:"Easy",tags:["Sourdough","Quick & Easy","Snack"],ing:[{amt:"1 cup",item:"sourdough discard"},{amt:"¼ cup",item:"olive oil"},{amt:"1 tsp",item:"flaky salt"},{amt:"",item:"everything seasoning"},{amt:"",item:"dried herbs of choice"}],steps:["Mix discard and olive oil.","Spread very thin on parchment-lined sheet — as thin as possible.","Sprinkle with salt and seasonings.","Bake at 350°F for 20-25 min until golden and crisp.","Break into irregular crackers once cool."],tip:"Thinner = crispier. Use an offset spatula to spread evenly."},
+{name:"Pita Bread",desc:"Puffy pocket pitas — infinitely better than store-bought.",cat:"Bread",time:"2.5 hrs",srv:"8 pitas",diff:"Easy",tags:["Meal Prep"],ing:[{amt:"3 cups",item:"all-purpose flour"},{amt:"1 cup",item:"warm water"},{amt:"2 tbsp",item:"olive oil"},{amt:"1 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"}],steps:["Dissolve yeast in warm water with sugar.","Mix flour and salt. Add yeast mixture and oil.","Knead 8 min.","Rise 1.5 hrs.","Divide into 8 balls. Roll each into 6-inch circles.","Rest 10 min.","Bake on hot baking stone or inverted sheet at 500°F for 3-4 min. They puff!","Wrap in towel to keep soft."],tip:"The oven needs to be screaming hot — 500°F minimum for the puff."},
+{name:"Monkey Bread",desc:"Pull-apart cinnamon sugar bread that's dangerously addictive.",cat:"Bread",time:"3 hrs",srv:"8 servings",diff:"Easy",tags:["Kid Friendly","Comfort Food","Holiday"],ing:[{amt:"3 cups",item:"all-purpose flour"},{amt:"¾ cup",item:"warm milk"},{amt:"¼ cup",item:"sugar"},{amt:"¼ cup",item:"butter, softened"},{amt:"1",item:"egg"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"½ cup",item:"sugar for coating"},{amt:"2 tsp",item:"cinnamon for coating"},{amt:"6 tbsp",item:"melted butter for coating"}],steps:["Dissolve yeast in warm milk with sugar.","Mix flour, sugar, salt. Add yeast, butter, egg. Knead 8 min.","Rise 1.5 hrs.","Mix cinnamon and sugar in a bowl.","Tear dough into 1-inch pieces. Roll in cinnamon sugar.","Layer in a greased bundt pan, drizzling melted butter between layers.","Rise 30 min.","Bake at 350°F for 30-35 min.","Invert onto plate while warm."],tip:"Eat warm — it firms up as it cools. Pull apart with your hands."},
+{name:"Everything Bagels",desc:"Chewy, malty bagels covered in everything seasoning.",cat:"Bread",time:"3 hrs",srv:"8 bagels",diff:"Medium",tags:["Breakfast","Meal Prep"],ing:[{amt:"3½ cups",item:"bread flour"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"},{amt:"",item:"For boiling: 2 quarts water, 2 tbsp honey"},{amt:"",item:"everything seasoning"},{amt:"1",item:"egg for wash"}],steps:["Dissolve yeast in warm water with sugar.","Mix flour and salt. Add yeast mixture. Knead 10 min until smooth and tight.","Rise 1 hr.","Divide into 8 pieces. Shape into balls, poke a hole, stretch to 2-inch hole.","Place on parchment. Rise 20 min.","Boil water with honey. Boil each bagel 1 min per side.","Place on greased sheet. Egg wash, top with everything seasoning.","Bake at 425°F for 20-25 min."],tip:"Bagel dough should be very firm — stiffer than regular bread dough."},
+{name:"Tortillas",desc:"Soft, pliable flour tortillas — 5 ingredients, 30 minutes.",cat:"Bread",time:"30 min",srv:"8 tortillas",diff:"Easy",tags:["Quick & Easy","Meal Prep"],ing:[{amt:"2 cups",item:"all-purpose flour"},{amt:"½ cup",item:"warm water"},{amt:"3 tbsp",item:"oil or lard"},{amt:"½ tsp",item:"salt"},{amt:"½ tsp",item:"baking powder"}],steps:["Mix flour, salt, baking powder.","Add oil. Rub into flour until crumbly.","Add warm water. Mix into a dough.","Knead 2 min. Rest 15 min covered.","Divide into 8 balls. Roll each very thin.","Cook in dry hot skillet 30-45 sec per side until spots appear.","Stack in a towel to stay soft."],tip:"Don't skip the rest time — it relaxes the gluten and makes rolling easy."},
+{name:"Protein Bread Rolls",desc:"Soft rolls packed with 18g protein each — great for meal prep.",cat:"Bread",time:"2 hrs",srv:"8 rolls",diff:"Easy",tags:["Protein","High Protein","Meal Prep"],ing:[{amt:"2 cups",item:"white whole wheat flour"},{amt:"1 scoop",item:"unflavored protein powder"},{amt:"¾ cup",item:"warm water"},{amt:"¼ cup",item:"Greek yogurt"},{amt:"2 tbsp",item:"honey"},{amt:"1 tbsp",item:"olive oil"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"}],steps:["Dissolve yeast in warm water with honey.","Mix flour, protein powder, salt.","Add yeast mixture, yogurt, oil. Knead 8 min.","Rise 1 hr.","Divide into 8 rolls. Place on parchment sheet.","Rise 20 min.","Bake at 375°F for 16-18 min."],tip:"Greek yogurt adds protein AND keeps them soft."},
+{name:"Skillet Cornbread",desc:"Savory, no-sugar cornbread in a hot cast iron skillet.",cat:"Bread",time:"30 min",srv:"8 wedges",diff:"Easy",tags:["Meme's Recipe","Quick & Easy","Comfort Food"],ing:[{amt:"1½ cups",item:"fine cornmeal"},{amt:"½ cup",item:"all-purpose flour"},{amt:"1¼ cups",item:"buttermilk"},{amt:"1",item:"egg"},{amt:"2 tbsp",item:"bacon drippings or butter"},{amt:"1 tsp",item:"baking powder"},{amt:"½ tsp",item:"baking soda"},{amt:"¾ tsp",item:"salt"}],steps:["Preheat oven to 450°F with cast iron skillet and bacon drippings inside.","Whisk cornmeal, flour, baking powder, soda, salt.","Whisk buttermilk and egg.","Combine — don't overmix.","Remove hot skillet. Swirl fat to coat.","Pour batter in — it should sizzle loudly.","Bake 18-22 min until golden."],tip:"Bacon drippings are traditional and give the best flavor."},
+{name:"Protein Chocolate Mug Bread",desc:"Single-serve chocolate bread in a mug — 2 minutes in the microwave.",cat:"Bread",time:"5 min",srv:"1 mug",diff:"Easy",tags:["Protein","Quick & Easy","High Protein"],ing:[{amt:"1 scoop",item:"chocolate protein powder"},{amt:"2 tbsp",item:"almond flour"},{amt:"1",item:"egg"},{amt:"2 tbsp",item:"almond milk"},{amt:"1 tbsp",item:"cocoa powder"},{amt:"½ tsp",item:"baking powder"},{amt:"1 tbsp",item:"chocolate chips"}],steps:["Mix all dry ingredients in a large mug.","Add egg and almond milk. Stir until smooth.","Fold in chocolate chips.","Microwave on high 90 seconds.","Let cool 1 min before eating."],tip:"Use a large mug — it rises a lot! Overflows in a small one."}
 ];
-const EM={classic:'🍞',grandma:'🏡',protein:'💪',healthy:'🌿',sweet:'🍯'};
+
+// ===== APP STATE =====
+let recipes=[];
+let editingId=null;
+let currentPhoto=null;
+let currentTags=[];
+let activeFilter='All';
+let searchQ='';
+let currentUser=null;
+let viewingId=null;
+let deleteId=null;
+let authMode='signin'; // signin or signup
+
+// ===== AUTH =====
+const authArea=document.getElementById('authArea');
+const authBg=document.getElementById('authBg');
+
+function renderAuthArea(){
+  if(currentUser){
+    const name=currentUser.displayName||currentUser.email.split('@')[0];
+    const letter=name.charAt(0).toUpperCase();
+    const photo=currentUser.photoURL;
+    authArea.innerHTML=`
+      <button class="nav-btn btn-add" id="addBtn2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg> Add</button>
+      <div class="user-pill" id="userPill">${photo?`<img src="${photo}" alt="">`:`<span class="avatar-letter">${letter}</span>`} ${name}</div>`;
+    document.getElementById('addBtn2').onclick=()=>openForm();
+    document.getElementById('userPill').onclick=()=>{if(confirm('Sign out?'))auth.signOut()};
+  } else {
+    authArea.innerHTML=`<button class="nav-btn btn-auth" id="signInBtn">Sign In</button>`;
+    document.getElementById('signInBtn').onclick=()=>{authMode='signin';renderAuthModal();authBg.classList.add('open')};
+  }
+}
+
+function renderAuthModal(){
+  document.getElementById('authTitle').textContent=authMode==='signin'?'Sign In':'Sign Up';
+  document.getElementById('authSubmit').textContent=authMode==='signin'?'Sign In':'Create Account';
+  document.getElementById('authToggleText').textContent=authMode==='signin'?"Don't have an account?":'Already have an account?';
+  document.getElementById('authToggleLink').textContent=authMode==='signin'?'Sign Up':'Sign In';
+  document.getElementById('authErr').textContent='';
+  document.getElementById('authEmail').value='';
+  document.getElementById('authPass').value='';
+}
+
+document.getElementById('authX').onclick=()=>authBg.classList.remove('open');
+authBg.addEventListener('click',e=>{if(e.target===authBg)authBg.classList.remove('open')});
+document.getElementById('authToggleLink').onclick=()=>{authMode=authMode==='signin'?'signup':'signin';renderAuthModal()};
+
+document.getElementById('googBtn').onclick=async()=>{
+  try{
+    const provider=new firebase.auth.GoogleAuthProvider();
+    await auth.signInWithPopup(provider);
+    authBg.classList.remove('open');
+  }catch(e){document.getElementById('authErr').textContent=e.message}
+};
+
+document.getElementById('authSubmit').onclick=async()=>{
+  const email=document.getElementById('authEmail').value.trim();
+  const pass=document.getElementById('authPass').value;
+  if(!email||!pass){document.getElementById('authErr').textContent='Please fill in all fields';return}
+  try{
+    if(authMode==='signup') await auth.createUserWithEmailAndPassword(email,pass);
+    else await auth.signInWithEmailAndPassword(email,pass);
+    authBg.classList.remove('open');
+  }catch(e){
+    let msg=e.message;
+    if(e.code==='auth/wrong-password')msg='Wrong password';
+    if(e.code==='auth/user-not-found')msg='No account with that email';
+    if(e.code==='auth/email-already-in-use')msg='Email already in use';
+    if(e.code==='auth/weak-password')msg='Password must be at least 6 characters';
+    document.getElementById('authErr').textContent=msg;
+  }
+};
+
+// Listen for auth state
+auth.onAuthStateChanged(async user=>{
+  currentUser=user;
+  renderAuthArea();
+  await loadRecipes();
+  document.getElementById('loader').classList.add('hide');
+  setTimeout(()=>document.getElementById('loader').style.display='none',500);
+});
+
+// ===== FIRESTORE =====
+async function seedRecipes(){
+  const snap=await recipesRef.limit(1).get();
+  if(snap.empty){
+    const batch=db.batch();
+    SEED_RECIPES.forEach(r=>{
+      const ref=recipesRef.doc();
+      batch.set(ref,{...r,photo:'',createdBy:'system',createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+    });
+    await batch.commit();
+  }
+}
+
+async function loadRecipes(){
+  try{
+    await seedRecipes();
+    const snap=await recipesRef.orderBy('createdAt','desc').get();
+    recipes=snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderFilters();renderGrid();
+  }catch(e){console.error('Load error:',e);recipes=[];renderFilters();renderGrid()}
+}
+
+// ===== RENDER =====
 const grid=document.getElementById('grid');
-function render(f='all'){
-  const list=f==='all'?R:R.filter(r=>r.c===f);
+const emptyEl=document.getElementById('emptyState');
+const filterRow=document.getElementById('filterRow');
+
+function getAllTags(){const s=new Set(DTAGS);recipes.forEach(r=>(r.tags||[]).forEach(t=>s.add(t)));return[...s].sort()}
+function getAllCats(){const s=new Set(DCATS);recipes.forEach(r=>{if(r.cat)s.add(r.cat)});return[...s]}
+
+function renderFilters(){
+  filterRow.innerHTML='';
+  getAllCats().forEach(c=>{
+    const b=document.createElement('button');b.className='chip'+(activeFilter===c?' on':'');b.textContent=c;
+    b.onclick=()=>{activeFilter=c;renderFilters();renderGrid()};filterRow.appendChild(b);
+  });
+}
+
+function renderGrid(){
+  let list=recipes;
+  if(activeFilter!=='All')list=list.filter(r=>r.cat===activeFilter);
+  if(searchQ){const q=searchQ.toLowerCase();list=list.filter(r=>r.name.toLowerCase().includes(q)||(r.desc||'').toLowerCase().includes(q)||(r.tags||[]).some(t=>t.toLowerCase().includes(q))||(r.cat||'').toLowerCase().includes(q)||(r.ing||[]).some(i=>i.item.toLowerCase().includes(q)));}
   grid.innerHTML='';
+  if(!list.length){emptyEl.style.display='block';document.getElementById('emptyH').textContent=recipes.length?'No matches':'No recipes yet';document.getElementById('emptyP').textContent=recipes.length?'Try a different search':'';return}
+  emptyEl.style.display='none';
   list.forEach((r,i)=>{
-    const d=document.createElement('div');d.className='rc';
-    d.style.animationDelay=`${(i%6)*0.04+0.03}s`;
-    d.onclick=()=>openM(r);
-    d.innerHTML=`<div class="rc-img" style="background:linear-gradient(135deg,${r.col}44,${r.col}18)"><span class="rc-emoji">${EM[r.c]||'🍞'}</span>${r.b?`<span class="rc-badge">${r.b}</span>`:''}</div><div class="rc-body"><p class="rc-cat">${r.cl}</p><h3 class="rc-title">${r.t}</h3><p class="rc-desc">${r.d}</p><div class="rc-meta"><span class="rc-mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>${r.time}</span><span class="rc-mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>${r.diff}</span><span class="rc-mi"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${r.srv}</span></div></div><div class="rc-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>`;
+    const d=document.createElement('div');d.className='card';d.style.animationDelay=`${(i%6)*0.035}s`;d.onclick=()=>openView(r.id);
+    const tHTML=(r.tags||[]).slice(0,3).map(t=>`<span class="card-tag">${t}</span>`).join('');
+    d.innerHTML=`<div class="card-img">${r.photo?`<img src="${r.photo}" alt="">`:'<span class="ph">🍞</span>'}<div class="card-tags">${tHTML}</div></div><div class="card-body"><p class="card-cat">${r.cat||''}</p><h3 class="card-title">${r.name}</h3><p class="card-desc">${r.desc||''}</p><div class="card-meta">${r.time?`<span class="card-mi">⏱ ${r.time}</span>`:''}${r.diff?`<span class="card-mi">✓ ${r.diff}</span>`:''}${r.srv?`<span class="card-mi">🍽 ${r.srv}</span>`:''}</div></div>`;
     grid.appendChild(d);
   });
 }
-// Filter
-document.querySelectorAll('.pill').forEach(p=>p.addEventListener('click',()=>{document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));p.classList.add('active');render(p.dataset.cat)}));
-function filterCat(c){document.querySelectorAll('.pill').forEach(x=>x.classList.remove('active'));const t=document.querySelector(`.pill[data-cat="${c}"]`);if(t)t.classList.add('active');render(c);document.getElementById('recipes').scrollIntoView({behavior:'smooth'})}
-// Modal
-const ov=document.getElementById('mOverlay'),mB=document.getElementById('mBody'),mT=document.getElementById('mTop');
-function openM(r){
-  mT.style.background=`linear-gradient(135deg,${r.col}50,${r.col}20)`;
-  mT.innerHTML=`<span style="font-size:3rem">${EM[r.c]||'🍞'}</span>`;
-  mB.innerHTML=`<p class="rc-cat">${r.cl}</p><h2>${r.t}</h2><div class="rc-meta" style="border:0;padding:0;margin-bottom:1rem"><span class="rc-mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>${r.time}</span><span class="rc-mi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12l2 2 4-4"/></svg>${r.diff}</span><span class="rc-mi"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>${r.srv}</span></div><p class="recipe-intro">${r.d}</p><h4 class="ms-head">Ingredients</h4><ul>${r.ing.map(i=>`<li>${i}</li>`).join('')}</ul><h4 class="ms-head">Instructions</h4><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol>${r.tip?`<div class="modal-tip"><span>💡</span><p>${r.tip}</p></div>`:''}`;
-  ov.classList.add('open');document.body.style.overflow='hidden';
+
+// ===== VIEW =====
+const viewBg=document.getElementById('viewBg');
+function openView(id){
+  const r=recipes.find(x=>x.id===id);if(!r)return;viewingId=id;
+  document.getElementById('viewHero').innerHTML=r.photo?`<img src="${r.photo}" alt="">`:'<span class="ph">🍞</span>';
+  const canEdit=currentUser&&(r.createdBy==='system'||r.createdBy===currentUser.uid);
+  document.getElementById('viewActs').style.display=canEdit?'flex':'none';
+  const tHTML=(r.tags||[]).map(t=>`<span class="mtag">${t}</span>`).join('');
+  document.getElementById('viewBody').innerHTML=`<p class="card-cat">${r.cat||''}</p><h2>${r.name}</h2><div class="card-meta">${r.time?`<span class="card-mi">⏱ ${r.time}</span>`:''}${r.diff?`<span class="card-mi">✓ ${r.diff}</span>`:''}${r.srv?`<span class="card-mi">🍽 ${r.srv}</span>`:''}</div>${r.desc?`<p class="intro">${r.desc}</p>`:''}${tHTML?`<div class="mtags">${tHTML}</div>`:''}${(r.ing&&r.ing.length)?`<h4 class="msh">Ingredients</h4><ul>${r.ing.map(i=>`<li><strong>${i.amt}</strong> ${i.item}</li>`).join('')}</ul>`:''}${(r.steps&&r.steps.length)?`<h4 class="msh">Instructions</h4><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol>`:''}${r.tip?`<div class="mtip"><span>💡</span><p>${r.tip}</p></div>`:''}${r.createdBy&&r.createdBy!=='system'?`<p class="by">Added by ${r.createdByName||'a family member'}</p>`:''}`;
+  viewBg.classList.add('open');document.body.style.overflow='hidden';
 }
-function openByName(n){const r=R.find(x=>x.t.includes(n));if(r)openM(r)}
-document.getElementById('mClose').addEventListener('click',closeM);
-ov.addEventListener('click',e=>{if(e.target===ov)closeM()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
-function closeM(){ov.classList.remove('open');document.body.style.overflow=''}
-// Nav
-const nav=document.getElementById('navbar');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>40));
-document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
+document.getElementById('viewX').onclick=()=>{viewBg.classList.remove('open');document.body.style.overflow=''};
+viewBg.addEventListener('click',e=>{if(e.target===viewBg){viewBg.classList.remove('open');document.body.style.overflow=''}});
+
+// ===== FORM =====
+const formBg=document.getElementById('formBg');
+const ingList=document.getElementById('ingList');
+const stepList=document.getElementById('stepList');
+
+function addIngRow(a='',it=''){const r=document.createElement('div');r.className='ing-row';r.innerHTML=`<input type="text" placeholder="Amt" value="${a}"><input type="text" placeholder="Ingredient" value="${it}"><button class="ri" type="button"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>`;r.querySelector('.ri').onclick=()=>r.remove();ingList.appendChild(r)}
+function addStepRow(t=''){const r=document.createElement('div');r.className='step-row';const n=stepList.children.length+1;r.innerHTML=`<span class="sn">${n}</span><textarea placeholder="Step ${n}...">${t}</textarea><button class="ri" type="button"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>`;r.querySelector('.ri').onclick=()=>{r.remove();renumSteps()};stepList.appendChild(r)}
+function renumSteps(){stepList.querySelectorAll('.step-row').forEach((r,i)=>{r.querySelector('.sn').textContent=i+1})}
+
+document.getElementById('addIng').onclick=()=>addIngRow();
+document.getElementById('addStep').onclick=()=>addStepRow();
+
+const photoUp=document.getElementById('photoUp');
+function resetPhoto(){currentPhoto=null;photoUp.innerHTML=`<svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg><span>Tap to upload a photo</span><input type="file" accept="image/*" id="photoInput">`;document.getElementById('photoInput').onchange=handlePhoto}
+function handlePhoto(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=ev=>{currentPhoto=ev.target.result;photoUp.innerHTML=`<img src="${currentPhoto}" alt=""><span class="rp" id="rmP">✕</span><input type="file" accept="image/*" id="photoInput">`;document.getElementById('rmP').onclick=e2=>{e2.stopPropagation();resetPhoto()};document.getElementById('photoInput').onchange=handlePhoto};r.readAsDataURL(f)}
+
+const tagsWrap=document.getElementById('tagsWrap');
+const tagIn=document.getElementById('tagIn');
+const tagSug=document.getElementById('tagSug');
+function renderTagsIn(){tagsWrap.querySelectorAll('.tg').forEach(t=>t.remove());currentTags.forEach(t=>{const s=document.createElement('span');s.className='tg';s.innerHTML=`${t}<span class="tx">&times;</span>`;s.querySelector('.tx').onclick=()=>{currentTags=currentTags.filter(x=>x!==t);renderTagsIn()};tagsWrap.insertBefore(s,tagIn)});renderTagSug()}
+function renderTagSug(){const all=getAllTags().filter(t=>!currentTags.includes(t));tagSug.innerHTML='';all.slice(0,10).forEach(t=>{const b=document.createElement('button');b.className='ts-btn';b.type='button';b.textContent=t;b.onclick=()=>{currentTags.push(t);renderTagsIn()};tagSug.appendChild(b)})}
+tagIn.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===',')&&tagIn.value.trim()){e.preventDefault();const v=tagIn.value.trim().replace(/,$/,'');if(v&&!currentTags.includes(v)){currentTags.push(v);tagIn.value='';renderTagsIn()}}if(e.key==='Backspace'&&!tagIn.value&&currentTags.length){currentTags.pop();renderTagsIn()}});
+tagsWrap.onclick=()=>tagIn.focus();
+
+function openForm(recipe=null){
+  if(!currentUser){authMode='signin';renderAuthModal();authBg.classList.add('open');return}
+  editingId=recipe?recipe.id:null;
+  document.getElementById('formTitle').textContent=recipe?'Edit Recipe':'Add Recipe';
+  document.getElementById('fName').value=recipe?recipe.name:'';
+  document.getElementById('fDesc').value=recipe?recipe.desc||'':'';
+  document.getElementById('fCat').value=recipe?recipe.cat||'Bread':'Bread';
+  document.getElementById('fTime').value=recipe?recipe.time||'':'';
+  document.getElementById('fServ').value=recipe?recipe.srv||'':'';
+  document.getElementById('fDiff').value=recipe?recipe.diff||'Easy':'Easy';
+  document.getElementById('fTip').value=recipe?recipe.tip||'':'';
+  currentTags=recipe?[...(recipe.tags||[])]:[];
+  currentPhoto=recipe?recipe.photo||null:null;
+  if(currentPhoto){photoUp.innerHTML=`<img src="${currentPhoto}" alt=""><span class="rp" id="rmP">✕</span><input type="file" accept="image/*" id="photoInput">`;document.getElementById('rmP').onclick=e=>{e.stopPropagation();resetPhoto()};document.getElementById('photoInput').onchange=handlePhoto}else{resetPhoto()}
+  ingList.innerHTML='';if(recipe&&recipe.ing&&recipe.ing.length){recipe.ing.forEach(i=>addIngRow(i.amt,i.item))}else{addIngRow();addIngRow();addIngRow()}
+  stepList.innerHTML='';if(recipe&&recipe.steps&&recipe.steps.length){recipe.steps.forEach(s=>addStepRow(s))}else{addStepRow()}
+  renderTagsIn();formBg.classList.add('open');document.body.style.overflow='hidden';
+}
+function closeForm(){formBg.classList.remove('open');document.body.style.overflow=''}
+document.getElementById('formX').onclick=closeForm;
+document.getElementById('cancelForm').onclick=closeForm;
+formBg.addEventListener('click',e=>{if(e.target===formBg)closeForm()});
+
+document.getElementById('saveForm').onclick=async()=>{
+  const name=document.getElementById('fName').value.trim();
+  if(!name){document.getElementById('fName').focus();return}
+  const ing=[];ingList.querySelectorAll('.ing-row').forEach(r=>{const a=r.querySelectorAll('input')[0].value.trim();const it=r.querySelectorAll('input')[1].value.trim();if(it)ing.push({amt:a,item:it})});
+  const steps=[];stepList.querySelectorAll('.step-row textarea').forEach(t=>{const v=t.value.trim();if(v)steps.push(v)});
+  const data={name,desc:document.getElementById('fDesc').value.trim(),cat:document.getElementById('fCat').value,time:document.getElementById('fTime').value.trim(),srv:document.getElementById('fServ').value.trim(),diff:document.getElementById('fDiff').value,tags:[...currentTags],photo:currentPhoto||'',ing,steps,tip:document.getElementById('fTip').value.trim(),createdBy:currentUser.uid,createdByName:currentUser.displayName||currentUser.email.split('@')[0],createdAt:firebase.firestore.FieldValue.serverTimestamp()};
+  try{
+    if(editingId){await recipesRef.doc(editingId).update(data)}else{await recipesRef.add(data)}
+    closeForm();await loadRecipes();
+    if(editingId&&viewBg.classList.contains('open'))openView(editingId);
+  }catch(e){alert('Error saving: '+e.message)}
+};
+
+document.getElementById('editBtn').onclick=()=>{const r=recipes.find(x=>x.id===viewingId);if(r){viewBg.classList.remove('open');openForm(r)}};
+
+const delConfirm=document.getElementById('delConfirm');
+document.getElementById('delBtn').onclick=()=>{deleteId=viewingId;delConfirm.classList.add('open')};
+document.getElementById('delNo').onclick=()=>{delConfirm.classList.remove('open');deleteId=null};
+document.getElementById('delYes').onclick=async()=>{
+  try{await recipesRef.doc(deleteId).delete();delConfirm.classList.remove('open');viewBg.classList.remove('open');document.body.style.overflow='';await loadRecipes();deleteId=null}catch(e){alert('Error: '+e.message)}
+};
+
+document.getElementById('searchBox').oninput=e=>{searchQ=e.target.value;renderGrid()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(delConfirm.classList.contains('open')){delConfirm.classList.remove('open');return}if(formBg.classList.contains('open')){closeForm();return}if(authBg.classList.contains('open')){authBg.classList.remove('open');return}if(viewBg.classList.contains('open')){viewBg.classList.remove('open');document.body.style.overflow=''}}});
+
 // Theme
-const toggle=document.getElementById('themeToggle');
-const icon=document.getElementById('toggleIcon');
-function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);icon.textContent=t==='dark'?'🌙':'☀️'}
-toggle.addEventListener('click',()=>{const c=document.documentElement.getAttribute('data-theme');setTheme(c==='dark'?'light':'dark')});
-(function(){const s=localStorage.getItem('theme')||'dark';setTheme(s)})();
-render();
+const themeTog=document.getElementById('themeTog');
+const togIco=document.getElementById('togIco');
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);togIco.textContent=t==='dark'?'🌙':'☀️'}
+themeTog.onclick=()=>{const c=document.documentElement.getAttribute('data-theme');setTheme(c==='dark'?'light':'dark')};
+(function(){setTheme(localStorage.getItem('theme')||'dark')})();
 </script>
 </body>
 </html>
