@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Madi's Breads — Image Picker</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Outfit',sans-serif;background:#141613;color:#E8E8E2;min-height:100vh;padding:1.5rem}
+@media(min-width:768px){body{padding:2rem 3rem}}
+h1{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:700;margin-bottom:0.3rem}
+.sub{font-size:0.82rem;color:#9A9A90;font-weight:300;margin-bottom:1.5rem;line-height:1.5}
+.sub strong{color:#8FA67E;font-weight:500}
+
+/* Status bar */
+.status{display:flex;gap:1rem;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap}
+.status-item{font-size:0.78rem;padding:0.3rem 0.8rem;border-radius:100px;border:1px solid rgba(255,255,255,0.1)}
+.s-done{background:rgba(143,166,126,0.15);color:#8FA67E;border-color:rgba(143,166,126,0.3)}
+.s-pending{background:rgba(212,169,106,0.1);color:#D4A96A;border-color:rgba(212,169,106,0.2)}
+.s-total{color:#9A9A90}
+
+/* Auth */
+.auth-section{background:#1E211B;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1.5rem;margin-bottom:1.5rem;text-align:center}
+.auth-section p{font-size:0.85rem;color:#9A9A90;margin-bottom:1rem}
+.gbtn{display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.5rem;background:#252923;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;color:#E8E8E2;font-size:0.85rem;font-weight:500;cursor:pointer;transition:all 0.25s}
+.gbtn:hover{border-color:rgba(143,166,126,0.4);background:#2A3524}
+.gbtn svg{width:18px;height:18px}
+.signed-in{font-size:0.82rem;color:#8FA67E}
+
+/* Recipe cards */
+.recipe-row{background:#1E211B;border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1rem;margin-bottom:0.8rem;transition:border-color 0.3s}
+.recipe-row.done{border-color:rgba(143,166,126,0.3)}
+.recipe-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:0.8rem}
+.recipe-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;flex:1}
+.recipe-cat{font-size:0.6rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:#8FA67E}
+.recipe-status{font-size:0.65rem;padding:2px 8px;border-radius:100px;font-weight:500}
+.rs-done{background:rgba(143,166,126,0.15);color:#8FA67E}
+.rs-pending{background:rgba(212,169,106,0.1);color:#D4A96A}
+.rs-current{background:rgba(143,166,126,0.2);color:#8FA67E;border:1px solid rgba(143,166,126,0.3)}
+
+/* Image grid */
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:0.6rem}
+@media(min-width:600px){.img-grid{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:900px){.img-grid{grid-template-columns:repeat(6,1fr)}}
+.img-opt{position:relative;aspect-ratio:4/3;border-radius:8px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:all 0.25s}
+.img-opt:hover{border-color:rgba(143,166,126,0.5);transform:scale(1.02)}
+.img-opt.selected{border-color:#8FA67E;box-shadow:0 0 0 2px rgba(143,166,126,0.3)}
+.img-opt img{width:100%;height:100%;object-fit:cover}
+.img-opt .check{position:absolute;top:4px;right:4px;width:20px;height:20px;border-radius:50%;background:#8FA67E;display:none;align-items:center;justify-content:center;font-size:0.6rem;color:#fff}
+.img-opt.selected .check{display:flex}
+.img-credit{font-size:0.55rem;color:#6B6B63;font-style:italic}
+
+/* Actions */
+.actions{display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap}
+.btn-search{padding:0.4rem 0.9rem;background:#252923;border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;color:#E8E8E2;font-size:0.75rem;font-weight:500;cursor:pointer;transition:all 0.25s}
+.btn-search:hover{border-color:rgba(143,166,126,0.4);background:#2A3524}
+.btn-save{padding:0.4rem 0.9rem;background:#6B8858;border:none;border-radius:8px;color:#fff;font-size:0.75rem;font-weight:500;cursor:pointer;transition:all 0.25s}
+.btn-save:hover{background:#5B7848}
+.btn-save:disabled{opacity:0.4;cursor:not-allowed}
+.btn-skip{padding:0.4rem 0.9rem;background:transparent;border:1.5px solid rgba(255,255,255,0.06);border-radius:8px;color:#6B6B63;font-size:0.75rem;cursor:pointer;transition:all 0.25s}
+.btn-skip:hover{border-color:rgba(255,255,255,0.15);color:#9A9A90}
+.btn-clear{padding:0.4rem 0.9rem;background:rgba(212,122,122,0.1);border:1.5px solid rgba(212,122,122,0.2);border-radius:8px;color:#D47A7A;font-size:0.75rem;cursor:pointer;transition:all 0.25s}
+.btn-clear:hover{background:rgba(212,122,122,0.2)}
+.search-custom{padding:0.4rem 0.7rem;background:#141613;border:1.5px solid rgba(255,255,255,0.1);border-radius:8px;color:#E8E8E2;font-size:0.75rem;outline:none;width:180px;transition:border-color 0.25s}
+.search-custom:focus{border-color:#8FA67E}
+.loading{font-size:0.75rem;color:#6B6B63;padding:0.5rem 0}
+.current-img{width:60px;height:45px;border-radius:6px;object-fit:cover;border:1px solid rgba(255,255,255,0.1)}
+
+/* Bulk actions */
+.bulk-bar{display:flex;gap:0.5rem;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap}
+.btn-bulk{padding:0.5rem 1.2rem;background:#6B8858;color:#fff;font-size:0.82rem;font-weight:500;border-radius:10px;cursor:pointer;transition:all 0.25s;border:none}
+.btn-bulk:hover{background:#5B7848}
+.btn-bulk:disabled{opacity:0.4;cursor:not-allowed}
+.btn-bulk-outline{padding:0.5rem 1.2rem;background:transparent;color:#9A9A90;font-size:0.82rem;border:1.5px solid rgba(255,255,255,0.1);border-radius:10px;cursor:pointer;transition:all 0.25s}
+.btn-bulk-outline:hover{border-color:rgba(255,255,255,0.2);color:#E8E8E2}
+.progress{font-size:0.78rem;color:#9A9A90}
+</style>
+</head>
+<body>
+
+<h1>Image Picker</h1>
+<p class="sub">Search Unsplash for free-to-use images for each recipe. Pick the best one, hit save, and it goes straight to your site. <strong>You must be signed in.</strong></p>
+
+<div id="authSection" class="auth-section">
+  <p>Sign in to load your recipes and save images</p>
+  <button class="gbtn" id="signInBtn">
+    <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18A10.96 10.96 0 001 12c0 1.77.42 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+    Sign in with Google
+  </button>
+</div>
+
+<div id="mainContent" style="display:none">
+  <div class="status" id="statusBar"></div>
+  <div class="bulk-bar">
+    <button class="btn-bulk" id="autoAllBtn">Auto-pick all remaining</button>
+    <button class="btn-bulk-outline" id="expandAllBtn">Expand all</button>
+    <button class="btn-bulk-outline" id="collapseAllBtn">Collapse all</button>
+    <span class="progress" id="progressText"></span>
+  </div>
+  <div id="recipeList"></div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+// =============================================
+// PASTE YOUR FIREBASE CONFIG HERE (same as index.html)
+// =============================================
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+// Unsplash API (free tier: 50 req/hr — plenty for this)
+// Sign up at unsplash.com/developers and create an app to get your access key
+const UNSPLASH_KEY = 'o7jbOKuUf68t4ayNYrG0oxFI_a6wxKYIkqZRsrCIXkA';
+
+let recipes = [];
+let selectedImages = {}; // recipeId -> url
+
+// Auth
+document.getElementById('signInBtn').onclick = async () => {
+  try {
+    await auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+  } catch(e) { alert(e.message); }
+};
+
+auth.onAuthStateChanged(async user => {
+  if (user) {
+    document.getElementById('authSection').innerHTML = `<p class="signed-in">Signed in as ${user.displayName || user.email}</p>`;
+    document.getElementById('mainContent').style.display = 'block';
+    await loadRecipes();
+  }
+});
+
+async function loadRecipes() {
+  const snap = await db.collection('recipes').get();
+  recipes = snap.docs.map(d => ({id: d.id, ...d.data()}));
+  recipes.sort((a,b) => (a.name||'').localeCompare(b.name||''));
+  renderAll();
+}
+
+function renderAll() {
+  const list = document.getElementById('recipeList');
+  list.innerHTML = '';
+  
+  let doneCount = recipes.filter(r => r.photo).length;
+  let pendingCount = recipes.length - doneCount;
+  
+  document.getElementById('statusBar').innerHTML = `
+    <span class="status-item s-done">✓ ${doneCount} with images</span>
+    <span class="status-item s-pending">○ ${pendingCount} need images</span>
+    <span class="status-item s-total">${recipes.length} total</span>`;
+  document.getElementById('progressText').textContent = `${doneCount}/${recipes.length} done`;
+  
+  recipes.forEach((r, i) => {
+    const hasImg = !!r.photo;
+    const row = document.createElement('div');
+    row.className = 'recipe-row' + (hasImg ? ' done' : '');
+    row.id = 'row-' + r.id;
+    
+    row.innerHTML = `
+      <div class="recipe-header" style="cursor:pointer" onclick="toggleRow('${r.id}')">
+        <div>
+          <span class="recipe-cat">${r.cat || 'Bread'}</span>
+          <div class="recipe-name">${r.name}</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem">
+          ${hasImg ? `<img src="${r.photo}" class="current-img" alt="">` : ''}
+          <span class="recipe-status ${hasImg ? 'rs-done' : 'rs-pending'}">${hasImg ? 'Done' : 'Needs image'}</span>
+        </div>
+      </div>
+      <div class="recipe-expand" id="expand-${r.id}" style="display:none">
+        <div class="actions" style="margin-bottom:0.5rem">
+          <button class="btn-search" onclick="searchImages('${r.id}','${encodeURIComponent(r.name)}')">Search "${r.name}"</button>
+          <input type="text" class="search-custom" id="custom-${r.id}" placeholder="Custom search..." onkeydown="if(event.key==='Enter')searchImages('${r.id}',this.value)">
+          <button class="btn-search" onclick="searchImages('${r.id}',document.getElementById('custom-${r.id}').value)">Search</button>
+          ${hasImg ? `<button class="btn-clear" onclick="clearImage('${r.id}')">Remove image</button>` : ''}
+        </div>
+        <div id="results-${r.id}"></div>
+        <div class="actions" style="margin-top:0.5rem">
+          <button class="btn-save" id="save-${r.id}" onclick="saveImage('${r.id}')" disabled>Save selected image</button>
+        </div>
+      </div>`;
+    list.appendChild(row);
+  });
+}
+
+function toggleRow(id) {
+  const el = document.getElementById('expand-' + id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+async function searchImages(recipeId, query) {
+  query = decodeURIComponent(query || '');
+  if (!query.trim()) return;
+  
+  const resultsEl = document.getElementById('results-' + recipeId);
+  resultsEl.innerHTML = '<p class="loading">Searching Unsplash...</p>';
+  
+  try {
+    // Search with food context added
+    const searchQuery = query + ' bread food homemade';
+    const resp = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(searchQuery)}&per_page=12&orientation=landscape`, {
+      headers: { 'Authorization': `Client-ID ${UNSPLASH_KEY}` }
+    });
+    
+    if (!resp.ok) {
+      // Fallback: try without extra keywords
+      const resp2 = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=12&orientation=landscape`, {
+        headers: { 'Authorization': `Client-ID ${UNSPLASH_KEY}` }
+      });
+      if (!resp2.ok) throw new Error('Unsplash API error: ' + resp2.status);
+      var data = await resp2.json();
+    } else {
+      var data = await resp.json();
+    }
+    
+    if (!data.results || data.results.length === 0) {
+      resultsEl.innerHTML = '<p class="loading">No results. Try a custom search term.</p>';
+      return;
+    }
+    
+    selectedImages[recipeId] = null;
+    document.getElementById('save-' + recipeId).disabled = true;
+    
+    resultsEl.innerHTML = `<div class="img-grid">${data.results.map((img, i) => `
+      <div class="img-opt" onclick="selectImage('${recipeId}', '${img.urls.regular}', this)" title="Photo by ${img.user.name}">
+        <img src="${img.urls.small}" alt="${img.alt_description || ''}" loading="lazy">
+        <div class="check">✓</div>
+      </div>`).join('')}</div>
+      <p class="img-credit">Photos from Unsplash — free to use</p>`;
+      
+  } catch(e) {
+    resultsEl.innerHTML = `<p class="loading" style="color:#D47A7A">Error: ${e.message}. Check your Unsplash API key.</p>`;
+  }
+}
+
+function selectImage(recipeId, url, el) {
+  // Deselect siblings
+  el.parentElement.querySelectorAll('.img-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedImages[recipeId] = url;
+  document.getElementById('save-' + recipeId).disabled = false;
+}
+
+async function saveImage(recipeId) {
+  const url = selectedImages[recipeId];
+  if (!url) return;
+  
+  const btn = document.getElementById('save-' + recipeId);
+  btn.textContent = 'Saving...';
+  btn.disabled = true;
+  
+  try {
+    await db.collection('recipes').doc(recipeId).update({ photo: url });
+    // Update local data
+    const r = recipes.find(x => x.id === recipeId);
+    if (r) r.photo = url;
+    renderAll();
+  } catch(e) {
+    alert('Error saving: ' + e.message);
+    btn.textContent = 'Save selected image';
+    btn.disabled = false;
+  }
+}
+
+async function clearImage(recipeId) {
+  if (!confirm('Remove image from this recipe?')) return;
+  try {
+    await db.collection('recipes').doc(recipeId).update({ photo: '' });
+    const r = recipes.find(x => x.id === recipeId);
+    if (r) r.photo = '';
+    renderAll();
+  } catch(e) { alert('Error: ' + e.message); }
+}
+
+// Bulk: auto-pick first result for all remaining
+document.getElementById('autoAllBtn').onclick = async () => {
+  const pending = recipes.filter(r => !r.photo);
+  if (!pending.length) { alert('All recipes already have images!'); return; }
+  if (!confirm(`Auto-search and pick the first Unsplash result for ${pending.length} recipes? You can change them later.`)) return;
+  
+  const btn = document.getElementById('autoAllBtn');
+  btn.disabled = true;
+  btn.textContent = 'Working...';
+  
+  for (let i = 0; i < pending.length; i++) {
+    const r = pending[i];
+    btn.textContent = `Working... ${i+1}/${pending.length}`;
+    document.getElementById('progressText').textContent = `Auto-picking ${i+1}/${pending.length}`;
+    
+    try {
+      const q = r.name + ' bread food';
+      const resp = await fetch(`https://api.unsplash.com/search/photos?query=${encodeURIComponent(q)}&per_page=1&orientation=landscape`, {
+        headers: { 'Authorization': `Client-ID ${UNSPLASH_KEY}` }
+      });
+      const data = await resp.json();
+      
+      if (data.results && data.results.length > 0) {
+        const url = data.results[0].urls.regular;
+        await db.collection('recipes').doc(r.id).update({ photo: url });
+        r.photo = url;
+      }
+      
+      // Rate limit: wait 1.5s between requests to stay within Unsplash limits
+      await new Promise(res => setTimeout(res, 1500));
+    } catch(e) {
+      console.warn('Skipped ' + r.name + ':', e.message);
+    }
+  }
+  
+  btn.textContent = 'Auto-pick all remaining';
+  btn.disabled = false;
+  renderAll();
+  alert('Done! Review the images and swap any that don\'t look right.');
+};
+
+document.getElementById('expandAllBtn').onclick = () => {
+  recipes.forEach(r => {
+    document.getElementById('expand-' + r.id).style.display = 'block';
+  });
+};
+document.getElementById('collapseAllBtn').onclick = () => {
+  recipes.forEach(r => {
+    document.getElementById('expand-' + r.id).style.display = 'none';
+  });
+};
+</script>
+</body>
+</html>
