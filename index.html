@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="olive-dark">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -626,18 +626,23 @@ document.getElementById('authSubmit').onclick=async()=>{
 
 // Listen for auth state
 auth.onAuthStateChanged(async user=>{
-  currentUser=user;
-  renderAuthArea();
-  if(user){
-    await loadFavorites();
-  } else {
-    userFavorites=new Set();
+  try{
+    currentUser=user;
+    renderAuthArea();
+    if(user){
+      await loadFavorites();
+    } else {
+      userFavorites=new Set();
+    }
+    await loadRecipes();
+    if(user) seedRecipes();
+    updateTabCounts();
+  }catch(e){
+    console.error('Init error:',e);
+  }finally{
+    document.getElementById('loader').classList.add('hide');
+    setTimeout(()=>document.getElementById('loader').style.display='none',500);
   }
-  await loadRecipes();
-  if(user) seedRecipes();
-  updateTabCounts();
-  document.getElementById('loader').classList.add('hide');
-  setTimeout(()=>document.getElementById('loader').style.display='none',500);
 });
 
 // ===== FAVORITES =====
@@ -884,7 +889,9 @@ const PALETTES=[
   {id:'midnight',name:'Midnight',swatches:['#1A2030','#304868','#6E9ECF','#88B4DE'],darkOnly:true}
 ];
 let currentPalette=localStorage.getItem('palette')||'olive';
-let currentMode=localStorage.getItem('mode')||'dark';
+let currentMode=localStorage.getItem('mode')||(localStorage.getItem('theme')==='light'?'light':'dark');
+// Clear old theme key
+localStorage.removeItem('theme');
 
 function applyTheme(){
   const p=PALETTES.find(x=>x.id===currentPalette);
