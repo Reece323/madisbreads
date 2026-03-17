@@ -8,7 +8,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Allura&family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root,[data-theme="light"]{
+/* ===== THEMES ===== */
+:root,[data-theme="olive-light"]{
   --bg:#F8F7F2;--bg2:#EFEDE5;--bg3:#E6E3D8;--sf:#FFFFFF;--sf2:#F5F4EE;
   --ol:#5B6B4A;--old:#3D4A2E;--oll:#7D8E6A;--olp:#A3B48E;--olw:#D4DEC8;--olg:#EBF0E4;
   --tx:#1C1C1A;--tx2:#3A3A36;--tx3:#6B6B63;--tx4:#9A9A90;--tx5:#C0C0B6;
@@ -17,14 +18,95 @@
   --nbg:rgba(248,247,242,0.82);--mbg:rgba(28,28,26,0.35);
   --tbg:var(--bg3);--td:var(--ol);--bbg:rgba(255,255,255,0.88);--btx:var(--old);
 }
-[data-theme="dark"]{
+[data-theme="olive-dark"]{
   --bg:#141613;--bg2:#1A1D18;--bg3:#22261F;--sf:#1E211B;--sf2:#252923;
   --ol:#8FA67E;--old:#A3B48E;--oll:#6B8858;--olp:#4A6038;--olw:#2A3524;--olg:#1E2618;
-  --tx:#E8E8E2;--tx2:#C8C8Be;--tx3:#9A9A90;--tx4:#6B6B63;--tx5:#3A3A36;
+  --tx:#E8E8E2;--tx2:#C8C8BE;--tx3:#9A9A90;--tx4:#6B6B63;--tx5:#3A3A36;
   --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);--danger:#D47A7A;--danger-bg:rgba(212,122,122,0.1);
   --cs:0 1px 3px rgba(0,0,0,0.15),0 4px 16px rgba(0,0,0,0.2);--csh:0 8px 32px rgba(0,0,0,0.3);
   --nbg:rgba(20,22,19,0.85);--mbg:rgba(0,0,0,0.6);
   --tbg:var(--olw);--td:var(--ol);--bbg:rgba(30,33,27,0.88);--btx:var(--ol);
+}
+[data-theme="lavender-light"]{
+  --bg:#F6F4F9;--bg2:#EDEAF2;--bg3:#DED9E8;--sf:#FFFFFF;--sf2:#F4F2F8;
+  --ol:#7B6B9E;--old:#5A4A7A;--oll:#9585B4;--olp:#B5A8CC;--olw:#D8D0E8;--olg:#EFECF5;
+  --tx:#1C1A20;--tx2:#36343A;--tx3:#636068;--tx4:#908D96;--tx5:#BFBDC4;
+  --bd:rgba(0,0,0,0.06);--bd2:rgba(0,0,0,0.1);--danger:#C45B5B;--danger-bg:rgba(196,91,91,0.08);
+  --cs:0 1px 3px rgba(0,0,0,0.03),0 4px 16px rgba(0,0,0,0.04);--csh:0 8px 32px rgba(0,0,0,0.08);
+  --nbg:rgba(246,244,249,0.82);--mbg:rgba(28,26,32,0.35);
+  --tbg:var(--bg3);--td:var(--ol);--bbg:rgba(255,255,255,0.88);--btx:var(--old);
+}
+[data-theme="lavender-dark"]{
+  --bg:#161418;--bg2:#1C1A20;--bg3:#252228;--sf:#1E1B22;--sf2:#282530;
+  --ol:#A898C8;--old:#B8AAD8;--oll:#7B68A8;--olp:#4A4060;--olw:#2A2538;--olg:#201C28;
+  --tx:#E6E4EA;--tx2:#C8C6CE;--tx3:#9896A0;--tx4:#686670;--tx5:#3A3840;
+  --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);--danger:#D47A7A;--danger-bg:rgba(212,122,122,0.1);
+  --cs:0 1px 3px rgba(0,0,0,0.15),0 4px 16px rgba(0,0,0,0.2);--csh:0 8px 32px rgba(0,0,0,0.3);
+  --nbg:rgba(22,20,24,0.85);--mbg:rgba(0,0,0,0.6);
+  --tbg:var(--olw);--td:var(--ol);--bbg:rgba(30,27,34,0.88);--btx:var(--ol);
+}
+[data-theme="rose-light"]{
+  --bg:#F9F4F4;--bg2:#F0E8E8;--bg3:#E4D8D8;--sf:#FFFFFF;--sf2:#F8F2F2;
+  --ol:#9E6B7A;--old:#7A4A5A;--oll:#B48595;--olp:#CCA8B4;--olw:#E8D0D8;--olg:#F5ECF0;
+  --tx:#201A1C;--tx2:#3A3436;--tx3:#686063;--tx4:#968D90;--tx5:#C4BDC0;
+  --bd:rgba(0,0,0,0.06);--bd2:rgba(0,0,0,0.1);--danger:#C45B5B;--danger-bg:rgba(196,91,91,0.08);
+  --cs:0 1px 3px rgba(0,0,0,0.03),0 4px 16px rgba(0,0,0,0.04);--csh:0 8px 32px rgba(0,0,0,0.08);
+  --nbg:rgba(249,244,244,0.82);--mbg:rgba(32,26,28,0.35);
+  --tbg:var(--bg3);--td:var(--ol);--bbg:rgba(255,255,255,0.88);--btx:var(--old);
+}
+[data-theme="rose-dark"]{
+  --bg:#181415;--bg2:#201A1C;--bg3:#2A2224;--sf:#221C1E;--sf2:#2E2628;
+  --ol:#C898A8;--old:#D8AAB8;--oll:#A86878;--olp:#604048;--olw:#382028;--olg:#281820;
+  --tx:#EAE4E6;--tx2:#CEC6C8;--tx3:#A09698;--tx4:#706668;--tx5:#403838;
+  --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);--danger:#D47A7A;--danger-bg:rgba(212,122,122,0.1);
+  --cs:0 1px 3px rgba(0,0,0,0.15),0 4px 16px rgba(0,0,0,0.2);--csh:0 8px 32px rgba(0,0,0,0.3);
+  --nbg:rgba(24,20,21,0.85);--mbg:rgba(0,0,0,0.6);
+  --tbg:var(--olw);--td:var(--ol);--bbg:rgba(34,28,30,0.88);--btx:var(--ol);
+}
+[data-theme="ocean-light"]{
+  --bg:#F4F7F9;--bg2:#E8EDF0;--bg3:#D8E0E6;--sf:#FFFFFF;--sf2:#F0F4F6;
+  --ol:#4A7088;--old:#2E5068;--oll:#6A8EA8;--olp:#8EB0C4;--olw:#C8DCE8;--olg:#E8F0F5;
+  --tx:#1A1C1E;--tx2:#34383A;--tx3:#606468;--tx4:#8E9296;--tx5:#BCC0C4;
+  --bd:rgba(0,0,0,0.06);--bd2:rgba(0,0,0,0.1);--danger:#C45B5B;--danger-bg:rgba(196,91,91,0.08);
+  --cs:0 1px 3px rgba(0,0,0,0.03),0 4px 16px rgba(0,0,0,0.04);--csh:0 8px 32px rgba(0,0,0,0.08);
+  --nbg:rgba(244,247,249,0.82);--mbg:rgba(26,28,30,0.35);
+  --tbg:var(--bg3);--td:var(--ol);--bbg:rgba(255,255,255,0.88);--btx:var(--old);
+}
+[data-theme="ocean-dark"]{
+  --bg:#131618;--bg2:#181C20;--bg3:#1E2428;--sf:#1A2024;--sf2:#22282E;
+  --ol:#78A8C0;--old:#8EBAD0;--oll:#5888A8;--olp:#384858;--olw:#1E2C38;--olg:#182028;
+  --tx:#E4E6E8;--tx2:#C6C8CE;--tx3:#96989E;--tx4:#666A70;--tx5:#383C40;
+  --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);--danger:#D47A7A;--danger-bg:rgba(212,122,122,0.1);
+  --cs:0 1px 3px rgba(0,0,0,0.15),0 4px 16px rgba(0,0,0,0.2);--csh:0 8px 32px rgba(0,0,0,0.3);
+  --nbg:rgba(19,22,24,0.85);--mbg:rgba(0,0,0,0.6);
+  --tbg:var(--olw);--td:var(--ol);--bbg:rgba(26,32,36,0.88);--btx:var(--ol);
+}
+[data-theme="mocha-light"]{
+  --bg:#F8F5F0;--bg2:#EFE9E0;--bg3:#E2D8CC;--sf:#FFFFFF;--sf2:#F5F0EA;
+  --ol:#8B7355;--old:#6B5438;--oll:#A89070;--olp:#C4AC90;--olw:#DDD0C0;--olg:#F0EAE0;
+  --tx:#1E1A16;--tx2:#3A3430;--tx3:#686058;--tx4:#969088;--tx5:#C4BEB6;
+  --bd:rgba(0,0,0,0.06);--bd2:rgba(0,0,0,0.1);--danger:#C45B5B;--danger-bg:rgba(196,91,91,0.08);
+  --cs:0 1px 3px rgba(0,0,0,0.03),0 4px 16px rgba(0,0,0,0.04);--csh:0 8px 32px rgba(0,0,0,0.08);
+  --nbg:rgba(248,245,240,0.82);--mbg:rgba(30,26,22,0.35);
+  --tbg:var(--bg3);--td:var(--ol);--bbg:rgba(255,255,255,0.88);--btx:var(--old);
+}
+[data-theme="mocha-dark"]{
+  --bg:#161412;--bg2:#1E1A16;--bg3:#28221C;--sf:#201C18;--sf2:#2A2420;
+  --ol:#C0A888;--old:#D0B898;--oll:#988060;--olp:#584838;--olw:#382C20;--olg:#281E16;
+  --tx:#E8E4E0;--tx2:#CEC8C0;--tx3:#9E9890;--tx4:#6E6860;--tx5:#403A34;
+  --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);--danger:#D47A7A;--danger-bg:rgba(212,122,122,0.1);
+  --cs:0 1px 3px rgba(0,0,0,0.15),0 4px 16px rgba(0,0,0,0.2);--csh:0 8px 32px rgba(0,0,0,0.3);
+  --nbg:rgba(22,20,18,0.85);--mbg:rgba(0,0,0,0.6);
+  --tbg:var(--olw);--td:var(--ol);--bbg:rgba(32,28,24,0.88);--btx:var(--ol);
+}
+[data-theme="midnight-dark"]{
+  --bg:#0E1117;--bg2:#141820;--bg3:#1A2030;--sf:#161C26;--sf2:#1E2430;
+  --ol:#6E9ECF;--old:#88B4DE;--oll:#4E80B8;--olp:#304868;--olw:#1A2840;--olg:#141C2A;
+  --tx:#E0E4EA;--tx2:#B8BCC6;--tx3:#8088A0;--tx4:#505868;--tx5:#303840;
+  --bd:rgba(255,255,255,0.06);--bd2:rgba(255,255,255,0.1);--danger:#D47A7A;--danger-bg:rgba(212,122,122,0.1);
+  --cs:0 1px 3px rgba(0,0,0,0.2),0 4px 16px rgba(0,0,0,0.25);--csh:0 8px 32px rgba(0,0,0,0.35);
+  --nbg:rgba(14,17,23,0.88);--mbg:rgba(0,0,0,0.65);
+  --tbg:var(--olw);--td:var(--ol);--bbg:rgba(22,28,38,0.88);--btx:var(--ol);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{-webkit-font-smoothing:antialiased}
@@ -257,6 +339,29 @@ a{text-decoration:none;color:inherit}
 .modal-heart.faved svg{stroke:#E05B5B;fill:#E05B5B}
 @keyframes heartPop{0%{transform:scale(1)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
 .heart-pop{animation:heartPop .3s ease-out}
+
+/* THEME PICKER */
+.tp-btn{width:28px;height:28px;border-radius:50%;background:var(--ol);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s;flex-shrink:0;border:2px solid var(--bd2)}
+.tp-btn:hover{transform:scale(1.1)}
+.tp-btn svg{width:14px;height:14px;stroke:#fff;stroke-width:2;fill:none}
+.tp-panel{position:fixed;top:0;right:-320px;width:300px;max-width:85vw;height:100%;background:var(--sf);border-left:1px solid var(--bd);z-index:600;transition:right .35s cubic-bezier(.4,0,.2,1);overflow-y:auto;box-shadow:-4px 0 24px rgba(0,0,0,0.1);padding:1.2rem}
+.tp-panel.open{right:0}
+.tp-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.2);z-index:599;display:none;transition:opacity .3s}
+.tp-overlay.open{display:block}
+.tp-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.tp-head h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:700;color:var(--tx)}
+.tp-section{font-size:0.6rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:var(--tx4);margin-bottom:0.5rem;margin-top:1rem}
+.tp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem}
+.tp-card{padding:0.7rem;border-radius:10px;border:2px solid var(--bd);cursor:pointer;transition:all .25s;position:relative}
+.tp-card:hover{border-color:var(--olp)}
+.tp-card.active{border-color:var(--ol);box-shadow:0 0 0 2px var(--olw)}
+.tp-card-name{font-size:0.72rem;font-weight:500;color:var(--tx);margin-bottom:0.4rem}
+.tp-swatches{display:flex;gap:3px}
+.tp-swatch{width:18px;height:18px;border-radius:50%;border:1px solid rgba(0,0,0,0.08)}
+.tp-mode{display:flex;gap:0.4rem;margin-top:0.5rem}
+.tp-mode-btn{flex:1;padding:0.4rem;border-radius:8px;border:1.5px solid var(--bd2);background:transparent;font-size:0.7rem;font-weight:500;color:var(--tx3);cursor:pointer;transition:all .25s;text-align:center}
+.tp-mode-btn:hover{border-color:var(--olp);background:var(--olg)}
+.tp-mode-btn.active{background:var(--old);border-color:var(--old);color:#fff}
 </style>
 </head>
 <body>
@@ -266,7 +371,7 @@ a{text-decoration:none;color:inherit}
 <nav class="nav"><div class="wrap">
   <a href="#" class="nav-brand"><span class="nav-bold">Madi's</span><span class="nav-cursive">Breads</span></a>
   <div class="nav-right">
-    <button class="theme-tog" id="themeTog"><div class="dot"><span id="togIco">☀️</span></div></button>
+    <button class="tp-btn" id="tpBtn" title="Change theme"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 11-11.31 0z"/></svg></button>
     <div id="authArea"></div>
   </div>
 </div></nav>
@@ -285,6 +390,22 @@ a{text-decoration:none;color:inherit}
     <button class="vtab" data-view="mine">My Recipes <span class="vtab-count" id="mineCount">0</span></button>
   </div>
   <div class="grid" id="grid"></div><div class="empty" id="emptyState" style="display:none"><div class="empty-ico">🍞</div><h3 id="emptyH">No recipes yet</h3><p id="emptyP">Sign in to add recipes</p></div></main>
+
+<!-- THEME PANEL -->
+<div class="tp-overlay" id="tpOverlay"></div>
+<div class="tp-panel" id="tpPanel">
+  <div class="tp-head">
+    <h3>Theme</h3>
+    <button class="mx" id="tpClose"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  </div>
+  <p class="tp-section">Light / Dark</p>
+  <div class="tp-mode" id="tpMode">
+    <button class="tp-mode-btn" data-mode="light">Light</button>
+    <button class="tp-mode-btn active" data-mode="dark">Dark</button>
+  </div>
+  <p class="tp-section">Color Palette</p>
+  <div class="tp-grid" id="tpGrid"></div>
+</div>
 
 <footer class="foot"><div class="wrap"><p>Madi's Breads</p></div></footer>
 
@@ -353,14 +474,12 @@ a{text-decoration:none;color:inherit}
 // FIREBASE CONFIG — PASTE YOUR VALUES HERE
 // ========================================
 const firebaseConfig = {
-  apiKey: "AIzaSyCxibqeoXky2RoLvDNX18RBmAPpmoQHJpo",
-  authDomain: "madisbreads.firebaseapp.com",
-  databaseURL: "https://madisbreads-default-rtdb.firebaseio.com",
-  projectId: "madisbreads",
-  storageBucket: "madisbreads.firebasestorage.app",
-  messagingSenderId: "160052738178",
-  appId: "1:160052738178:web:d80007ead9b63a68e85c9b",
-  measurementId: "G-N4XSBHBK39"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT.appspot.com",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -755,12 +874,54 @@ document.getElementById('delYes').onclick=async()=>{
 document.getElementById('searchBox').oninput=e=>{searchQ=e.target.value;renderGrid()};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(delConfirm.classList.contains('open')){delConfirm.classList.remove('open');return}if(formBg.classList.contains('open')){closeForm();return}if(authBg.classList.contains('open')){authBg.classList.remove('open');return}if(viewBg.classList.contains('open')){viewBg.classList.remove('open');document.body.style.overflow=''}}});
 
-// Theme
-const themeTog=document.getElementById('themeTog');
-const togIco=document.getElementById('togIco');
-function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);togIco.textContent=t==='dark'?'🌙':'☀️'}
-themeTog.onclick=()=>{const c=document.documentElement.getAttribute('data-theme');setTheme(c==='dark'?'light':'dark')};
-(function(){setTheme(localStorage.getItem('theme')||'dark')})();
+// Theme system
+const PALETTES=[
+  {id:'olive',name:'Olive',swatches:['#3D4A2E','#5B6B4A','#A3B48E','#D4DEC8']},
+  {id:'lavender',name:'Lavender',swatches:['#5A4A7A','#7B6B9E','#B5A8CC','#D8D0E8']},
+  {id:'rose',name:'Rosé',swatches:['#7A4A5A','#9E6B7A','#CCA8B4','#E8D0D8']},
+  {id:'ocean',name:'Ocean',swatches:['#2E5068','#4A7088','#8EB0C4','#C8DCE8']},
+  {id:'mocha',name:'Mocha',swatches:['#6B5438','#8B7355','#C4AC90','#DDD0C0']},
+  {id:'midnight',name:'Midnight',swatches:['#1A2030','#304868','#6E9ECF','#88B4DE'],darkOnly:true}
+];
+let currentPalette=localStorage.getItem('palette')||'olive';
+let currentMode=localStorage.getItem('mode')||'dark';
+
+function applyTheme(){
+  const p=PALETTES.find(x=>x.id===currentPalette);
+  if(p&&p.darkOnly) currentMode='dark';
+  const theme=currentPalette+'-'+currentMode;
+  document.documentElement.setAttribute('data-theme',theme);
+  localStorage.setItem('palette',currentPalette);
+  localStorage.setItem('mode',currentMode);
+  renderThemePanel();
+}
+
+function renderThemePanel(){
+  // Palette grid
+  const grid=document.getElementById('tpGrid');
+  grid.innerHTML='';
+  PALETTES.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='tp-card'+(currentPalette===p.id?' active':'');
+    card.innerHTML=`<div class="tp-card-name">${p.name}${p.darkOnly?' (dark only)':''}</div><div class="tp-swatches">${p.swatches.map(c=>`<div class="tp-swatch" style="background:${c}"></div>`).join('')}</div>`;
+    card.onclick=()=>{currentPalette=p.id;if(p.darkOnly)currentMode='dark';applyTheme()};
+    grid.appendChild(card);
+  });
+  // Mode buttons
+  const p=PALETTES.find(x=>x.id===currentPalette);
+  document.querySelectorAll('.tp-mode-btn').forEach(b=>{
+    b.classList.toggle('active',b.dataset.mode===currentMode);
+    if(p&&p.darkOnly&&b.dataset.mode==='light'){b.style.opacity='0.3';b.style.pointerEvents='none'}
+    else{b.style.opacity='1';b.style.pointerEvents='auto'}
+  });
+}
+
+document.querySelectorAll('.tp-mode-btn').forEach(b=>b.addEventListener('click',()=>{currentMode=b.dataset.mode;applyTheme()}));
+document.getElementById('tpBtn').onclick=()=>{document.getElementById('tpPanel').classList.add('open');document.getElementById('tpOverlay').classList.add('open')};
+document.getElementById('tpClose').onclick=()=>{document.getElementById('tpPanel').classList.remove('open');document.getElementById('tpOverlay').classList.remove('open')};
+document.getElementById('tpOverlay').onclick=()=>{document.getElementById('tpPanel').classList.remove('open');document.getElementById('tpOverlay').classList.remove('open')};
+
+applyTheme();
 </script>
 </body>
 </html>
