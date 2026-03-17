@@ -235,6 +235,28 @@ a{text-decoration:none;color:inherit}
 .loading-overlay p{font-size:0.85rem;color:var(--tx3)}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* VIEW TABS */
+.view-tabs{display:flex;gap:0.3rem;margin-bottom:0.8rem}
+.vtab{font-size:0.72rem;font-weight:400;padding:0.35rem 0.9rem;border:1.5px solid var(--bd2);background:transparent;color:var(--tx3);border-radius:100px;transition:all .25s;white-space:nowrap}
+.vtab:hover{border-color:var(--olp);background:var(--olg);color:var(--old)}
+[data-theme="dark"] .vtab:hover{color:var(--ol)}
+.vtab.on{background:var(--old);border-color:var(--old);color:#fff}
+[data-theme="dark"] .vtab.on{background:var(--oll);border-color:var(--oll)}
+.vtab .vtab-count{display:inline-flex;align-items:center;justify-content:center;min-width:16px;height:16px;padding:0 4px;background:rgba(255,255,255,0.2);border-radius:100px;font-size:0.58rem;margin-left:0.3rem}
+.vtab:not(.on) .vtab-count{background:var(--bd);color:var(--tx4)}
+
+/* HEART / FAVORITE */
+.card-heart{position:absolute;top:8px;right:8px;z-index:3;width:30px;height:30px;border-radius:50%;background:var(--bbg);backdrop-filter:blur(6px);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s}
+.card-heart:hover{transform:scale(1.12)}
+.card-heart svg{width:14px;height:14px;stroke:var(--tx4);stroke-width:2;fill:none;transition:all .2s}
+.card-heart.faved svg{stroke:#E05B5B;fill:#E05B5B}
+.modal-heart{position:absolute;top:10px;right:50px;z-index:3;width:32px;height:32px;border-radius:50%;background:var(--bbg);backdrop-filter:blur(8px);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .25s}
+.modal-heart:hover{transform:scale(1.1)}
+.modal-heart svg{width:15px;height:15px;stroke:var(--tx4);stroke-width:2;fill:none;transition:all .2s}
+.modal-heart.faved svg{stroke:#E05B5B;fill:#E05B5B}
+@keyframes heartPop{0%{transform:scale(1)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
+.heart-pop{animation:heartPop .3s ease-out}
 </style>
 </head>
 <body>
@@ -256,13 +278,20 @@ a{text-decoration:none;color:inherit}
 </div></section>
 
 <!-- GRID -->
-<main class="wrap"><div class="grid" id="grid"></div><div class="empty" id="emptyState" style="display:none"><div class="empty-ico">🍞</div><h3 id="emptyH">No recipes yet</h3><p id="emptyP">Sign in to add recipes</p></div></main>
+<main class="wrap">
+  <div class="view-tabs" id="viewTabs">
+    <button class="vtab on" data-view="all">All Recipes</button>
+    <button class="vtab" data-view="favorites">Favorites <span class="vtab-count" id="favCount">0</span></button>
+    <button class="vtab" data-view="mine">My Recipes <span class="vtab-count" id="mineCount">0</span></button>
+  </div>
+  <div class="grid" id="grid"></div><div class="empty" id="emptyState" style="display:none"><div class="empty-ico">🍞</div><h3 id="emptyH">No recipes yet</h3><p id="emptyP">Sign in to add recipes</p></div></main>
 
 <footer class="foot"><div class="wrap"><p>Madi's Breads</p></div></footer>
 
 <!-- VIEW -->
 <div class="modal-bg" id="viewBg"><div class="modal" id="viewModal">
   <button class="mx" id="viewX"><svg viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+  <button class="modal-heart" id="viewHeart"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></button>
   <div class="modal-acts" id="viewActs" style="display:none">
     <button class="ma" id="editBtn" title="Edit"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></button>
     <button class="ma del" id="delBtn" title="Delete"><svg viewBox="0 0 24 24"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></button>
@@ -326,6 +355,7 @@ a{text-decoration:none;color:inherit}
 const firebaseConfig = {
   apiKey: "AIzaSyCxibqeoXky2RoLvDNX18RBmAPpmoQHJpo",
   authDomain: "madisbreads.firebaseapp.com",
+  databaseURL: "https://madisbreads-default-rtdb.firebaseio.com",
   projectId: "madisbreads",
   storageBucket: "madisbreads.firebasestorage.app",
   messagingSenderId: "160052738178",
@@ -342,7 +372,7 @@ const recipesRef = db.collection('recipes');
 const DTAGS=["Protein","Meme's Recipe","Mawmaw's Recipe","Family Recipe","Quick & Easy","Healthy","Comfort Food","Holiday","Meal Prep","Gluten Free","Dairy Free","Vegetarian","Vegan","Kid Friendly","Date Night","Sunday Dinner","High Protein","Low Carb","Sourdough"];
 const DCATS=["All","Bread","Baking","Cooking","Dessert","Breakfast","Snack","Drink","Side","Soup"];
 
-// ===== 42 BREAD RECIPES =====
+// ===== 44 BREAD RECIPES (already seeded in Firestore) =====
 const SEED_RECIPES=[
 {name:"Rustic Sourdough Boule",desc:"Crusty, tangy sourdough with open crumb. Just four ingredients and patience.",cat:"Bread",time:"24 hrs",srv:"1 loaf",diff:"Medium",tags:["Sourdough"],ing:[{amt:"350g",item:"bread flour"},{amt:"50g",item:"whole wheat flour"},{amt:"280g",item:"water"},{amt:"80g",item:"sourdough starter"},{amt:"8g",item:"sea salt"}],steps:["Mix flour and water, rest 30 min.","Add starter and salt, fold to combine.","Stretch and fold every 30 min for 2 hours.","Bulk ferment 4-6 hrs until doubled.","Shape into boule, place in floured banneton.","Cold proof in fridge 12-18 hrs.","Preheat Dutch oven at 500°F. Score and bake covered 20 min, uncovered 20 min at 450°F."],tip:"Warmer kitchen = faster rise. In winter, use the oven with just the light on."},
 {name:"Honey Oat Bread",desc:"Soft, golden loaf sweetened with honey and oats — a Sunday morning classic.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Family Recipe","Mawmaw's Recipe"],ing:[{amt:"3 cups",item:"bread flour"},{amt:"1 cup",item:"rolled oats"},{amt:"1¼ cups",item:"warm milk"},{amt:"3 tbsp",item:"honey"},{amt:"2 tbsp",item:"butter, softened"},{amt:"2¼ tsp",item:"active dry yeast"},{amt:"1½ tsp",item:"salt"}],steps:["Dissolve yeast in warm milk with honey. Bloom 10 min.","Mix flour, oats, salt. Add yeast mixture, honey, butter.","Knead 8-10 min until smooth.","Rise 1-1.5 hrs until doubled.","Shape, place in greased 9×5 pan.","Rise 30-40 min. Brush with milk, sprinkle oats.","Bake at 350°F for 30-35 min."],tip:"Freezes beautifully — wrap tight, lasts 3 months."},
@@ -387,7 +417,18 @@ const SEED_RECIPES=[
 {name:"Tortillas",desc:"Soft, pliable flour tortillas — 5 ingredients, 30 minutes.",cat:"Bread",time:"30 min",srv:"8 tortillas",diff:"Easy",tags:["Quick & Easy","Meal Prep"],ing:[{amt:"2 cups",item:"all-purpose flour"},{amt:"½ cup",item:"warm water"},{amt:"3 tbsp",item:"oil or lard"},{amt:"½ tsp",item:"salt"},{amt:"½ tsp",item:"baking powder"}],steps:["Mix flour, salt, baking powder.","Add oil. Rub into flour until crumbly.","Add warm water. Mix into a dough.","Knead 2 min. Rest 15 min covered.","Divide into 8 balls. Roll each very thin.","Cook in dry hot skillet 30-45 sec per side until spots appear.","Stack in a towel to stay soft."],tip:"Don't skip the rest time — it relaxes the gluten and makes rolling easy."},
 {name:"Protein Bread Rolls",desc:"Soft rolls packed with 18g protein each — great for meal prep.",cat:"Bread",time:"2 hrs",srv:"8 rolls",diff:"Easy",tags:["Protein","High Protein","Meal Prep"],ing:[{amt:"2 cups",item:"white whole wheat flour"},{amt:"1 scoop",item:"unflavored protein powder"},{amt:"¾ cup",item:"warm water"},{amt:"¼ cup",item:"Greek yogurt"},{amt:"2 tbsp",item:"honey"},{amt:"1 tbsp",item:"olive oil"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"}],steps:["Dissolve yeast in warm water with honey.","Mix flour, protein powder, salt.","Add yeast mixture, yogurt, oil. Knead 8 min.","Rise 1 hr.","Divide into 8 rolls. Place on parchment sheet.","Rise 20 min.","Bake at 375°F for 16-18 min."],tip:"Greek yogurt adds protein AND keeps them soft."},
 {name:"Skillet Cornbread",desc:"Savory, no-sugar cornbread in a hot cast iron skillet.",cat:"Bread",time:"30 min",srv:"8 wedges",diff:"Easy",tags:["Meme's Recipe","Quick & Easy","Comfort Food"],ing:[{amt:"1½ cups",item:"fine cornmeal"},{amt:"½ cup",item:"all-purpose flour"},{amt:"1¼ cups",item:"buttermilk"},{amt:"1",item:"egg"},{amt:"2 tbsp",item:"bacon drippings or butter"},{amt:"1 tsp",item:"baking powder"},{amt:"½ tsp",item:"baking soda"},{amt:"¾ tsp",item:"salt"}],steps:["Preheat oven to 450°F with cast iron skillet and bacon drippings inside.","Whisk cornmeal, flour, baking powder, soda, salt.","Whisk buttermilk and egg.","Combine — don't overmix.","Remove hot skillet. Swirl fat to coat.","Pour batter in — it should sizzle loudly.","Bake 18-22 min until golden."],tip:"Bacon drippings are traditional and give the best flavor."},
-{name:"Protein Chocolate Mug Bread",desc:"Single-serve chocolate bread in a mug — 2 minutes in the microwave.",cat:"Bread",time:"5 min",srv:"1 mug",diff:"Easy",tags:["Protein","Quick & Easy","High Protein"],ing:[{amt:"1 scoop",item:"chocolate protein powder"},{amt:"2 tbsp",item:"almond flour"},{amt:"1",item:"egg"},{amt:"2 tbsp",item:"almond milk"},{amt:"1 tbsp",item:"cocoa powder"},{amt:"½ tsp",item:"baking powder"},{amt:"1 tbsp",item:"chocolate chips"}],steps:["Mix all dry ingredients in a large mug.","Add egg and almond milk. Stir until smooth.","Fold in chocolate chips.","Microwave on high 90 seconds.","Let cool 1 min before eating."],tip:"Use a large mug — it rises a lot! Overflows in a small one."}
+{name:"Protein Chocolate Mug Bread",desc:"Single-serve chocolate bread in a mug — 2 minutes in the microwave.",cat:"Bread",time:"5 min",srv:"1 mug",diff:"Easy",tags:["Protein","Quick & Easy","High Protein"],ing:[{amt:"1 scoop",item:"chocolate protein powder"},{amt:"2 tbsp",item:"almond flour"},{amt:"1",item:"egg"},{amt:"2 tbsp",item:"almond milk"},{amt:"1 tbsp",item:"cocoa powder"},{amt:"½ tsp",item:"baking powder"},{amt:"1 tbsp",item:"chocolate chips"}],steps:["Mix all dry ingredients in a large mug.","Add egg and almond milk. Stir until smooth.","Fold in chocolate chips.","Microwave on high 90 seconds.","Let cool 1 min before eating."],tip:"Use a large mug — it rises a lot! Overflows in a small one."},
+{name:"Olive Bread",desc:"Rustic loaf studded with kalamata olives and herbs — Mediterranean perfection.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Date Night","Comfort Food"],ing:[{amt:"3 cups",item:"bread flour"},{amt:"1 cup",item:"warm water"},{amt:"¾ cup",item:"kalamata olives, halved"},{amt:"2 tbsp",item:"olive oil"},{amt:"1 tbsp",item:"dried oregano"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tbsp",item:"honey"},{amt:"1½ tsp",item:"salt"}],steps:["Dissolve yeast in warm water with honey.","Mix flour, oregano, and salt.","Add yeast mixture and olive oil. Knead 8 min.","Fold in olives during last minute of kneading.","Rise 1.5 hrs.","Shape into a round. Place on parchment.","Rise 30 min. Slash top. Drizzle with olive oil.","Bake at 400°F for 28-32 min."],tip:"Pat olives dry before adding — excess moisture makes the dough sticky."},
+{name:"Protein Pumpkin Muffins",desc:"Fluffy pumpkin muffins with 15g protein each — fall meets fitness.",cat:"Bread",time:"35 min",srv:"10 muffins",diff:"Easy",tags:["Protein","High Protein","Healthy","Holiday"],ing:[{amt:"1 cup",item:"oat flour"},{amt:"1 scoop",item:"vanilla protein powder"},{amt:"¾ cup",item:"pumpkin puree"},{amt:"2",item:"eggs"},{amt:"¼ cup",item:"maple syrup"},{amt:"¼ cup",item:"Greek yogurt"},{amt:"1½ tsp",item:"pumpkin pie spice"},{amt:"1 tsp",item:"baking powder"},{amt:"½ tsp",item:"baking soda"},{amt:"",item:"pinch of salt"}],steps:["Whisk oat flour, protein powder, spice, baking powder, soda, salt.","Mix pumpkin, eggs, maple syrup, yogurt separately.","Fold wet into dry until just combined.","Divide among 10 lined muffin cups.","Bake at 350°F for 18-20 min.","Cool 5 min before removing."],tip:"These freeze perfectly — pop one in the microwave for 30 sec for a quick breakfast."},
+{name:"Sweet Potato Bread",desc:"Naturally sweet, moist bread from roasted sweet potatoes — no refined sugar.",cat:"Bread",time:"2 hrs",srv:"1 loaf",diff:"Easy",tags:["Healthy","Comfort Food"],ing:[{amt:"1 cup",item:"mashed roasted sweet potato"},{amt:"1½ cups",item:"whole wheat flour"},{amt:"½ cup",item:"all-purpose flour"},{amt:"2",item:"eggs"},{amt:"¼ cup",item:"coconut oil, melted"},{amt:"¼ cup",item:"maple syrup"},{amt:"1 tsp",item:"cinnamon"},{amt:"½ tsp",item:"nutmeg"},{amt:"1 tsp",item:"baking soda"},{amt:"½ tsp",item:"salt"}],steps:["Mash roasted sweet potato until smooth.","Mix in eggs, coconut oil, maple syrup.","Whisk flours, cinnamon, nutmeg, baking soda, salt.","Fold wet into dry.","Pour into greased loaf pan.","Bake at 350°F for 50-55 min.","Cool 15 min before removing."],tip:"Roast sweet potatoes at 400°F for 45 min until fork-tender. The caramelization adds sweetness."},
+{name:"Cottage Loaf",desc:"Traditional English double-decker bread — impressive looking, simple to make.",cat:"Bread",time:"3.5 hrs",srv:"1 loaf",diff:"Medium",tags:["Family Recipe"],ing:[{amt:"4 cups",item:"bread flour"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"butter, softened"},{amt:"1 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"2 tsp",item:"salt"}],steps:["Dissolve yeast in warm water with sugar.","Mix flour and salt. Add yeast mixture and butter.","Knead 10 min until smooth and elastic.","Rise 1.5 hrs until doubled.","Cut off ⅓ of the dough. Shape both pieces into rounds.","Place small round on top of large round. Push a floured finger through center to join.","Rise 30 min.","Bake at 425°F for 30-35 min until deep golden."],tip:"The finger poke through the middle is what holds the top knob in place."},
+{name:"Garlic Knots",desc:"Soft, pillowy knots drenched in garlic butter and parmesan.",cat:"Bread",time:"2.5 hrs",srv:"16 knots",diff:"Easy",tags:["Quick & Easy","Kid Friendly","Comfort Food"],ing:[{amt:"2¾ cups",item:"all-purpose flour"},{amt:"¾ cup",item:"warm water"},{amt:"2 tbsp",item:"olive oil"},{amt:"1 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"4 tbsp",item:"melted butter"},{amt:"3 cloves",item:"garlic, minced"},{amt:"2 tbsp",item:"parmesan, grated"},{amt:"1 tbsp",item:"fresh parsley, chopped"}],steps:["Dissolve yeast in warm water with sugar.","Add flour, salt, olive oil. Knead 6 min.","Rise 1.5 hrs.","Divide into 16 pieces. Roll each into a 7-inch rope.","Tie each rope into a loose knot.","Place on parchment-lined sheet. Rise 20 min.","Bake at 400°F for 12-15 min.","Mix melted butter, garlic, parmesan, parsley.","Toss hot knots in garlic butter immediately."],tip:"Tie them loosely — they expand a lot in the oven."},
+{name:"Protein Cinnamon Rolls",desc:"Macro-friendly cinnamon rolls with protein-packed dough — Sunday treat without the guilt.",cat:"Bread",time:"3 hrs",srv:"9 rolls",diff:"Medium",tags:["Protein","High Protein","Comfort Food"],ing:[{amt:"2 cups",item:"white whole wheat flour"},{amt:"1 scoop",item:"vanilla protein powder"},{amt:"¾ cup",item:"warm milk"},{amt:"2 tbsp",item:"butter, softened"},{amt:"2 tbsp",item:"honey"},{amt:"1",item:"egg"},{amt:"2¼ tsp",item:"yeast"},{amt:"½ tsp",item:"salt"},{amt:"2 tbsp",item:"butter for filling"},{amt:"3 tbsp",item:"brown sugar"},{amt:"2 tsp",item:"cinnamon"},{amt:"",item:"Greek yogurt frosting: ½ cup Greek yogurt, 2 tbsp powdered sugar, ½ tsp vanilla"}],steps:["Dissolve yeast in warm milk with honey.","Mix flour, protein powder, salt. Add yeast, butter, egg.","Knead 8 min. Rise 1.5 hrs.","Roll into 12×9 rectangle.","Spread softened butter. Sprinkle cinnamon sugar.","Roll tightly from long side. Cut into 9 rolls.","Place in greased 8×8 pan. Rise 30 min.","Bake at 350°F for 22-25 min.","Mix frosting ingredients. Spread on warm rolls."],tip:"Greek yogurt frosting tastes like cream cheese but with way more protein."},
+{name:"Sourdough Sandwich Loaf",desc:"Soft sandwich bread with sourdough tang — best of both worlds.",cat:"Bread",time:"18 hrs",srv:"1 loaf",diff:"Medium",tags:["Sourdough","Meal Prep","Healthy"],ing:[{amt:"3 cups",item:"all-purpose flour"},{amt:"1 cup",item:"active sourdough starter"},{amt:"¾ cup",item:"warm milk"},{amt:"2 tbsp",item:"butter, softened"},{amt:"2 tbsp",item:"honey"},{amt:"1½ tsp",item:"salt"}],steps:["Mix flour, starter, milk, honey, and butter into a shaggy dough.","Knead 10 min until smooth.","Rise 3-4 hrs at room temp (or 8-12 hrs in the fridge for more tang).","Shape into a log and place in greased 9×5 loaf pan.","Rise until dough crowns 1 inch above the pan — 2-4 hrs depending on temp.","Bake at 375°F for 35-40 min.","Cool completely before slicing."],tip:"Fridge overnight = more sour flavor. Room temp = milder and faster."},
+{name:"Maple Oat Scones",desc:"Tender, crumbly scones sweetened with maple and studded with oats.",cat:"Bread",time:"40 min",srv:"8 scones",diff:"Easy",tags:["Breakfast","Quick & Easy"],ing:[{amt:"2 cups",item:"all-purpose flour"},{amt:"½ cup",item:"rolled oats"},{amt:"¼ cup",item:"cold butter, cubed"},{amt:"¼ cup",item:"maple syrup"},{amt:"½ cup",item:"cold heavy cream"},{amt:"1",item:"egg"},{amt:"1 tbsp",item:"baking powder"},{amt:"½ tsp",item:"salt"},{amt:"",item:"extra cream and oats for top"}],steps:["Whisk flour, oats, baking powder, salt.","Cut in cold butter until pea-sized.","Whisk maple syrup, cream, and egg separately.","Fold wet into dry until just combined.","Pat into 8-inch circle on floured surface, ¾ inch thick.","Cut into 8 wedges. Place on parchment sheet.","Brush tops with cream, sprinkle oats.","Bake at 400°F for 16-18 min until golden."],tip:"Don't overmix — visible butter chunks = flaky scones."},
+{name:"Honey Wheat Protein Bread",desc:"Hearty wheat bread with added protein from whey — 12g per slice.",cat:"Bread",time:"3 hrs",srv:"1 loaf",diff:"Easy",tags:["Protein","High Protein","Healthy","Meal Prep"],ing:[{amt:"2 cups",item:"white whole wheat flour"},{amt:"½ cup",item:"bread flour"},{amt:"2 scoops",item:"unflavored whey protein"},{amt:"1¼ cups",item:"warm water"},{amt:"2 tbsp",item:"honey"},{amt:"2 tbsp",item:"olive oil"},{amt:"2¼ tsp",item:"yeast"},{amt:"1½ tsp",item:"salt"},{amt:"2 tbsp",item:"flaxseed meal"}],steps:["Dissolve yeast in warm water with honey.","Combine flours, protein powder, flaxseed, salt.","Add yeast mixture and olive oil.","Knead 10 min — protein powder makes it slightly stiffer.","Rise 1.5 hrs.","Shape and place in greased 9×5 loaf pan.","Rise 40 min.","Bake at 375°F for 33-38 min.","Cool completely — at least 1 hour."],tip:"Unflavored whey works best here. Flavored protein can make it taste odd when toasted."},
+{name:"Blueberry Lemon Bread",desc:"Bright, tender quick bread bursting with blueberries and lemon zest.",cat:"Bread",time:"1.5 hrs",srv:"1 loaf",diff:"Easy",tags:["Family Recipe","Comfort Food"],ing:[{amt:"1½ cups",item:"all-purpose flour"},{amt:"¾ cup",item:"sugar"},{amt:"1 cup",item:"fresh blueberries"},{amt:"2",item:"eggs"},{amt:"½ cup",item:"yogurt"},{amt:"⅓ cup",item:"melted butter"},{amt:"",item:"zest of 1 lemon"},{amt:"2 tbsp",item:"lemon juice"},{amt:"1 tsp",item:"baking powder"},{amt:"¼ tsp",item:"baking soda"},{amt:"¼ tsp",item:"salt"}],steps:["Whisk flour, baking powder, baking soda, salt.","Toss blueberries with 1 tbsp of the flour mixture.","Whisk eggs, sugar, yogurt, butter, lemon zest, and juice.","Fold dry into wet until just combined.","Fold in blueberries gently.","Pour into greased loaf pan.","Bake at 350°F for 55-60 min.","Cool 15 min before removing."],tip:"Tossing blueberries in flour keeps them from sinking to the bottom."},
+{name:"Dutch Crunch Bread",desc:"Crusty rolls with a crackly, crunchy rice flour topping — a West Coast classic.",cat:"Bread",time:"3.5 hrs",srv:"8 rolls",diff:"Medium",tags:["Meal Prep"],ing:[{amt:"3 cups",item:"bread flour"},{amt:"1 cup",item:"warm milk"},{amt:"2 tbsp",item:"butter, softened"},{amt:"2 tbsp",item:"sugar"},{amt:"2¼ tsp",item:"yeast"},{amt:"1 tsp",item:"salt"},{amt:"",item:"Topping: ½ cup rice flour, 2 tbsp sugar, 1 tbsp oil, ½ tsp yeast, ⅓ cup warm water"}],steps:["Dissolve yeast in warm milk with sugar.","Mix bread flour and salt. Add yeast mixture and butter.","Knead 8 min. Rise 1.5 hrs.","Divide into 8 rolls. Place on parchment sheet.","Make topping: mix rice flour, sugar, yeast, oil, warm water. Let sit 15 min until bubbly.","Spread topping generously over each roll.","Rise 20 min. The topping will start to crack — that's perfect.","Bake at 400°F for 18-22 min until golden and crackled."],tip:"The rice flour topping should be thick like paste — don't make it too thin or you won't get the signature cracks."}
 ];
 
 // ===== APP STATE =====
@@ -400,7 +441,9 @@ let searchQ='';
 let currentUser=null;
 let viewingId=null;
 let deleteId=null;
-let authMode='signin'; // signin or signup
+let authMode='signin';
+let viewMode='all'; // 'all', 'favorites', 'mine'
+let userFavorites=new Set(); // stored per-user in Firestore // signin or signup
 
 // ===== AUTH =====
 const authArea=document.getElementById('authArea');
@@ -466,30 +509,81 @@ document.getElementById('authSubmit').onclick=async()=>{
 auth.onAuthStateChanged(async user=>{
   currentUser=user;
   renderAuthArea();
+  if(user){
+    await loadFavorites();
+  } else {
+    userFavorites=new Set();
+  }
   await loadRecipes();
+  if(user) seedRecipes();
+  updateTabCounts();
   document.getElementById('loader').classList.add('hide');
   setTimeout(()=>document.getElementById('loader').style.display='none',500);
 });
 
+// ===== FAVORITES =====
+async function loadFavorites(){
+  if(!currentUser)return;
+  try{
+    const doc=await db.collection('favorites').doc(currentUser.uid).get();
+    userFavorites=new Set(doc.exists?doc.data().ids||[]:[]);
+  }catch(e){console.warn('Favorites load:',e.message);userFavorites=new Set()}
+}
+async function saveFavorites(){
+  if(!currentUser)return;
+  try{await db.collection('favorites').doc(currentUser.uid).set({ids:[...userFavorites]})}
+  catch(e){console.warn('Favorites save:',e.message)}
+}
+function toggleFavorite(recipeId){
+  if(!currentUser){authMode='signin';renderAuthModal();authBg.classList.add('open');return}
+  if(userFavorites.has(recipeId)){userFavorites.delete(recipeId)}else{userFavorites.add(recipeId)}
+  saveFavorites();updateTabCounts();
+}
+
 // ===== FIRESTORE =====
 async function seedRecipes(){
-  const snap=await recipesRef.limit(1).get();
-  if(snap.empty){
-    const batch=db.batch();
-    SEED_RECIPES.forEach(r=>{
-      const ref=recipesRef.doc();
-      batch.set(ref,{...r,photo:'',createdBy:'system',createdAt:firebase.firestore.FieldValue.serverTimestamp()});
-    });
-    await batch.commit();
-  }
+  try{
+    // Version-based seeding: if version changes, delete old system recipes and re-seed
+    const SEED_VERSION = 'v3';
+    const metaRef = db.collection('meta').doc('seed');
+    const metaSnap = await metaRef.get();
+    const currentVersion = metaSnap.exists ? metaSnap.data().version : null;
+    
+    if(currentVersion === SEED_VERSION) return; // Already seeded with this version
+    
+    // Delete old system recipes
+    const oldSnap = await recipesRef.where('createdBy','==','system').get();
+    if(!oldSnap.empty){
+      for(let i=0;i<oldSnap.docs.length;i+=20){
+        const batch=db.batch();
+        oldSnap.docs.slice(i,i+20).forEach(d=>batch.delete(d.ref));
+        await batch.commit();
+      }
+    }
+    
+    // Write new seed recipes in batches of 20
+    for(let i=0;i<SEED_RECIPES.length;i+=20){
+      const batch=db.batch();
+      SEED_RECIPES.slice(i,i+20).forEach(r=>{
+        const ref=recipesRef.doc();
+        batch.set(ref,{...r,photo:'',createdBy:'system',createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+      });
+      await batch.commit();
+    }
+    
+    // Mark version
+    await metaRef.set({version:SEED_VERSION});
+    await loadRecipes();
+  }catch(e){console.warn('Seed skipped:',e.message)}
 }
 
 async function loadRecipes(){
   try{
-    await seedRecipes();
-    const snap=await recipesRef.orderBy('createdAt','desc').get();
+    let snap;
+    try{snap=await recipesRef.orderBy('createdAt','desc').get()}
+    catch(e){snap=await recipesRef.get()}
     recipes=snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderFilters();renderGrid();
+    renderFilters();renderGrid();updateTabCounts();
   }catch(e){console.error('Load error:',e);recipes=[];renderFilters();renderGrid()}
 }
 
@@ -511,18 +605,59 @@ function renderFilters(){
 
 function renderGrid(){
   let list=recipes;
+  // View mode filter
+  if(viewMode==='favorites') list=list.filter(r=>userFavorites.has(r.id));
+  if(viewMode==='mine'&&currentUser) list=list.filter(r=>r.createdBy===currentUser.uid);
+  // Category filter
   if(activeFilter!=='All')list=list.filter(r=>r.cat===activeFilter);
+  // Search
   if(searchQ){const q=searchQ.toLowerCase();list=list.filter(r=>r.name.toLowerCase().includes(q)||(r.desc||'').toLowerCase().includes(q)||(r.tags||[]).some(t=>t.toLowerCase().includes(q))||(r.cat||'').toLowerCase().includes(q)||(r.ing||[]).some(i=>i.item.toLowerCase().includes(q)));}
   grid.innerHTML='';
-  if(!list.length){emptyEl.style.display='block';document.getElementById('emptyH').textContent=recipes.length?'No matches':'No recipes yet';document.getElementById('emptyP').textContent=recipes.length?'Try a different search':'';return}
+  if(!list.length){
+    emptyEl.style.display='block';
+    if(viewMode==='favorites'){document.getElementById('emptyH').textContent='No favorites yet';document.getElementById('emptyP').textContent='Tap the heart on any recipe to save it here'}
+    else if(viewMode==='mine'){document.getElementById('emptyH').textContent='No recipes added yet';document.getElementById('emptyP').textContent='Tap "Add" to create your first recipe'}
+    else if(recipes.length){document.getElementById('emptyH').textContent='No matches';document.getElementById('emptyP').textContent='Try a different search or filter'}
+    else{document.getElementById('emptyH').textContent='No recipes yet';document.getElementById('emptyP').textContent=''}
+    return;
+  }
   emptyEl.style.display='none';
   list.forEach((r,i)=>{
-    const d=document.createElement('div');d.className='card';d.style.animationDelay=`${(i%6)*0.035}s`;d.onclick=()=>openView(r.id);
+    const d=document.createElement('div');d.className='card';d.style.animationDelay=`${(i%6)*0.035}s`;
+    const isFav=userFavorites.has(r.id);
     const tHTML=(r.tags||[]).slice(0,3).map(t=>`<span class="card-tag">${t}</span>`).join('');
-    d.innerHTML=`<div class="card-img">${r.photo?`<img src="${r.photo}" alt="">`:'<span class="ph">🍞</span>'}<div class="card-tags">${tHTML}</div></div><div class="card-body"><p class="card-cat">${r.cat||''}</p><h3 class="card-title">${r.name}</h3><p class="card-desc">${r.desc||''}</p><div class="card-meta">${r.time?`<span class="card-mi">⏱ ${r.time}</span>`:''}${r.diff?`<span class="card-mi">✓ ${r.diff}</span>`:''}${r.srv?`<span class="card-mi">🍽 ${r.srv}</span>`:''}</div></div>`;
+    const heartSvg=`<svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>`;
+    d.innerHTML=`<div class="card-img">${r.photo?`<img src="${r.photo}" alt="">`:'<span class="ph">🍞</span>'}<div class="card-tags">${tHTML}</div><button class="card-heart${isFav?' faved':''}" data-id="${r.id}">${heartSvg}</button></div><div class="card-body"><p class="card-cat">${r.cat||''}</p><h3 class="card-title">${r.name}</h3><p class="card-desc">${r.desc||''}</p><div class="card-meta">${r.time?`<span class="card-mi">⏱ ${r.time}</span>`:''}${r.diff?`<span class="card-mi">✓ ${r.diff}</span>`:''}${r.srv?`<span class="card-mi">🍽 ${r.srv}</span>`:''}</div></div>`;
+    // Heart click (don't open recipe)
+    d.querySelector('.card-heart').onclick=e=>{
+      e.stopPropagation();
+      toggleFavorite(r.id);
+      const heart=d.querySelector('.card-heart');
+      heart.classList.toggle('faved');
+      heart.classList.add('heart-pop');
+      setTimeout(()=>heart.classList.remove('heart-pop'),300);
+      if(viewMode==='favorites'&&!userFavorites.has(r.id)){setTimeout(()=>renderGrid(),300)}
+    };
+    // Card click opens recipe
+    d.onclick=()=>openView(r.id);
     grid.appendChild(d);
   });
 }
+
+function updateTabCounts(){
+  const favC=recipes.filter(r=>userFavorites.has(r.id)).length;
+  const mineC=currentUser?recipes.filter(r=>r.createdBy===currentUser.uid).length:0;
+  document.getElementById('favCount').textContent=favC;
+  document.getElementById('mineCount').textContent=mineC;
+}
+
+// View tabs
+document.querySelectorAll('.vtab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.vtab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  viewMode=t.dataset.view;
+  renderGrid();
+}));
 
 // ===== VIEW =====
 const viewBg=document.getElementById('viewBg');
@@ -531,6 +666,16 @@ function openView(id){
   document.getElementById('viewHero').innerHTML=r.photo?`<img src="${r.photo}" alt="">`:'<span class="ph">🍞</span>';
   const canEdit=currentUser&&(r.createdBy==='system'||r.createdBy===currentUser.uid);
   document.getElementById('viewActs').style.display=canEdit?'flex':'none';
+  // Heart state
+  const heartEl=document.getElementById('viewHeart');
+  heartEl.className='modal-heart'+(userFavorites.has(id)?' faved':'');
+  heartEl.onclick=()=>{
+    toggleFavorite(id);
+    heartEl.classList.toggle('faved');
+    heartEl.classList.add('heart-pop');
+    setTimeout(()=>heartEl.classList.remove('heart-pop'),300);
+    renderGrid(); // update cards behind modal
+  };
   const tHTML=(r.tags||[]).map(t=>`<span class="mtag">${t}</span>`).join('');
   document.getElementById('viewBody').innerHTML=`<p class="card-cat">${r.cat||''}</p><h2>${r.name}</h2><div class="card-meta">${r.time?`<span class="card-mi">⏱ ${r.time}</span>`:''}${r.diff?`<span class="card-mi">✓ ${r.diff}</span>`:''}${r.srv?`<span class="card-mi">🍽 ${r.srv}</span>`:''}</div>${r.desc?`<p class="intro">${r.desc}</p>`:''}${tHTML?`<div class="mtags">${tHTML}</div>`:''}${(r.ing&&r.ing.length)?`<h4 class="msh">Ingredients</h4><ul>${r.ing.map(i=>`<li><strong>${i.amt}</strong> ${i.item}</li>`).join('')}</ul>`:''}${(r.steps&&r.steps.length)?`<h4 class="msh">Instructions</h4><ol>${r.steps.map(s=>`<li>${s}</li>`).join('')}</ol>`:''}${r.tip?`<div class="mtip"><span>💡</span><p>${r.tip}</p></div>`:''}${r.createdBy&&r.createdBy!=='system'?`<p class="by">Added by ${r.createdByName||'a family member'}</p>`:''}`;
   viewBg.classList.add('open');document.body.style.overflow='hidden';
